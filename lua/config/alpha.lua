@@ -23,9 +23,8 @@ local ascii = {
 
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
-local setting_path = ""
-local has = vim.fn.has
-if (has("win32") or has("win64")) then
+local setting_path
+if vim.loop.os_uname().sysname:match("Windows") then
   setting_path = "~/AppData/Local/nvim/"
 else
   setting_path = "~/.config/nvim/"
