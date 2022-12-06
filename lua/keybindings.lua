@@ -5,8 +5,8 @@ vim.g.maplocalleader = " "
 -- 本地变量
 local map = vim.api.nvim_set_keymap
 local opt = {
-    noremap = true,
-    silent = true
+  noremap = true,
+  silent = true
 }
 
 -- ctrl u / ctrl + d  只移动9行，默认移动半屏
@@ -50,7 +50,7 @@ map('n', 'nt', ':NvimTreeToggle<CR>', opt)
 map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 
--- close-buffer 
+-- close-buffer
 map("n", "bc", ":BDelete this<CR>", opt) -- 关闭当前buffer页面
 map("n", "bo", ":BDelete other<CR>", opt) -- 关闭除当前之外的所有buffer页面
 
@@ -60,4 +60,5 @@ map("n", "<F2>", "gg=G", opt)
 -- Telescope
 map("n", "<leader>f", ":Telescope find_files<CR>", opt)
 map("n", "<leader>g", ":Telescope live_grep<CR>", opt)
-
+-- lazygit
+map("n", "<leader>gg", ":LazyGitCurrentFile<CR>", opt)

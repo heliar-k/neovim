@@ -144,6 +144,10 @@ return require('packer').startup({ function(use)
       require("config.gitsigns")
     end
   }
+  -- lazygit
+  use {
+    'kdheepak/lazygit.nvim',
+  }
   -- diffview
   -- TODO need more document for this
   use {
