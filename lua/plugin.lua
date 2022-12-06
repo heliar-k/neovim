@@ -203,11 +203,17 @@ return require('packer').startup({ function(use)
   }
   ------------------------- debugger ----------------------------
   use {
-    'mfussenegger/nvim-dap'
-  }
-  use {
-    "rcarriga/nvim-dap-ui",
-    requires = { "mfussenegger/nvim-dap" }
+    'mfussenegger/nvim-dap',
+    opt = true,
+    event = "BufReadPre",
+    module = { "dap" },
+    wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "nvim-dap-python", "which-key.nvim" },
+    requires = {
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "mfussenegger/nvim-dap-python",
+      "nvim-telescope/telescope-dap.nvim",
+    },
   }
   ------------------------- utils -------------------------------
   -- for speeding up the loading of plugin
