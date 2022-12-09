@@ -176,16 +176,16 @@ return require('packer').startup({ function(use)
 
   ------------------- language specific --------------------------
   -- Adds extra functionality over rust analyzer
-  use {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      require('config.rust-tools')
-    end
-  }
+  -- use {
+  -- "simrat39/rust-tools.nvim",
+  -- config = function()
+  -- require('config.rust-tools')
+  -- end
+  -- }
   -- clangd extension
-  use {
-    "p00f/clangd_extensions.nvim"
-  }
+  -- use {
+  -- "p00f/clangd_extensions.nvim"
+  -- }
   ------------------------- helper -------------------------------
   -- which-key
   use {
