@@ -43,6 +43,7 @@ return require('packer').startup({ function(use)
   -- themes
   use 'Mofiqul/dracula.nvim'
   use "EdenEast/nightfox.nvim"
+  use 'marko-cerovac/material.nvim'
   -- line in the bottom
   use {
     'nvim-lualine/lualine.nvim',
