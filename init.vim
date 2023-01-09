@@ -11,6 +11,7 @@ lua require('plugin')
 "colorscheme nightfox
 colorscheme dracula
 "colorscheme material
+" colorscheme onedark
 
 " yank hightlight
 augroup highlight_yank
