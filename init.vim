@@ -8,10 +8,12 @@ lua require('keybindings')
 lua require('plugin')
 
 " 主题
-"colorscheme nightfox
-colorscheme dracula
-"colorscheme material
+" colorscheme nightfox
+" colorscheme dracula
+" colorscheme material
 " colorscheme onedark
+colorscheme catppuccin-latte
+" colorscheme catppuccin-mocha
 
 " yank hightlight
 augroup highlight_yank

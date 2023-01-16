@@ -45,6 +45,7 @@ return require('packer').startup({ function(use)
   use "EdenEast/nightfox.nvim"
   use 'marko-cerovac/material.nvim'
   use 'navarasu/onedark.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
   -- line in the bottom
   use {
     'nvim-lualine/lualine.nvim',
