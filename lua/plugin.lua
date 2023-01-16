@@ -43,6 +43,9 @@ return require('packer').startup({ function(use)
   -- themes
   use 'Mofiqul/dracula.nvim'
   use "EdenEast/nightfox.nvim"
+  use 'marko-cerovac/material.nvim'
+  use 'navarasu/onedark.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
   -- line in the bottom
   use {
     'nvim-lualine/lualine.nvim',
@@ -144,6 +147,10 @@ return require('packer').startup({ function(use)
       require("config.gitsigns")
     end
   }
+  -- lazygit
+  use {
+    'kdheepak/lazygit.nvim',
+  }
   -- diffview
   -- TODO need more document for this
   use {
@@ -172,16 +179,16 @@ return require('packer').startup({ function(use)
 
   ------------------- language specific --------------------------
   -- Adds extra functionality over rust analyzer
-  use {
-    "simrat39/rust-tools.nvim",
-    config = function()
-      require('config.rust-tools')
-    end
-  }
+  -- use {
+  -- "simrat39/rust-tools.nvim",
+  -- config = function()
+  -- require('config.rust-tools')
+  -- end
+  -- }
   -- clangd extension
-  use {
-    "p00f/clangd_extensions.nvim"
-  }
+  -- use {
+  -- "p00f/clangd_extensions.nvim"
+  -- }
   ------------------------- helper -------------------------------
   -- which-key
   use {
@@ -203,11 +210,16 @@ return require('packer').startup({ function(use)
   }
   ------------------------- debugger ----------------------------
   use {
-    'mfussenegger/nvim-dap'
-  }
-  use {
-    "rcarriga/nvim-dap-ui",
-    requires = { "mfussenegger/nvim-dap" }
+    'mfussenegger/nvim-dap',
+    opt = true,
+    event = "BufReadPre",
+    module = { "dap" },
+    requires = {
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "mfussenegger/nvim-dap-python",
+      "nvim-telescope/telescope-dap.nvim",
+    },
   }
   ------------------------- utils -------------------------------
   -- for speeding up the loading of plugin

@@ -1,42 +1,55 @@
-local opts = {
-  -- rust-tools options
-  tools = {
-    autoSetHints = true,
-    inlay_hints = {
-      show_parameter_hints = true,
-      parameter_hints_prefix = "",
-      other_hints_prefix = "",
-    },
-  },
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-  -- all the opts to send to nvim-lspconfig
-  -- these override the defaults set by rust-tools.nvim
-  -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-  -- https://rust-analyzer.github.io/manual.html#features
+local rt = require("rust-tools")
+
+-- mason path
+local path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/packages/codelldb/extension/")
+    or vim.fn.expand "~/" .. ".vscode/extensions/vadimcn.vscode-lldb-1.7.4/"
+-- codelldb path
+local codelldb_path = path .. "adapter/codelldb"
+local liblldb_path = path .. "lldb/lib/liblldb.so"
+if vim.loop.os_uname().sysname:match("Darwin") then
+  liblldb_path = path .. "lldb/lib/liblldb.dylib"
+end
+
+local opts = {
+  tools = {
+    inlay_hints = {
+      auto = true,
+      only_current_line = true,
+      -- whether to show parameter hints with the inlay hints or not
+      -- default: true
+      show_parameter_hints = false,
+    },
+    on_initialized = function()
+      -- ih.set_all()
+    end,
+  },
   server = {
-    settings = {
-      ["rust-analyzer"] = {
-        assist = {
-          importEnforceGranularity = true,
-          importPrefix = "crate"
-        },
-        cargo = {
-          allFeatures = true,
-        },
-        checkOnSave = {
-          -- default: `cargo check`
-          command = "clippy"
-        },
-      },
-      inlayHints = {
-        lifetimeElisionHints = {
-          enable = true,
-          useParameterNames = true
-        },
-      },
-    }
+    on_attach = function(client, bufnr)
+      -- ih.on_attach(client, bufnr)
+      vim.keymap.set(
+        "n",
+        "<C-space>",
+        rt.hover_actions.hover_actions,
+        { buffer = bufnr }
+      )
+
+      vim.keymap.set(
+        "n",
+        "<Leader>a",
+        rt.code_action_group.code_action_group,
+        { buffer = bufnr }
+      )
+    end,
+  },
+  dap = {
+    adapter = require("rust-tools.dap").get_codelldb_adapter(
+      codelldb_path,
+      liblldb_path
+    ),
   },
 }
-local rust_tools = require("rust-tools")
--- rust_tools.setup(opts)
--- rust_tools.runnables.runnables()
+
+rt.setup(opts)

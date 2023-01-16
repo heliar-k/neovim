@@ -1,4 +1,3 @@
-
 -- vim.g   global variables
 -- vim.env environment variables
 -- vim.wo  window-scoped options
@@ -33,7 +32,7 @@ vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
 -- 使用相对行号
 vim.wo.number = true
-vim.wo.relativenumber = true 
+vim.wo.relativenumber = true
 -- 高亮所在行
 vim.wo.cursorline = true
 -- 显示左侧图标指示列
@@ -81,7 +80,7 @@ vim.o.mouse = "a"
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
--- smaller updatetime 
+-- smaller updatetime
 vim.o.updatetime = 300
 -- 等待mappings
 -- vim.o.timeoutlen = 300
@@ -103,6 +102,8 @@ vim.g.dracula_show_end_of_buffer = true
 vim.g.dracula_transparent_bg = true
 -- set custom lualine background color
 vim.g.dracula_lualine_bg_color = "#44475a"
+-- material theme setting
+vim.g.material_style = "deep ocean"
 
 -- 不可见字符的显示，这里只把空格显示为一个点
 vim.o.list = true
@@ -114,4 +115,3 @@ vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.pumheight = 10
 -- always show tabline
 vim.o.showtabline = 2
-
