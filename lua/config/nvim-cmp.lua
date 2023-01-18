@@ -1,5 +1,5 @@
 local lspkind = require('lspkind')
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -35,7 +35,8 @@ cmp.setup {
     -- -- For snippy users.
     -- { name = 'snippy' },
     { name = 'buffer' },
-    { name = 'path' }
+    { name = 'path' },
+    { name = 'nerdfonts' },
   }),
 
   -- 快捷键
@@ -68,7 +69,7 @@ cmp.setup {
     -- Accept currently selected item. If none selected, `select` first item  .
     -- Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm({
-      select = true ,
+      select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
@@ -79,9 +80,9 @@ cmp.setup {
     format = lspkind.cmp_format({
       with_text = true, -- do not show text alongside icons
       maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      before = function (entry, vim_item)
+      before = function(entry, vim_item)
         -- Source 显示提示来源
-        vim_item.menu = "["..string.upper(entry.source.name).."]"
+        vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
         return vim_item
       end
     })
@@ -103,5 +104,6 @@ cmp.setup.cmdline(':', {
     },
     {
       { name = 'cmdline' }
-    })
+    }
+  )
 })

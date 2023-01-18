@@ -171,6 +171,8 @@ return require('packer').startup({ function(use)
       "rafamadriz/friendly-snippets",
       -- lspkind
       "onsails/lspkind-nvim",
+      -- nerd-font
+      "davidmh/cmp-nerdfonts",
     },
     config = function()
       require('config.nvim-cmp')
