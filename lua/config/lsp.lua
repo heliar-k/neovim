@@ -3,7 +3,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
   ensure_installed = {
     "pyright",
-    "sumneko_lua",
+    "lua_ls",
     "rust_analyzer"
   }
 })
@@ -16,5 +16,5 @@ local on_attach = function(client)
 end
 
 lspconfig.pyright.setup { on_attach = on_attach }
-lspconfig.sumneko_lua.setup { on_attach = on_attach }
+lspconfig.lua_ls.setup { on_attach = on_attach }
 lspconfig.rust_analyzer.setup { on_attach = on_attach }
