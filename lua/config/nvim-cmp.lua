@@ -25,18 +25,19 @@ cmp.setup {
   },
   -- 来源
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
+    { name = 'copilot',   group_index = 2 },
+    { name = 'nvim_lsp',  group_index = 2 },
     -- For vsnip users.
-    { name = 'vsnip' },
+    { name = 'vsnip',     group_index = 2 },
     -- For luasnip users.
     -- { name = 'luasnip' },
     --For ultisnips users.
     -- { name = 'ultisnips' },
     -- -- For snippy users.
     -- { name = 'snippy' },
-    { name = 'buffer' },
-    { name = 'path' },
-    { name = 'nerdfonts' },
+    { name = 'buffer',    group_index = 2 },
+    { name = 'path',      group_index = 2 },
+    { name = 'nerdfonts', group_index = 2 },
   }),
 
   -- 快捷键
@@ -72,7 +73,7 @@ cmp.setup {
       select = true,
       behavior = cmp.ConfirmBehavior.Replace
     }),
-    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs( -4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
   }),
   -- 使用lspkind-nvim显示类型图标
