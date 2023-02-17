@@ -242,10 +242,7 @@ return require('packer').startup({
       cmd = "Copilot",
       event = "InsertEnter",
       config = function()
-        require("copilot").setup({
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        })
+        require('config.copilot')
       end,
     }
     use {
