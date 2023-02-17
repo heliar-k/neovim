@@ -25,8 +25,8 @@ cmp.setup {
   },
   -- 来源
   sources = cmp.config.sources({
-    { name = 'copilot',   group_index = 2 },
-    { name = 'nvim_lsp',  group_index = 2 },
+    { name = 'nvim_lsp',  group_index = 1, max_item_count = 4 },
+    { name = 'copilot',   group_index = 1, max_item_count = 4 },
     -- For vsnip users.
     { name = 'vsnip',     group_index = 2 },
     -- For luasnip users.
