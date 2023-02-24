@@ -12,8 +12,17 @@ return require('packer').startup({
         require("config.mason")
       end,
     }
+    use {
+      "folke/neodev.nvim",
+      config = function()
+        require("config.neodev")
+      end
+    }
+
     ----------------------------- lsp -----------------------------
-    use { 'williamboman/mason-lspconfig.nvim' }
+    use {
+      'williamboman/mason-lspconfig.nvim',
+    }
     use { 'ray-x/lsp_signature.nvim' }
     use {
       'neovim/nvim-lspconfig',
@@ -229,7 +238,13 @@ return require('packer').startup({
         "rcarriga/nvim-dap-ui",
         "mfussenegger/nvim-dap-python",
         "nvim-telescope/telescope-dap.nvim",
+        "jay-babu/mason-nvim-dap.nvim",
       },
+    }
+    use {
+      "jay-babu/mason-nvim-dap.nvim",
+      requires = { 'williamboman/mason.nvim', opt = false },
+      after = "mason.nvim"
     }
     ------------------------- utils -------------------------------
     -- for speeding up the loading of plugin
