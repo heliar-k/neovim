@@ -1,8 +1,6 @@
 local mason_lspconfig = require("mason-lspconfig")
 
-mason_lspconfig.setup {
-  ensure_installed = { "lua_ls", "pyright" }
-}
+mason_lspconfig.setup {}
 
 require("lsp-format").setup {}
 
