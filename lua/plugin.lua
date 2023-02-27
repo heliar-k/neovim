@@ -235,17 +235,32 @@ return require('packer').startup({
       module = { "dap" },
       requires = {
         "theHamsta/nvim-dap-virtual-text",
-        "rcarriga/nvim-dap-ui",
         "mfussenegger/nvim-dap-python",
         "nvim-telescope/telescope-dap.nvim",
-        "jay-babu/mason-nvim-dap.nvim",
       },
+      -- config = function()
+      -- require('nvim-dap').setup {}
+      -- end
+
+    }
+    use {
+      "rcarriga/nvim-dap-ui",
+      requires = { "mfussenegger/nvim-dap" },
+      config = function()
+        require('config.dap-ui')
+      end
     }
     use {
       "jay-babu/mason-nvim-dap.nvim",
-      requires = { 'williamboman/mason.nvim', opt = false },
-      after = "mason.nvim"
+      requires = {
+        "mfussenegger/nvim-dap",
+        'williamboman/mason.nvim',
+      },
+      config = function()
+        require('config.mason-nvim-dap')
+      end
     }
+
     ------------------------- utils -------------------------------
     -- for speeding up the loading of plugin
     use {

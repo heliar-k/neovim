@@ -1,7 +1,9 @@
-local dap = require("dap")
-local dapui = require("dapui")
+local dap = require('dap')
 
-require("mason-nvim-dap").setup({})
+require('mason-nvim-dap').setup({
+  automatic_setup = true,
+})
+
 require 'mason-nvim-dap'.setup_handlers {
   function(source_name)
     -- all sources with no handler get passed here
@@ -28,15 +30,18 @@ require 'mason-nvim-dap'.setup_handlers {
         program = "${file}", -- This configuration will launch the current file if used.
       },
     }
+
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = "${port}",
+      executable = {
+        -- CHANGE THIS to your path!
+        command = '/absolute/path/to/codelldb/extension/adapter/codelldb',
+        args = { "--port", "${port}" },
+
+        -- On windows you may have to uncomment this:
+        -- detached = false,
+      }
+    }
   end,
 }
-
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
