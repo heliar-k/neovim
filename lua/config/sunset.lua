@@ -4,7 +4,7 @@ require("sunset").setup({
   sunrise_offset = 0, -- offset the sunrise by this many seconds
   sunset_offset = 0, -- offset the sunset by this many seconds
   sunrise_override = "07:00", -- accepts a time in the form "HH:MM" which will override the sunrise time
-  sunset_override = "17:00", -- accepts a time in the form "HH:MM" which will override the sunset time
+  sunset_override = "18:00", -- accepts a time in the form "HH:MM" which will override the sunset time
   day_callback = nil, -- function that is called when day begins
   night_callback = nil, -- function that is called when night begins
   update_interval = 60000, -- how frequently to check for sunrise/sunset changes in milliseconds
