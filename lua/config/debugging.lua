@@ -96,9 +96,25 @@ function debugging.setup()
   }
 
   -- dap for python
-  require("dap-python").setup( --[[ debugpy_root.. "/venv/bin/python" --]])
-  require('dap-python').test_runner = 'pytest'
+  -- require("dap-python").setup( --[[ debugpy_root.. "/venv/bin/python" --]])
+  -- require('dap-python').test_runner = 'pytest'
+  --
+  dap.adapters.python = {
+    type = "executable",
+    command = "debugpy-adapter",
+  }
 
+  local venv_path = os.getenv('VIRTUAL_ENV') or os.getenv('CONDA_PREFIX')
+  dap.configurations.python = {
+    {
+      -- The first three options are required by nvim-dap
+      type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+      request = 'launch',
+      name = 'Python: Launch file',
+      program = '${file}', -- This configuration will launch the current file if used.
+      pythonPath = venv_path and (venv_path .. '/bin/python') or nil,
+    },
+  }
 
 
   require("nvim-dap-virtual-text").setup({
