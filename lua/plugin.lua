@@ -21,13 +21,12 @@ return require('packer').startup({
 
     ----------------------------- lsp -----------------------------
     use {
-      'williamboman/mason-lspconfig.nvim',
-    }
-    use { 'ray-x/lsp_signature.nvim' }
-    use {
       'neovim/nvim-lspconfig',
       requires = {
         'ray-x/lsp_signature.nvim',
+        'williamboman/mason-lspconfig.nvim',
+        'arkav/lualine-lsp-progress',
+        'lukas-reineke/lsp-format.nvim'
       },
       config = function()
         require('config.lsp')
@@ -39,8 +38,6 @@ return require('packer').startup({
         require('config.null-ls')
       end,
     }
-    use { 'arkav/lualine-lsp-progress' }
-    use { 'lukas-reineke/lsp-format.nvim' }
     use {
       "glepnir/lspsaga.nvim",
       branch = "main",
@@ -51,12 +48,10 @@ return require('packer').startup({
 
     ----------------------------- ui -----------------------------
     -- themes
-    use { 'Mofiqul/dracula.nvim', as = "dracula" }
     use { "catppuccin/nvim", as = "catppuccin" }
     -- automatic themes switcher
     use { 'JManch/sunset.nvim',
       after = {
-        "dracula",
         "catppuccin"
       },
       config = function()
@@ -195,19 +190,22 @@ return require('packer').startup({
         require('config.nvim-cmp')
       end,
     }
-
-    ------------------- language specific --------------------------
-    -- Adds extra functionality over rust analyzer
-    -- use {
-    -- "simrat39/rust-tools.nvim",
-    -- config = function()
-    -- require('config.rust-tools')
-    -- end
-    -- }
-    -- clangd extension
-    -- use {
-    -- "p00f/clangd_extensions.nvim"
-    -- }
+    -- Copilot
+    use {
+      "zbirenbaum/copilot.lua",
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require('config.copilot')
+      end,
+    }
+    use {
+      "zbirenbaum/copilot-cmp",
+      after = { "copilot.lua" },
+      config = function()
+        require("copilot_cmp").setup()
+      end
+    }
     ------------------------- helper -------------------------------
     -- which-key
     use {
@@ -229,25 +227,15 @@ return require('packer').startup({
     }
     ------------------------- debugger ----------------------------
     use {
-      'mfussenegger/nvim-dap',
-      opt = true,
-      event = "BufReadPre",
-      module = { "dap" },
+      "rcarriga/nvim-dap-ui",
       requires = {
+        "mfussenegger/nvim-dap",
         "theHamsta/nvim-dap-virtual-text",
         "mfussenegger/nvim-dap-python",
         "nvim-telescope/telescope-dap.nvim",
       },
       config = function()
-        require('config.dap')
-      end
-
-    }
-    use {
-      "rcarriga/nvim-dap-ui",
-      requires = { "mfussenegger/nvim-dap" },
-      config = function()
-        require('config.dap-ui')
+        require('config.debugging').setup()
       end
     }
     use {
@@ -257,30 +245,28 @@ return require('packer').startup({
         'williamboman/mason.nvim',
       },
       config = function()
-        require('config.mason-nvim-dap')
+        require('mason-nvim-dap').setup {
+          automatic_installation = true,
+          ensure_installed = { "python", "cpptools", "codelldb" },
+        }
       end
     }
-
+    ------------------- language specific --------------------------
+    -- Adds extra functionality over rust analyzer
+    use {
+      "simrat39/rust-tools.nvim",
+      config = function()
+        require('config.rust_tools').setup()
+      end
+    }
+    -- clangd extension
+    use {
+      "p00f/clangd_extensions.nvim"
+    }
     ------------------------- utils -------------------------------
     -- for speeding up the loading of plugin
     use {
       'lewis6991/impatient.nvim'
-    }
-    -- Copilot
-    use {
-      "zbirenbaum/copilot.lua",
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-        require('config.copilot')
-      end,
-    }
-    use {
-      "zbirenbaum/copilot-cmp",
-      after = { "copilot.lua" },
-      config = function()
-        require("copilot_cmp").setup()
-      end
     }
   end,
   config = {
