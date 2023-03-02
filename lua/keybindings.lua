@@ -62,3 +62,9 @@ map("n", "<leader>f", ":Telescope find_files<CR>", opt)
 map("n", "<leader>g", ":Telescope live_grep<CR>", opt)
 -- lazygit
 map("n", "<leader>gg", ":LazyGitCurrentFile<CR>", opt)
+
+-- debugging
+map("n", "<F5>", [[:lua require"dap".continue()<CR>]], opt)
+map("n", "<F9>", [[:lua require"dap".toggle_breakpoint()<CR>]], opt)
+map("n", "<F8>", [[:lua require"dap".step_over()<CR>]], opt)
+map("n", "<F7>", [[:lua require"dap".step_into()<CR>]], opt)
