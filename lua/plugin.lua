@@ -67,11 +67,28 @@ return require('lazy').setup({
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
+    dependencies = { "catppuccin/nvim", "lewis6991/gitsigns.nvim" },
     config = function()
-      require('config.lspsaga')
+      require('config.lspsaga').setup()
     end,
   },
+  -- Displaying errors/warnings in a window
+  {
+    "folke/trouble.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup({})
+    end,
+  },
+
   ----------------------------- ui -----------------------------
+  -- better UI
+  {
+    "stevearc/dressing.nvim",
+    config = function()
+      require("config.dressing").setup()
+    end,
+  },
   -- themes
   { "catppuccin/nvim", name = "catppuccin" },
   -- automatic themes switcher
@@ -86,12 +103,12 @@ return require('lazy').setup({
   },
   -- line in the bottom
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     lazy = false
   },
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("config.lualine")
     end,
@@ -106,7 +123,7 @@ return require('lazy').setup({
   -- bufferline
   {
     'akinsho/bufferline.nvim',
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require('config.bufferline')
     end,
@@ -116,8 +133,8 @@ return require('lazy').setup({
   },
   -- nvim-tree
   {
-    'kyazdani42/nvim-tree.lua',
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require('config.nvim-tree')
     end,
@@ -125,10 +142,19 @@ return require('lazy').setup({
   -- welcome dashboard
   {
     'goolord/alpha-nvim',
-    dependencies = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require('config.alpha')
     end
+  },
+  {
+    "VonHeikemen/searchbox.nvim",
+    dependencies = {
+      { "MunifTanjim/nui.nvim" },
+    },
+    config = function()
+      require("config.searchbox").setup()
+    end,
   },
   ------------------------ language parser -----------------------
   -- treesitter
@@ -245,6 +271,15 @@ return require('lazy').setup({
   {
     "mfussenegger/nvim-dap-python",
   },
+  -- cmake
+  {
+    -- "cdelledonne/vim-cmake",
+    "Civitasv/cmake-tools.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("config.cmake").setup()
+    end,
+  },
   -- dap settings
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -271,6 +306,14 @@ return require('lazy').setup({
     end,
   },
   ------------------------- helper -------------------------------
+  -- folds
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("config.nvim_ufo").setup()
+    end,
+  },
   -- commnet
   {
     'numToStr/Comment.nvim',
@@ -289,9 +332,6 @@ return require('lazy').setup({
   -- which-key
   {
     'folke/which-key.nvim',
-    config = function()
-      require('config.which-key')
-    end
   },
   -- Makes Directories If They Don't Exist at Save Time
   {
@@ -308,4 +348,5 @@ return require('lazy').setup({
   {
     'lewis6991/impatient.nvim'
   },
+
 })

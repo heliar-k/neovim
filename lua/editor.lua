@@ -19,7 +19,6 @@ set.tabstop = 2
 查看：
 print(vim.inspect(vim.opt.autoindent))
 --]]
-
 -----------------------------------------
 
 vim.g.loaded = 1
@@ -95,15 +94,6 @@ vim.g.completeopt = "menu,menuone,noselect,noinsert"
 vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.opt.termguicolors = true
--- darcula theme setting
--- show the '~' characters after the end of buffers
-vim.g.dracula_show_end_of_buffer = true
--- use transparent background
-vim.g.dracula_transparent_bg = true
--- set custom lualine background color
-vim.g.dracula_lualine_bg_color = "#44475a"
--- material theme setting
-vim.g.material_style = "deep ocean"
 
 -- 不可见字符的显示，这里只把空格显示为一个点
 vim.o.list = true

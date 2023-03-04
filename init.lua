@@ -1,10 +1,9 @@
 -- 插件设置
 require('plugin')
+-- 快捷键映射
+require('keybindings').setup()
 -- 编辑器设置
 require('editor')
--- 快捷键映射
-require('keybindings')
-
 
 vim.cmd [[colorscheme catppuccin-latte]]
 
