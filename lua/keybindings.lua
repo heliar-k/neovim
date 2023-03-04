@@ -27,7 +27,22 @@ map("n", "<F2>", "gg=G", opt)
 local M = {}
 
 function M.setup()
-  require("which-key").setup({})
+  require("which-key").setup({
+    plugins = {
+      marks = true,     -- shows a list of your marks on ' and `
+      registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+      -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+      presets = {
+        operators = false,   -- adds help for operators like d, y, ...
+        motions = false,     -- adds help for motions
+        text_objects = true, -- help for text objects triggered after entering an operator
+        windows = true,      -- default bindings on <c-w>
+        nav = false,         -- misc bindings to work with windows
+        z = false,           -- bindings for folds, spelling and others prefixed with z
+        g = true,            -- bindings for prefixed with g
+      },
+    },
+  })
   require("which-key").register({
     -- debugging dap setting
         ["<F5>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
