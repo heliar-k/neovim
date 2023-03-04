@@ -47,6 +47,18 @@ function M.setup()
       C = { "<cmd>lua require('ufo').closeAllFolds<cr>", "Close all folds" },
     },
         ["<leader>"] = {
+      c = {
+        name = "CMake",
+        l = { "!ln -sf build/Debug/compile_commands.json .<cr>", "Link compilation database" },
+        c = { "<cmd>CMakeSelectConfigurePreset<cr>", "Select configure preset" },
+        g = { "<cmd>CMakeGenerate<cr>", "Generate" },
+        t = { "<cmd>CMakeSelectBuildTarget<cr>", "Select build target" },
+        b = { "<cmd>wa<cr><cmd>CMakeBuild<cr>", "Build" },
+        T = { "<cmd>CMakeSelectLaunchTarget<cr>", "Select launch target" },
+        r = { "<cmd>wa<cr><cmd>CMakeRun<cr>", "Run" },
+        d = { "<cmd>wa<cr><cmd>CMakeDebug<cr>", "Debug" },
+        s = { "<cmd>CMakeStop<cr>", "Stop" },
+      },
       d = {
         name = "Debug",
         b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" },
@@ -78,6 +90,14 @@ function M.setup()
         r = { "<cmd>Lspsaga rename<cr>", "Rename" },
         x = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
       },
+      r = {
+        name = "Rust",
+        h = { "<cmd>lua require'rust-tools'.hover_actions.hover_actions()<cr>", "Hover actions" },
+        a = { "<cmd>lua require'rust-tools'.code_action_group.code_action_group()<cr>", "Code actions" },
+        r = { "<cmd>wa<cr><cmd>lua require'rust-tools'.runnables.runnables()<cr>", "Runnables" },
+        d = { "<cmd>wa<cr><cmd>lua require'rust-tools'.debuggables.debuggables()<cr>", "Debuggables" },
+      },
+
       s = {
         name = "Search",
         s = { ":lua require('searchbox').incsearch()<cr>", "Incremental search" },
