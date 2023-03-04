@@ -51,7 +51,7 @@ map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 
 -- close-buffer
-map("n", "bc", ":BDelete this<CR>", opt) -- 关闭当前buffer页面
+map("n", "bc", ":BDelete this<CR>", opt)  -- 关闭当前buffer页面
 map("n", "bo", ":BDelete other<CR>", opt) -- 关闭除当前之外的所有buffer页面
 
 -- nvim-treesitter 代码格式化
