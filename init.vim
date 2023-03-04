@@ -13,6 +13,8 @@ colorscheme catppuccin-latte
 " yank hightlight
 augroup highlight_yank
    autocmd!
-   au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+   au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=600}
 augroup END
 
+" 自动切换到打开文件的路径
+" autocmd BufEnter * execute "lcd " . expand("%:p:h")
