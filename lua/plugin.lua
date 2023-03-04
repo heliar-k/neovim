@@ -98,8 +98,10 @@ return require('lazy').setup({
       "catppuccin"
     },
     config = function()
-      require('config.sunset')
-    end
+      require('config.sunset').setup()
+    end,
+    lazy = false,
+    priority = 1000,
   },
   -- line in the bottom
   {

@@ -5,7 +5,7 @@ require('editor')
 -- 快捷键映射
 require('keybindings').setup()
 
-vim.cmd [[colorscheme catppuccin-latte]]
+vim.cmd [[colorscheme catppuccin]]
 
 -- yank hightlight
 vim.cmd [[
