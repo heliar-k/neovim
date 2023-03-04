@@ -239,7 +239,7 @@ return require('packer').startup({
       config = function()
         require('config.debugging').setup()
       end,
-      after = { "mason.nvim", "mason-nvim-dap.nvim" },
+      after = { "mason.nvim", "mason-nvim-dap.nvim", "rust-tools.nvim", "clangd_extensions.nvim" },
     }
     use {
       "jay-babu/mason-nvim-dap.nvim",
