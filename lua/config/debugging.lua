@@ -130,9 +130,9 @@ function debugging.setup()
       return " " .. variable.name .. " = " .. variable.value .. " "
     end,
     -- experimental features:
-    virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
-    all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-    virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
+    virt_text_pos = "eol",   -- position of virtual text, see `:h nvim_buf_set_extmark()`
+    all_frames = false,      -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+    virt_lines = false,      -- show virtual lines instead of virtual text (will flicker!)
     virt_text_win_col = nil, -- position the virtual text at a fixed window column (starting from the first text column) ,
   })
 
@@ -196,8 +196,8 @@ function debugging.setup()
       },
     },
     floating = {
-      max_height = nil, -- These can be integers or a float between 0 and 1.
-      max_width = nil, -- Floats will be treated as percentage of your screen.
+      max_height = nil,  -- These can be integers or a float between 0 and 1.
+      max_width = nil,   -- Floats will be treated as percentage of your screen.
       border = "single", -- Border style. Can be "single", "double" or "rounded"
       mappings = {
         close = { "q", "<Esc>" },
