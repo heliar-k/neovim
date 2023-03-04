@@ -11,6 +11,7 @@ return require('packer').startup({
       config = function()
         require("config.mason")
       end,
+      opt = false
     }
     use {
       "folke/neodev.nvim",
@@ -141,7 +142,8 @@ return require('packer').startup({
         'nvim-lua/plenary.nvim',
         {
           "nvim-telescope/telescope-fzf-native.nvim",
-          run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+          run =
+          "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
         },
       },
       config = function()
@@ -236,7 +238,8 @@ return require('packer').startup({
       },
       config = function()
         require('config.debugging').setup()
-      end
+      end,
+      after = { "mason.nvim", "mason-nvim-dap.nvim" },
     }
     use {
       "jay-babu/mason-nvim-dap.nvim",
@@ -249,7 +252,8 @@ return require('packer').startup({
           automatic_installation = true,
           ensure_installed = { "python", "cpptools", "codelldb" },
         }
-      end
+      end,
+      after = { "mason.nvim" }
     }
     ------------------- language specific --------------------------
     -- Adds extra functionality over rust analyzer
@@ -257,11 +261,13 @@ return require('packer').startup({
       "simrat39/rust-tools.nvim",
       config = function()
         require('config.rust_tools').setup()
-      end
+      end,
+      after = { "mason.nvim", "mason-nvim-dap.nvim" },
     }
     -- clangd extension
     use {
-      "p00f/clangd_extensions.nvim"
+      "p00f/clangd_extensions.nvim",
+      after = { "mason.nvim", "mason-nvim-dap.nvim" },
     }
     ------------------------- utils -------------------------------
     -- for speeding up the loading of plugin
