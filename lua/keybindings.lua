@@ -21,14 +21,14 @@ map("n", "bc", ":BDelete this<CR>", opt)  -- 关闭当前buffer页面
 map("n", "bo", ":BDelete other<CR>", opt) -- 关闭除当前之外的所有buffer页面
 -- nvimTree
 map('n', 'nt', ':NvimTreeToggle<CR>', opt)
+-- nvim-treesitter 代码格式化
+map("n", "<F2>", "gg=G", opt)
 
 local M = {}
 
 function M.setup()
   require("which-key").setup({})
   require("which-key").register({
-    -- nvim-treesitter 代码格式化
-        ['<F2>'] = { "gg=G" },
     -- debugging dap setting
         ["<F5>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
         ["<F6>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
@@ -36,6 +36,8 @@ function M.setup()
         ["<F8>"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
         ['s'] = {
       name = "Split Windows",
+      h = { "Split horizontal" },
+      v = { "Split vertical" },
     },
         ["z"] = {
       name = "Folds",
