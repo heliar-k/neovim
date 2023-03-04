@@ -39,7 +39,7 @@ dashboard.section.buttons.val = {
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
   dashboard.button("s", "  > Settings",
     ":Telescope find_files cwd=" .. setting_path .. " search_dirs=Ultisnips,lua,viml,init.vim<CR>"),
-  dashboard.button("u", "  > Update Plugin", ":PackerSync<CR>"),
+  dashboard.button("u", "  > Update Plugin", ":Lazy update<CR>"),
   -- dashboard.button("c", "  > Switch ColorScheme", ":Telescope colorscheme<CR>"),
   dashboard.button("q", "  > Quit NVIM", ":qa<CR>"),
 }
