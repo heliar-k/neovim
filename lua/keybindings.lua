@@ -2,34 +2,41 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+local map = vim.api.nvim_set_keymap
+local opt = {
+  noremap = true,
+  silent = true
+}
+-- ctrl u / ctrl + d  只移动9行，默认移动半屏
+map("n", "<C-u>", "9k", opt)
+map("n", "<C-d>", "9j", opt)
+-- windows 分屏快捷键
+map("n", "sv", ":vsp<CR>", opt)
+map("n", "sh", ":sp<CR>", opt)
+-- bufferline 左右Tab切换
+map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
+map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
+-- close-buffer
+map("n", "bc", ":BDelete this<CR>", opt)  -- 关闭当前buffer页面
+map("n", "bo", ":BDelete other<CR>", opt) -- 关闭除当前之外的所有buffer页面
+-- nvimTree
+map('n', 'nt', ':NvimTreeToggle<CR>', opt)
+
 local M = {}
 
 function M.setup()
   require("which-key").setup({})
   require("which-key").register({
-    -- ctrl u / ctrl + d  只移动9行，默认移动半屏
-        ['<C-u>'] = { "9k", mode = "n" },
-        ['<C-d>'] = { "9j", mode = "n" },
-    -- visual模式下缩进代码
-        ['<'] = { "<gv", mode = "v" },
-        ['>'] = { ">gv", mode = "v" },
-    -- windows 分屏快捷键
-        ['sv'] = { ":vsp<CR>", mode = "n" },
-        ['sh'] = { ":sp<CR>", mode = "n" },
-    -- buffer 管理
-    -- bufferline 左右Tab切换
-        ['<C-h>'] = { ":BufferLineCyclePrev<CR>", mode = "n" },
-        ['<C-l>'] = { ":BufferLineCycleNext<CR>", mode = "n" },
-    -- close-buffer
-        ['bc'] = { ":BDelete this<CR>", mode = "n" },  -- 关闭当前buffer页面
-        ['bo'] = { ":BDelete other<CR>", mode = "n" }, -- 关闭除当前之外的所有buffer页面
     -- nvim-treesitter 代码格式化
-        ['<F2>'] = { "gg=G", mode = "n" },
+        ['<F2>'] = { "gg=G" },
     -- debugging dap setting
         ["<F5>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
         ["<F6>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
         ["<F7>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
         ["<F8>"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+        ['s'] = {
+      name = "Split Windows",
+    },
         ["z"] = {
       name = "Folds",
       o = { "<cmd>foldopen<cr>", "Open fold" },
@@ -69,7 +76,6 @@ function M.setup()
         r = { "<cmd>Lspsaga rename<cr>", "Rename" },
         x = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
       },
-      n = { name = "Nvim Tree", t = { "<cmd>NvimTreeToggle<cr>", "Toggle" } },
       s = {
         name = "Search",
         s = { ":lua require('searchbox').incsearch()<cr>", "Incremental search" },
