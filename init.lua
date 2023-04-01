@@ -5,8 +5,6 @@ require('editor')
 -- 快捷键映射
 require('keybindings').setup()
 
-vim.cmd [[colorscheme catppuccin]]
-
 -- yank hightlight
 vim.cmd [[
 augroup highlight_yank
