@@ -91,14 +91,11 @@ return require('lazy').setup({
   },
   -- themes
   { "catppuccin/nvim",             name = "catppuccin" },
-  -- github theme
-  { 'projekt0n/github-nvim-theme', name = "github" },
   -- automatic themes switcher
   {
     'JManch/sunset.nvim',
     dependencies = {
       "catppuccin",
-      "github"
     },
     config = function()
       require('config.sunset').setup()
