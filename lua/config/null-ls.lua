@@ -52,6 +52,9 @@ function M.setup(opts)
     sources = sources,
     on_attach = opts.on_attach,
     root_dir = nls_utils.root_pattern ".git",
+    on_init = function(new_client, _)
+      new_client.offset_encoding = 'utf-32'
+    end
   }
 end
 
