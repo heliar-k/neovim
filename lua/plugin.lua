@@ -30,7 +30,7 @@ return require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     config = function()
-      require('config.lsp')
+      require('config.lsp').setup()
     end,
   },
   {
@@ -47,22 +47,16 @@ return require('lazy').setup({
     }
   },
   {
-    'arkav/lualine-lsp-progress',
+    'j-hui/fidget.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
-    }
-  },
-  {
-    'lukas-reineke/lsp-format.nvim',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-    }
+    },
+    config = function ()
+      require("fidget").setup()
+    end
   },
   {
     'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require('config.null-ls')
-    end,
   },
   {
     "glepnir/lspsaga.nvim",
