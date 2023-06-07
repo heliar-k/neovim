@@ -45,23 +45,23 @@ function M.setup()
   })
   require("which-key").register({
     -- debugging dap setting
-        ["<F5>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
-        ["<F6>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
-        ["<F7>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
-        ["<F8>"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        ['s'] = {
+    ["<F5>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
+    ["<F6>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
+    ["<F7>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
+    ["<F8>"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    ['s'] = {
       name = "Split Windows",
       h = { "Split horizontal" },
       v = { "Split vertical" },
     },
-        ["z"] = {
+    ["z"] = {
       name = "Folds",
       o = { "<cmd>foldopen<cr>", "Open fold" },
       c = { "<cmd>foldclose<cr>", "Close fold" },
       O = { "<cmd>lua require('ufo').openAllFolds<cr>", "Open all folds" },
       C = { "<cmd>lua require('ufo').closeAllFolds<cr>", "Close all folds" },
     },
-        ["<leader>"] = {
+    ["<leader>"] = {
       c = {
         name = "CMake",
         l = { "!ln -sf build/Debug/compile_commands.json .<cr>", "Link compilation database" },
@@ -99,6 +99,7 @@ function M.setup()
         name = "LSP",
         a = { "<cmd>Lspsaga code_action<cr>", "Code actions" },
         d = { "<cmd>Trouble lsp_definitions<cr>", "Go to definition" },
+        f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
         h = { "<cmd>ClangdSwitchSourceHeader<cr>", "Toggle header/source" },
         p = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
         u = { "<cmd>Trouble lsp_references<cr>", "Show usages" },
