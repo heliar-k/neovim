@@ -13,23 +13,25 @@ require('mason-tool-installer').setup {
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
     -- lsp
-    "clangd",               -- lsp for c/c++
-    "lua-language-server",  -- lsp for lua
-    "pyright",              -- lsp for python
-    "rust-analyzer",        -- lsp for rust
-    "yaml-language-server", -- lsp for yaml
+    "clangd",                -- lsp for c/c++
+    "cmake-language-server", -- lsp for cmake
+    "marksman",              -- lsp for markdown
+    "lua-language-server",   -- lsp for lua
+    "pyright",               -- lsp for python
+    "rust-analyzer",         -- lsp for rust
+    "yaml-language-server",  -- lsp for yaml
     -- dap
-    "codelldb",             -- debugger for c/c++
-    "cpptools",             -- debugger for c/c++
-    "debugpy",              -- debugger for python
+    "codelldb",              -- debugger for c/c++
+    "cpptools",              -- debugger for c/c++
+    "debugpy",               -- debugger for python
     -- formatter
-    "black",                -- formatter for python
-    "clang-format",         -- formatter for c/c++
-    "cmakelang",            -- formatter for cmake
-    "isort",                -- import optimizer for python
-    "prettierd",            -- formatter for javascript/typescript
-    "rustfmt",              -- formatter for rust
-    "shfmt",                -- formatter for shell scripts
-    "stylua",               -- formatter for lua
+    "black",                 -- formatter for python
+    "clang-format",          -- formatter for c/c++
+    "cmakelang",             -- formatter for cmake
+    "isort",                 -- import optimizer for python
+    "prettierd",             -- formatter for javascript/typescript
+    "rustfmt",               -- formatter for rust
+    "shfmt",                 -- formatter for shell scripts
+    "stylua",                -- formatter for lua
   }
 }
