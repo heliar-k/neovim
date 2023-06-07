@@ -21,6 +21,12 @@ return require('lazy').setup({
     lazy = false
   },
   {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    dependencies = {
+      'williamboman/mason.nvim',
+    }
+  },
+  {
     "folke/neodev.nvim",
     config = function()
       require("config.neodev")
@@ -51,7 +57,7 @@ return require('lazy').setup({
     dependencies = {
       'neovim/nvim-lspconfig',
     },
-    config = function ()
+    config = function()
       require("fidget").setup()
     end
   },
