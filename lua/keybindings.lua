@@ -19,10 +19,6 @@ map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 -- close-buffer
 map("n", "bc", ":BDelete this<CR>", opt)  -- 关闭当前buffer页面
 map("n", "bo", ":BDelete other<CR>", opt) -- 关闭除当前之外的所有buffer页面
--- nvimTree
-map('n', 'nt', ':NvimTreeToggle<CR>', opt)
--- nvim-treesitter 代码格式化
-map("n", "<F2>", "gg=G", opt)
 
 local M = {}
 
@@ -49,6 +45,7 @@ function M.setup()
     ["<F6>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
     ["<F7>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
     ["<F8>"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+    ["<c-\\>"] = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
     ['s'] = {
       name = "Split Windows",
       h = { "Split horizontal" },
@@ -105,6 +102,10 @@ function M.setup()
         u = { "<cmd>Trouble lsp_references<cr>", "Show usages" },
         r = { "<cmd>Lspsaga rename<cr>", "Rename" },
         x = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
+      },
+      n = {
+        name = "NvimTree",
+        t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
       },
       r = {
         name = "Rust",
