@@ -10,15 +10,9 @@ local opt = {
 -- ctrl u / ctrl + d  只移动9行，默认移动半屏
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
--- windows 分屏快捷键
-map("n", "sv", ":vsp<CR>", opt)
-map("n", "sh", ":sp<CR>", opt)
 -- bufferline 左右Tab切换
 map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
--- close-buffer
-map("n", "bc", ":BDelete this<CR>", opt)  -- 关闭当前buffer页面
-map("n", "bo", ":BDelete other<CR>", opt) -- 关闭除当前之外的所有buffer页面
 
 local M = {}
 
@@ -48,8 +42,8 @@ function M.setup()
     ["<c-\\>"] = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
     ['s'] = {
       name = "Split Windows",
-      h = { "Split horizontal" },
-      v = { "Split vertical" },
+      h = { "<cmd>sp<cr>", "Split horizontal" },
+      v = { "<cmd>vsp<cr>", "Split vertical" },
     },
     ["z"] = {
       name = "Folds",
@@ -59,6 +53,11 @@ function M.setup()
       C = { "<cmd>lua require('ufo').closeAllFolds<cr>", "Close all folds" },
     },
     ["<leader>"] = {
+      b = {
+        name = "Close Buffer",
+        c = { "<cmd>BDelete this<cr>", "Close Current Buffer" },
+        o = { "<cmd>BDelete other<cr>", "Close Other Buffer" }
+      },
       c = {
         name = "CMake",
         l = { "!ln -sf build/Debug/compile_commands.json .<cr>", "Link compilation database" },
@@ -90,7 +89,7 @@ function M.setup()
       },
       g = {
         name = "Git",
-        o = { "<cmd>LazyGitCurrentFile<cr>", "Open Lazygit" },
+        g = { "<cmd>LazyGitCurrentFile<cr>", "Open Lazygit" },
       },
       l = {
         name = "LSP",
