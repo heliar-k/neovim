@@ -1,4 +1,4 @@
-require("toggleterm").setup{
+require("toggleterm").setup {
   -- size can be a number or function which is passed the current terminal
   size = function(term)
     if term.direction == "horizontal" then
@@ -8,16 +8,16 @@ require("toggleterm").setup{
     end
   end,
   open_mapping = [[<c-\>]],
-  hide_numbers = true, -- hide the number column in toggleterm buffers
+  hide_numbers = true,      -- hide the number column in toggleterm buffers
   start_in_insert = true,
-  insert_mappings = true, -- whether or not the open mapping applies in insert mode
+  insert_mappings = true,   -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
   persist_size = true,
-  persist_mode = true, 
-  direction = 'float',
+  persist_mode = true,
+  direction = 'horizontal',
   close_on_exit = true, -- close the terminal window when the process exits
-  shell = vim.o.shell, -- change the default shell
-  auto_scroll = true, -- automatically scroll to the bottom on terminal output
+  shell = vim.o.shell,  -- change the default shell
+  auto_scroll = true,   -- automatically scroll to the bottom on terminal output
   -- This field is only relevant if direction is set to 'float'
   float_opts = {
     -- The border key is *almost* the same as 'nvim_open_win'
