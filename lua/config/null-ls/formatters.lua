@@ -7,16 +7,18 @@ function M.toggle()
   M.autoformat = not M.autoformat
 end
 
-function M.format()
+function M.format(bufnr)
   if M.autoformat then
-    vim.lsp.buf.format({
-      timeout_ms = 2000,
-    })
+    nls_utils.async_formatting(bufnr)
+    -- vim.lsp.buf.format({
+    -- async = false,
+    -- timeout_ms = 2000,
+    -- })
   end
 end
 
-function M.setup(client, buf)
-  local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+function M.setup(client, bufnr)
+  local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
   local enable = false
   if M.has_formatter(filetype) then
     enable = client.name == "null-ls"
@@ -25,11 +27,11 @@ function M.setup(client, buf)
   end
   client.server_capabilities.document_formatting = enable
   client.server_capabilities.document_range_formatting = enable
-  if client.server_capabilities.document_formatting then
+  if client.supports_method("textDocument/formatting") then
     vim.cmd [[
       augroup LspFormat
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua require("config.null-ls.formatters").format()
+        autocmd BufWritePre <buffer> lua require("config.null-ls.formatters").format(bufnr)
       augroup END
     ]]
   end
