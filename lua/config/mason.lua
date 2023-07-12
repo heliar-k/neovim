@@ -20,6 +20,7 @@ require('mason-tool-installer').setup {
     "pyright",               -- lsp for python
     "rust-analyzer",         -- lsp for rust
     "yaml-language-server",  -- lsp for yaml
+    "taplo",                 -- lsp for toml
     -- dap
     "codelldb",              -- debugger for c/c++
     "cpptools",              -- debugger for c/c++
