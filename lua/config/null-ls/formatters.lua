@@ -5,6 +5,7 @@ local method = require("null-ls").methods.FORMATTING
 M.autoformat = true
 function M.toggle()
   M.autoformat = not M.autoformat
+  print(string.format("Toggle autoformat to %s", M.autoformat))
 end
 
 function M.format(bufnr)

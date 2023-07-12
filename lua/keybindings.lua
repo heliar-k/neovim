@@ -96,6 +96,7 @@ function M.setup()
         a = { "<cmd>Lspsaga code_action<cr>", "Code actions" },
         d = { "<cmd>Trouble lsp_definitions<cr>", "Go to definition" },
         f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
+        n = { "<cmd>lua require'config.null-ls.formatters'.toggle()<cr>", "Toggle autoformat on save" },
         h = { "<cmd>ClangdSwitchSourceHeader<cr>", "Toggle header/source" },
         p = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
         u = { "<cmd>Trouble lsp_references<cr>", "Show usages" },
