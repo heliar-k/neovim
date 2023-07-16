@@ -9,6 +9,7 @@ require("mason").setup({
 })
 
 require('mason-tool-installer').setup {
+  auto_update = true,
   -- a list of all tools you want to ensure are installed upon
   -- start; they should be the names Mason uses for each tool
   ensure_installed = {
