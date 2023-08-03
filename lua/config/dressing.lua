@@ -14,7 +14,6 @@ function M.setup()
       -- When true, input will start in insert mode.
       start_in_insert = true,
       -- These are passed to nvim_open_win
-      anchor = "SW",
       border = "rounded",
       -- 'editor' and 'win' will default to being centered
       relative = "cursor",
@@ -35,14 +34,14 @@ function M.setup()
       -- Set to `false` to disable
       mappings = {
         n = {
-              ["<Esc>"] = "Close",
-              ["<CR>"] = "Confirm",
+          ["<Esc>"] = "Close",
+          ["<CR>"] = "Confirm",
         },
         i = {
-              ["<C-c>"] = "Close",
-              ["<CR>"] = "Confirm",
-              ["<Up>"] = "HistoryPrev",
-              ["<Down>"] = "HistoryNext",
+          ["<C-c>"] = "Close",
+          ["<CR>"] = "Confirm",
+          ["<Up>"] = "HistoryPrev",
+          ["<Down>"] = "HistoryNext",
         },
       },
       override = function(conf)
@@ -101,7 +100,6 @@ function M.setup()
       -- Options for built-in selector
       builtin = {
         -- These are passed to nvim_open_win
-        anchor = "NW",
         border = "rounded",
         -- 'editor' and 'win' will default to being centered
         relative = "editor",
@@ -121,9 +119,9 @@ function M.setup()
         min_height = { 10, 0.2 },
         -- Set to `false` to disable
         mappings = {
-              ["<Esc>"] = "Close",
-              ["<C-c>"] = "Close",
-              ["<CR>"] = "Confirm",
+          ["<Esc>"] = "Close",
+          ["<C-c>"] = "Close",
+          ["<CR>"] = "Confirm",
         },
         override = function(conf)
           -- This is the config that will be passed to nvim_open_win.
@@ -140,4 +138,3 @@ function M.setup()
 end
 
 return M
-
