@@ -37,7 +37,8 @@ vim.wo.cursorline = true
 -- 显示左侧图标指示列
 vim.wo.signcolumn = "yes"
 -- 右侧参考线，超过表示代码太长了，考虑换行
--- vim.wo.colorcolumn = "100"
+vim.wo.colorcolumn = "88"
+vim.g.rulerformat = "%14(%c%V\\ %p%%%)"
 -- 缩进4个空格等于一个Tab
 vim.o.tabstop = 4
 vim.bo.tabstop = 4
