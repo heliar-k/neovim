@@ -8,7 +8,7 @@ function M.setup()
     sunrise_override = "07:00", -- accepts a time in the form "HH:MM" which will override the sunrise time
     sunset_override = "18:00",  -- accepts a time in the form "HH:MM" which will override the sunset time
     day_callback = function()
-      vim.cmd("colorscheme catppuccin-frappe")
+      vim.cmd("colorscheme catppuccin-latte")
     end, -- function that is called when day begins
     night_callback = function()
       vim.cmd("colorscheme catppuccin-frappe")
