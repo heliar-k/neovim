@@ -85,7 +85,7 @@ function M.setup()
         g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
         b = { "<cmd>Telescope buffers<cr>", "Buffers" },
         h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-        o = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
+        r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
       },
       g = {
         name = "Git",
@@ -107,6 +107,12 @@ function M.setup()
         name = "NvimTree",
         t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
       },
+      o = {
+        name = "Symbols Outline",
+        c = { "<cmd>SymbolsOutlineClose<cr>", "Close" },
+        o = { "<cmd>SymbolsOutlineOpen<cr>", "Open" },
+        t = { "<cmd>SymbolsOutline<cr>", "Toggle" },
+      },
       r = {
         name = "Rust",
         h = { "<cmd>lua require'rust-tools'.hover_actions.hover_actions()<cr>", "Hover actions" },
@@ -117,7 +123,7 @@ function M.setup()
 
       s = {
         name = "Search",
-        s = { ":lua require('searchbox').incsearch()<cr>", "Incremental search" },
+        i = { ":lua require('searchbox').incsearch()<cr>", "Incremental search" },
         a = { ":lua require('searchbox').match_all()<cr>", "Match all" },
         r = { ":lua require('searchbox').replace()<cr>", "Replace" },
       },

@@ -164,6 +164,13 @@ return require('lazy').setup({
       require("config.searchbox").setup()
     end,
   },
+  -- code outline
+  {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require("symbols-outline").setup()
+    end,
+  },
   ------------------------ language parser -----------------------
   -- treesitter
   {
