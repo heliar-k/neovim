@@ -21,6 +21,7 @@ print(vim.inspect(vim.opt.autoindent))
 --]]
 -----------------------------------------
 
+-- disable netrw at the very start of your init.lua
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 -- utf8
