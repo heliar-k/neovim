@@ -11,7 +11,7 @@ function M.setup()
       vim.cmd("colorscheme catppuccin-latte")
     end, -- function that is called when day begins
     night_callback = function()
-      vim.cmd("colorscheme catppuccin-frappe")
+      vim.cmd("colorscheme catppuccin-macchiato")
     end,                     -- function that is called when night begins
     update_interval = 60000, -- how frequently to check for sunrise/sunset changes in milliseconds
     time_format = "%H:%M",   -- sun time formatting using os.date https://www.lua.org/pil/22.1.html
