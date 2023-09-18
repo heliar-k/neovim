@@ -371,7 +371,7 @@ return require('lazy').setup({
     checker = {
       -- automatically check for plugin updates
       enabled = true,
-      notify = true,         -- get a notification when new updates are found
+      notify = false,         -- get a notification when new updates are found
       frequency = 24 * 3600, -- check for updates every hour
     },
   }
