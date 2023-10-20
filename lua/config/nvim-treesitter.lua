@@ -1,7 +1,7 @@
 require('nvim-treesitter.configs').setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {"cpp", "python", "vim", "lua", "bash", "cmake", "json", "yaml", "toml", "rust"},
+  ensure_installed = { "cpp", "python", "vim", "lua", "bash", "cmake", "json", "yaml", "toml", "rust", "scala" },
   -- 启用代码高亮功能
   highlight = {
     enable = true,
@@ -18,7 +18,7 @@ require('nvim-treesitter.configs').setup {
       scope_incremental = '<TAB>',
     }
   },
-  -- 启用基于Treesitter的代码格式化(=) 
+  -- 启用基于Treesitter的代码格式化(=)
   indent = {
     enable = true
   },

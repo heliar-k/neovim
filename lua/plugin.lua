@@ -297,6 +297,11 @@ return require('lazy').setup({
         require("config.cmake").setup()
       end,
     },
+    -- scala
+    {
+      'scalameta/nvim-metals',
+      dependencies = "nvim-lua/plenary.nvim",
+    },
     -- dap settings
     {
       "jay-babu/mason-nvim-dap.nvim",
@@ -372,7 +377,7 @@ return require('lazy').setup({
     checker = {
       -- automatically check for plugin updates
       enabled = true,
-      notify = false,         -- get a notification when new updates are found
+      notify = false,        -- get a notification when new updates are found
       frequency = 24 * 3600, -- check for updates every hour
     },
   }
