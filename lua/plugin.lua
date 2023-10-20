@@ -58,6 +58,7 @@ return require('lazy').setup({
         'neovim/nvim-lspconfig',
       },
       tag = "legacy",
+      event = "LspAttach",
       config = function()
         require("fidget").setup()
       end
