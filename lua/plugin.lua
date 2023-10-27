@@ -64,7 +64,8 @@ return require('lazy').setup({
       end
     },
     {
-      'jose-elias-alvarez/null-ls.nvim',
+      'nvimtools/none-ls.nvim',
+
     },
     {
       "glepnir/lspsaga.nvim",
