@@ -27,7 +27,7 @@ require('mason-tool-installer').setup {
     "cpptools",              -- debugger for c/c++
     "debugpy",               -- debugger for python
     -- formatter
-    "black",                 -- formatter for python
+    "autopep8",              -- formatter for python
     "clang-format",          -- formatter for c/c++
     "cmakelang",             -- formatter for cmake
     "isort",                 -- import optimizer for python

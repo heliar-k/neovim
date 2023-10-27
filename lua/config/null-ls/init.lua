@@ -23,7 +23,7 @@ local sources = {
   b.formatting.clang_format,
   b.formatting.prettierd,
   b.formatting.shfmt,
-  b.formatting.black.with { extra_args = { "--fast" } },
+  b.formatting.autopep8,
   b.formatting.isort,
   b.formatting.rustfmt,
   with_root_file(b.formatting.stylua, "stylua.toml"),
