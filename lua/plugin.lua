@@ -143,14 +143,14 @@ return require('lazy').setup({
     {
       'kazhala/close-buffers.nvim',
     },
-    -- nvim-tree
-    {
-      'nvim-tree/nvim-tree.lua',
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-        require('config.nvim-tree')
-      end,
-    },
+    -- -- nvim-tree
+    -- {
+    --   'nvim-tree/nvim-tree.lua',
+    --   dependencies = { "nvim-tree/nvim-web-devicons" },
+    --   config = function()
+    --     require('config.nvim-tree')
+    --   end,
+    -- },
     -- neo-tree
     {
       "nvim-neo-tree/neo-tree.nvim",

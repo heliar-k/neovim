@@ -106,7 +106,6 @@ function M.setup()
       n = {
         name = "FileExplore",
         t = { "<cmd>Neotree<cr>", "Toggle" },
-        -- t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
       },
       o = {
         name = "Symbols Outline",
