@@ -104,8 +104,9 @@ function M.setup()
         x = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
       },
       n = {
-        name = "NvimTree",
-        t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
+        name = "FileExplore",
+        t = { "<cmd>Neotree<cr>", "Toggle" },
+        -- t = { "<cmd>NvimTreeToggle<cr>", "Toggle" },
       },
       o = {
         name = "Symbols Outline",
