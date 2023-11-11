@@ -113,6 +113,12 @@ function M.setup()
         o = { "<cmd>SymbolsOutlineOpen<cr>", "Open" },
         t = { "<cmd>SymbolsOutline<cr>", "Toggle" },
       },
+      p = {
+        name = "Obsidian",
+        o = { "<cmd>ObsidianOpen<cr>", "Open" },
+        c = { "<cmd>ObsidianCheck<cr>", "Check" },
+        f = { "<cmd>ObsidianSearch<cr>", "Search" },
+      },
       r = {
         name = "Rust",
         h = { "<cmd>lua require'rust-tools'.hover_actions.hover_actions()<cr>", "Hover actions" },

@@ -387,7 +387,22 @@ return require('lazy').setup({
     {
       'lewis6991/impatient.nvim'
     },
-
+    -- obsidian
+    {
+      "epwalsh/obsidian.nvim",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      config = function()
+        require("config.obsidian")
+      end,
+      opts = {
+        workspaces = {
+          name = "one_for_all",
+          path = "/Users/guankai/Library/CloudStorage/OneDrive-个人/obsidian_library",
+        },
+      }
+    }
   },
   -- lazy.nvim opt
   {
