@@ -1,12 +1,12 @@
 require('nvim-treesitter.configs').setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = { "cpp", "python", "vim", "lua", "bash", "cmake", "json", "yaml", "toml", "rust", "scala" },
+  ensure_installed = { "cpp", "python", "vim", "lua", "bash", "cmake", "json", "yaml", "toml", "rust", "scala", "markdown", "markdown_inline" },
   -- 启用代码高亮功能
   highlight = {
     enable = true,
     use_languagetree = true,
-    additional_vim_regex_highlighting = false
+    additional_vim_regex_highlighting = { "markdown" }
   },
   -- 启用增量选择
   incremental_selection = {
