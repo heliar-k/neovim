@@ -27,11 +27,11 @@ require('mason-tool-installer').setup {
     "cpptools",              -- debugger for c/c++
     "debugpy",               -- debugger for python
     -- formatter
-    "autopep8",              -- formatter for python
+    "black",                 -- formatter for python
     "clang-format",          -- formatter for c/c++
     "cmakelang",             -- formatter for cmake
     "isort",                 -- import optimizer for python
-    "prettierd",             -- formatter for javascript/typescript
+    "prettier",             -- formatter for javascript/typescript
     "shfmt",                 -- formatter for shell scripts
     "stylua",                -- formatter for lua
   }

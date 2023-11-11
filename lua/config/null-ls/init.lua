@@ -21,9 +21,9 @@ end
 local sources = {
   -- formatting
   b.formatting.clang_format,
-  b.formatting.prettierd,
+  b.formatting.prettier.with({ extra_args = { "--tab-width=4" } }),
   b.formatting.shfmt,
-  b.formatting.autopep8,
+  b.formatting.black,
   b.formatting.isort,
   b.formatting.rustfmt,
   with_root_file(b.formatting.stylua, "stylua.toml"),
