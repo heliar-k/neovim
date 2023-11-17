@@ -112,6 +112,10 @@ return require('lazy').setup({
       end,
       lazy = false,
       priority = 1000,
+      opts = {
+        latitude = 120.12,
+        longitude = 30.16,
+      },
     },
     -- line in the bottom
     {

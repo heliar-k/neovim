@@ -5,8 +5,8 @@ function M.setup()
     longitude = -118.20,        -- east is positive, west is negative
     sunrise_offset = 0,         -- offset the sunrise by this many seconds
     sunset_offset = 0,          -- offset the sunset by this many seconds
-    sunrise_override = "07:00", -- accepts a time in the form "HH:MM" which will override the sunrise time
-    sunset_override = "18:00",  -- accepts a time in the form "HH:MM" which will override the sunset time
+    sunrise_override = nil,     -- accepts a time in the form "HH:MM" which will override the sunrise time
+    sunset_override = nil,      -- accepts a time in the form "HH:MM" which will override the sunset time
     day_callback = function()
       -- vim.cmd("colorscheme catppuccin-latte")
       vim.cmd("colorscheme github_light")
