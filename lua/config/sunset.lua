@@ -1,12 +1,12 @@
 local M = {}
 function M.setup()
   require("sunset").setup({
-    latitude = 30.16,       -- north is positive, south is negative
-    longitude = 120.12,     -- east is positive, west is negative
-    sunrise_offset = 0,     -- offset the sunrise by this many seconds
-    sunset_offset = 0,      -- offset the sunset by this many seconds
-    sunrise_override = nil, -- accepts a time in the form "HH:MM" which will override the sunrise time
-    sunset_override = nil,  -- accepts a time in the form "HH:MM" which will override the sunset time
+    latitude = 30.16,           -- north is positive, south is negative
+    longitude = 120.12,         -- east is positive, west is negative
+    sunrise_offset = 0,         -- offset the sunrise by this many seconds
+    sunset_offset = 0,          -- offset the sunset by this many seconds
+    sunrise_override = "07:00", -- accepts a time in the form "HH:MM" which will override the sunrise time
+    sunset_override = "17:00",  -- accepts a time in the form "HH:MM" which will override the sunset time
     day_callback = function()
       -- vim.cmd("colorscheme catppuccin-latte")
       vim.cmd("colorscheme github_light")
