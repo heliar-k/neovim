@@ -219,7 +219,7 @@ return require('lazy').setup({
       dependencies = {
         'nvim-lua/plenary.nvim',
       },
-      tag = '0.1.4',
+      branch = '0.1.x',
       config = function()
         require('config.telescope')
       end
