@@ -319,10 +319,10 @@ return require('lazy').setup({
       end,
     },
     -- scala
-    {
-      'scalameta/nvim-metals',
-      dependencies = "nvim-lua/plenary.nvim",
-    },
+    -- {
+    --   'scalameta/nvim-metals',
+    --   dependencies = "nvim-lua/plenary.nvim",
+    -- },
     -- dap settings
     {
       "jay-babu/mason-nvim-dap.nvim",
