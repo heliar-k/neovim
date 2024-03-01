@@ -25,7 +25,6 @@ local sources = {
   b.formatting.shfmt,
   b.formatting.black,
   b.formatting.isort,
-  b.formatting.rustfmt,
   with_root_file(b.formatting.stylua, "stylua.toml"),
 
   -- diagnostics
