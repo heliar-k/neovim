@@ -288,16 +288,6 @@ return require('lazy').setup({
     },
     ------------------------- debugger ----------------------------
     -- language specific tools
-    -- Adds extra functionality over rust analyzer
-    {
-      "simrat39/rust-tools.nvim",
-      config = function()
-        require('config.rust_tools').setup()
-      end,
-      dependencies = {
-        "jay-babu/mason-nvim-dap.nvim",
-      },
-    },
     -- clangd extension
     {
       "p00f/clangd_extensions.nvim",

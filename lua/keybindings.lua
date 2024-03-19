@@ -119,14 +119,6 @@ function M.setup()
         c = { "<cmd>ObsidianCheck<cr>", "Check" },
         f = { "<cmd>ObsidianSearch<cr>", "Search" },
       },
-      r = {
-        name = "Rust",
-        h = { "<cmd>lua require'rust-tools'.hover_actions.hover_actions()<cr>", "Hover actions" },
-        a = { "<cmd>lua require'rust-tools'.code_action_group.code_action_group()<cr>", "Code actions" },
-        r = { "<cmd>wa<cr><cmd>lua require'rust-tools'.runnables.runnables()<cr>", "Runnables" },
-        d = { "<cmd>wa<cr><cmd>lua require'rust-tools'.debuggables.debuggables()<cr>", "Debuggables" },
-      },
-
       s = {
         name = "Search",
         i = { ":lua require('searchbox').incsearch()<cr>", "Incremental search" },

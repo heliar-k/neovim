@@ -19,7 +19,6 @@ require('mason-tool-installer').setup {
     "marksman",              -- lsp for markdown
     "lua-language-server",   -- lsp for lua
     "pyright",               -- lsp for python
-    "rust-analyzer",         -- lsp for rust
     "yaml-language-server",  -- lsp for yaml
     "taplo",                 -- lsp for toml
     -- dap
