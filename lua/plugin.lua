@@ -343,6 +343,7 @@ return require('lazy').setup({
         "jay-babu/mason-nvim-dap.nvim",
         "theHamsta/nvim-dap-virtual-text",
         "nvim-telescope/telescope-dap.nvim",
+        "nvim-neotest/nvim-nio"
       },
       config = function()
         require('config.debugging').setup()
