@@ -100,12 +100,14 @@ return require('lazy').setup({
     -- themes
     { "catppuccin/nvim",             name = "catppuccin" },
     { "projekt0n/github-nvim-theme", name = "github" },
+    { "navarasu/onedark.nvim",       name = "onedark" },
     -- automatic themes switcher
     {
       'JManch/sunset.nvim',
       dependencies = {
         "catppuccin",
-        "github"
+        "github",
+        "onedark"
       },
       config = function()
         require('config.sunset').setup()
