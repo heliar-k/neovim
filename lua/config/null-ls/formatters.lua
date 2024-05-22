@@ -2,10 +2,10 @@ local M = {}
 local nls_utils = require "config.null-ls.utils"
 local nls_sources = require "null-ls.sources"
 local method = require("null-ls").methods.FORMATTING
-M.autoformat = true
+M.autoformat = false
 function M.toggle()
   M.autoformat = not M.autoformat
-  print(string.format("Toggle autoformat to %s", M.autoformat))
+  print(string.format("Toggle autoformat from %s to %s", not M.autoformat, M.autoformat))
 end
 
 function M.format(bufnr)
