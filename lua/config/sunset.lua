@@ -10,18 +10,20 @@ function M.setup()
     day_callback = function()
       -- vim.cmd("colorscheme catppuccin-latte")
       -- vim.cmd("colorscheme github_light")
-      require('onedark').setup {
-        style = 'light'
-      }
-      require('onedark').load()
+      -- require('onedark').setup {
+      --   style = 'light'
+      -- }
+      -- require('onedark').load()
+      vim.cmd("colorscheme nightfox")
     end, -- function that is called when day begins
     night_callback = function()
       -- vim.cmd("colorscheme catppuccin-macchiato")
       -- vim.cmd("colorscheme github_dark_dimmed")
-      require('onedark').setup {
-        style = 'dark'
-      }
-      require('onedark').load()
+      vim.cmd("colorscheme nightfox")
+      -- require('onedark').setup {
+      --   style = 'dark'
+      -- }
+      -- require('onedark').load()
     end,                     -- function that is called when night begins
     update_interval = 60000, -- how frequently to check for sunrise/sunset changes in milliseconds
     time_format = "%H:%M",   -- sun time formatting using os.date https://www.lua.org/pil/22.1.html
