@@ -10,11 +10,11 @@ function M.setup()
     day_callback = function()
       -- vim.cmd("colorscheme catppuccin-latte")
       -- vim.cmd("colorscheme github_light")
-      -- require('onedark').setup {
-      --   style = 'light'
-      -- }
-      -- require('onedark').load()
-      vim.cmd("colorscheme dayfox")
+      require('onedark').setup {
+        style = 'light'
+      }
+      require('onedark').load()
+      -- vim.cmd("colorscheme dayfox")
     end, -- function that is called when day begins
     night_callback = function()
       -- vim.cmd("colorscheme catppuccin-macchiato")
