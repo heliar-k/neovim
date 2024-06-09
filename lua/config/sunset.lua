@@ -9,12 +9,12 @@ function M.setup()
     sunset_override = "17:00",  -- accepts a time in the form "HH:MM" which will override the sunset time
     day_callback = function()
       -- vim.cmd("colorscheme catppuccin-latte")
-      -- vim.cmd("colorscheme github_light")
-      require('onedark').setup {
-        style = 'light'
-      }
-      require('onedark').load()
-      -- vim.cmd("colorscheme dayfox")
+      vim.cmd("colorscheme github_light_default")
+      -- require('onedark').setup {
+      --   style = 'light'
+      -- }
+      -- require('onedark').load()
+      -- vim.cmd("colorscheme dawnfox")
     end, -- function that is called when day begins
     night_callback = function()
       -- vim.cmd("colorscheme catppuccin-macchiato")
