@@ -6,7 +6,7 @@ function M.setup()
     sunrise_offset = 0,         -- offset the sunrise by this many seconds
     sunset_offset = 0,          -- offset the sunset by this many seconds
     sunrise_override = "07:00", -- accepts a time in the form "HH:MM" which will override the sunrise time
-    sunset_override = "17:00",  -- accepts a time in the form "HH:MM" which will override the sunset time
+    sunset_override = "17:30",  -- accepts a time in the form "HH:MM" which will override the sunset time
     day_callback = function()
       -- vim.cmd("colorscheme catppuccin-latte")
       vim.cmd("colorscheme github_light_default")
