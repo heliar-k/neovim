@@ -102,25 +102,46 @@ return require('lazy').setup({
     { "projekt0n/github-nvim-theme", name = "github" },
     { "navarasu/onedark.nvim",       name = "onedark" },
     { "EdenEast/nightfox.nvim",      name = "nightfox" },
-    -- automatic themes switcher
+    -- auto dark mode
     {
-      'JManch/sunset.nvim',
+      'f-person/auto-dark-mode.nvim',
       dependencies = {
         "catppuccin",
         "github",
         "onedark",
         "nightfox"
       },
-      config = function()
-        require('config.sunset').setup()
-      end,
-      lazy = false,
-      priority = 1000,
       opts = {
-        latitude = 30.16,
-        longitude = 120.12,
+        update_interval = 6000,
+        set_dark_mode = function()
+          vim.api.nvim_set_option("background", "dark")
+          vim.cmd("colorscheme nightfox")
+        end,
+        set_light_mode = function()
+          vim.api.nvim_set_option("background", "light")
+          vim.cmd("colorscheme github_light_default")
+        end,
       },
     },
+    -- automatic themes switcher
+    -- {
+    --   'JManch/sunset.nvim',
+    --   dependencies = {
+    --     "catppuccin",
+    --     "github",
+    --     "onedark",
+    --     "nightfox"
+    --   },
+    --   config = function()
+    --     require('config.sunset').setup()
+    --   end,
+    --   lazy = false,
+    --   priority = 1000,
+    --   opts = {
+    --     latitude = 30.16,
+    --     longitude = 120.12,
+    --   },
+    -- },
     -- line in the bottom
     {
       "nvim-tree/nvim-web-devicons",
