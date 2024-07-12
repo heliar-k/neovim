@@ -28,8 +28,7 @@ function M.setup()
       win_options = {
         -- Window transparency (0-100)
         winblend = 10,
-        -- Disable line wrapping
-        wrap = false,
+        wrap = true,
       },
       -- Set to `false` to disable
       mappings = {
