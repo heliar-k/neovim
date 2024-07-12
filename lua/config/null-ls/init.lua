@@ -23,7 +23,7 @@ local sources = {
   b.formatting.clang_format,
   b.formatting.prettier.with({ extra_args = { "--tab-width=4" } }),
   b.formatting.shfmt,
-  b.formatting.black,
+  b.formatting.black.with({ extra_args = { "--line-length=88", "--preview" } }),
   b.formatting.isort,
   with_root_file(b.formatting.stylua, "stylua.toml"),
 
