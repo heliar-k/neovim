@@ -12,7 +12,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = 'utf-8'
 
 
-lspconfig.ruff_lsp.setup { on_attach = on_attach }
+lspconfig.pyright.setup { on_attach = on_attach }
 lspconfig.lua_ls.setup { on_attach = on_attach }
 lspconfig.marksman.setup { on_attach = on_attach }
 lspconfig.clangd.setup { on_attach = on_attach, capabilities = capabilities }
