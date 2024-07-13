@@ -16,6 +16,7 @@ local M = {}
 function M.setup()
   local wk = require("which-key")
   wk.setup({
+    preset = "modern",
     plugins = {
       marks = true,     -- shows a list of your marks on ' and `
       registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -87,7 +88,8 @@ function M.setup()
     { "<leader>lp",  "<cmd>Lspsaga peek_definition<cr>",                                                                   desc = "Peek definition" },
     { "<leader>lj",  "<cmd>ClangdSwitchSourceHeader<cr>",                                                                  desc = "Jump to Header/Source (CPP)" },
 
-    { "<leader>nt",  "<cmd>Neotree<cr>",                                                                                   desc = "Toggle FileExplore" },
+    { "<leader>n",   group = "Explore" },
+    { "<leader>nt",  "<cmd>Neotree<cr>",                                                                                   desc = "Toggle" },
 
     { "<leader>t",   group = "Telescope" },
     { "<leader>tf",  "<cmd>Telescope find_files hidden=true<cr>",                                                          desc = "Find File" },
