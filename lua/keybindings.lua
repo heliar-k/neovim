@@ -10,14 +10,12 @@ local opt = {
 -- ctrl u / ctrl + d  只移动9行，默认移动半屏
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
--- bufferline 左右Tab切换
-map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 
 local M = {}
 
 function M.setup()
-  require("which-key").setup({
+  local wk = require("which-key")
+  wk.setup({
     plugins = {
       marks = true,     -- shows a list of your marks on ' and `
       registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -33,114 +31,87 @@ function M.setup()
       },
     },
   })
-  require("which-key").register({
-    -- debugging dap setting
-    ["<F5>"] = { "<cmd>lua require'dap'.step_into()<cr>", "Step into" },
-    ["<F6>"] = { "<cmd>lua require'dap'.step_over()<cr>", "Step over" },
-    ["<F7>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step out" },
-    ["<F8>"] = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-    ["<c-\\>"] = { "<cmd>ToggleTerm<cr>", "Toggle Terminal" },
-    ['s'] = {
-      name = "Split Windows",
-      h = { "<cmd>sp<cr>", "Split horizontal" },
-      v = { "<cmd>vsp<cr>", "Split vertical" },
-    },
-    ["z"] = {
-      name = "Folds",
-      o = { "<cmd>foldopen<cr>", "Open fold" },
-      c = { "<cmd>foldclose<cr>", "Close fold" },
-      O = { "<cmd>lua require('ufo').openAllFolds<cr>", "Open all folds" },
-      C = { "<cmd>lua require('ufo').closeAllFolds<cr>", "Close all folds" },
-    },
-    ["<leader>"] = {
-      b = {
-        name = "Close Buffer",
-        c = { "<cmd>BDelete this<cr>", "Close Current Buffer" },
-        o = { "<cmd>BDelete other<cr>", "Close Other Buffer" }
-      },
-      c = {
-        name = "CMake",
-        l = { "!ln -sf build/Debug/compile_commands.json .<cr>", "Link compilation database" },
-        c = { "<cmd>CMakeSelectConfigurePreset<cr>", "Select configure preset" },
-        g = { "<cmd>CMakeGenerate<cr>", "Generate" },
-        t = { "<cmd>CMakeSelectBuildTarget<cr>", "Select build target" },
-        b = { "<cmd>wa<cr><cmd>CMakeBuild<cr>", "Build" },
-        T = { "<cmd>CMakeSelectLaunchTarget<cr>", "Select launch target" },
-        r = { "<cmd>wa<cr><cmd>CMakeRun<cr>", "Run" },
-        d = { "<cmd>wa<cr><cmd>CMakeDebug<cr>", "Debug" },
-        s = { "<cmd>CMakeStop<cr>", "Stop" },
-      },
-      d = {
-        name = "Debug",
-        b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle breakpoint" },
-        l = {
-          "<cmd>lua require'dap.ext.vscode'.load_launchjs()<cr><cmd>lua require'dap'.continue()<cr>",
-          "Launch debug session",
-        },
-        t = { "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>", "Terminate debug session" },
-      },
-      f = {
-        name = "Fuzzy finder",
-        f = { "<cmd>Telescope find_files hidden=true<cr>", "Find files" },
-        g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-        b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-        h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Recent files" },
-      },
-      g = {
-        name = "Git",
-        g = { "<cmd>LazyGitCurrentFile<cr>", "Open Lazygit" },
-      },
-      l = {
-        name = "LSP",
-        a = { "<cmd>Lspsaga code_action<cr>", "Code actions" },
-        d = { "<cmd>Trouble lsp_definitions<cr>", "Go to definition" },
-        f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
-        n = { "<cmd>lua require'config.null-ls.formatters'.toggle()<cr>", "Toggle autoformat on save" },
-        h = { "<cmd>ClangdSwitchSourceHeader<cr>", "Toggle header/source" },
-        p = { "<cmd>Lspsaga peek_definition<cr>", "Peek definition" },
-        u = { "<cmd>Trouble lsp_references<cr>", "Show usages" },
-        r = { "<cmd>Lspsaga rename<cr>", "Rename" },
-        x = { "<cmd>Lspsaga show_line_diagnostics<cr>", "Show line diagnostics" },
-      },
-      n = {
-        name = "FileExplore",
-        t = { "<cmd>Neotree<cr>", "Toggle" },
-      },
-      o = {
-        name = "Symbols Outline",
-        c = { "<cmd>SymbolsOutlineClose<cr>", "Close" },
-        o = { "<cmd>SymbolsOutlineOpen<cr>", "Open" },
-        t = { "<cmd>SymbolsOutline<cr>", "Toggle" },
-      },
-      p = {
-        name = "Obsidian",
-        o = { "<cmd>ObsidianOpen<cr>", "Open" },
-        c = { "<cmd>ObsidianCheck<cr>", "Check" },
-        f = { "<cmd>ObsidianSearch<cr>", "Search" },
-      },
-      s = {
-        name = "Search",
-        i = { ":lua require('searchbox').incsearch()<cr>", "Incremental search" },
-        a = { ":lua require('searchbox').match_all()<cr>", "Match all" },
-        r = { ":lua require('searchbox').replace()<cr>", "Replace" },
-      },
-      x = {
-        name = "Trouble",
-        d = { "<cmd>Trouble workspace_diagnostics<cr>", "Diagnostics" },
-        q = { "<cmd>Trouble quickfix<cr>", "Quickfix" },
-        n = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump to next diagnostic" },
-        p = { "<cmd>Lspsaga diagnostic_jump_next<cr>", "Jump to next diagnostic" },
-        e = {
-          "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>",
-          "Jump to next error",
-        },
-        E = {
-          "<cmd>lua require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>",
-          "Jump to previous error",
-        },
-      },
-    },
+  wk.add({
+    { "<C-\\>",      "<cmd>ToggleTerm<cr>",                                                                                desc = "Toggle Terminal" },
+    -- debugging keybindings
+    { "<F5>",        "<cmd>lua require'dap'.step_into()<cr>",                                                              desc = "Step into" },
+    { "<F6>",        "<cmd>lua require'dap'.step_over()<cr>",                                                              desc = "Step over" },
+    { "<F7>",        "<cmd>lua require'dap'.step_out()<cr>",                                                               desc = "Step out" },
+    { "<F8>",        "<cmd>lua require'dap'.continue()<cr>",                                                               desc = "Continue" },
+    -- buffer tab switch
+    { "<C-h>",       "<cmd>BufferLineCyclePrev<cr>",                                                                       desc = "Go to Previous Buffer Tab" },
+    { "<C-l>",       "<cmd>BufferLineCycleNext<cr>",                                                                       desc = "Go to Next Buffer Tab" },
+
+    { "z",           group = "Folds" },
+    { "zo",          "<cmd>foldopen<cr>",                                                                                  desc = "Open fold" },
+    { "zc",          "<cmd>foldclose<cr>",                                                                                 desc = "Close fold" },
+    { "zO",          "<cmd>lua require('ufo').openAllFolds<cr>",                                                           desc = "Open all folds" },
+    { "zC",          "<cmd>lua require('ufo').closeAllFolds<cr>",                                                          desc = "Close all folds" },
+
+    { "<leader>b",   group = "CloseBuffer" },
+    { "<leader>bc",  "<cmd>BDelete this<cr>",                                                                              desc = "Close Current Buffer" },
+    { "<leader>bo",  "<cmd>BDelete other<cr>",                                                                             desc = "Close Other Buffer" },
+
+    { "<leader>c",   group = "CMake" },
+    { "<leader>cb",  "<cmd>wa<cr><cmd>CMakeBuild<cr>",                                                                     desc = "Build" },
+    { "<leader>cg",  "<cmd>CMakeGenerate<cr>",                                                                             desc = "Generate" },
+    { "<leader>cd",  "<cmd>wa<cr><cmd>CMakeDebug<cr>",                                                                     desc = "Debug" },
+    { "<leader>cr",  "<cmd>wa<cr><cmd>CMakeRun<cr>",                                                                       desc = "Run" },
+    { "<leader>cs",  "<cmd>CMakeStop<cr>",                                                                                 desc = "Stop" },
+    { "<leader>cT",  "<cmd>CMakeSelectLaunchTarget<cr>",                                                                   desc = "Select Launch Target" },
+    { "<leader>cc",  "<cmd>CMakeSelectConfigurePreset<cr>",                                                                desc = "Select Configure Preset" },
+    { "<leader>ct",  "<cmd>CMakeSelectBuildTarget<cr>",                                                                    desc = "Select Build Target" },
+    { "<leader>cl",  "!ln -sf build/Debug/compile_commands.json .<cr>",                                                    desc = "Link Compilation Database" },
+
+    { "<leader>d",   group = "Debug" },
+    { "<leader>db",  "<cmd>lua require'dap'.toggle_breakpoint()<cr>",                                                      desc = "Toggle Breakpoint" },
+    { "<leader>dl",  "<cmd>lua require'dap.ext.vscode'.load_launchjs()<cr><cmd>lua require'dap'.continue()<cr>",           desc = "Launch Debug Session" },
+    { "<leader>dt",  "<cmd>lua require'dap'.terminate()<cr><cmd>lua require'dapui'.close()<cr>",                           desc = "Terminate Debug Session" },
+
+    { "<leader>f",   group = "Search in File" },
+    { "<leader>ff",  "<cmd>lua require('searchbox').incsearch()<cr>",                                                      desc = "Incremental" },
+    { "<leader>fa",  "<cmd>lua require('searchbox').match_all()<cr>",                                                      desc = "Match all" },
+    { "<leader>fh",  "<cmd>lua require('searchbox').replace()<cr>",                                                        desc = "Replace" },
+
+    { "<leader>g",   group = "Git" },
+    { "<leader>gg",  "<cmd>LazyGitCurrentFile<cr>",                                                                        desc = "Open Lazygit" },
+
+    { "<leader>l",   group = "LSP" },
+    { "<leader>lf",  "<cmd>lua vim.lsp.buf.format()<cr>",                                                                  desc = "Format Opened File" },
+    { "<leader>lt",  "<cmd>lua require'config.null-ls.formatters'.toggle()<cr>",                                           desc = "Toggle Auto Format on Save" },
+    { "<leader>lr",  "<cmd>Lspsaga rename<cr>",                                                                            desc = "Rename" },
+    { "<leader>lu",  "<cmd>Trouble lsp_references<cr>",                                                                    desc = "Show References" },
+    { "<leader>lx",  "<cmd>Lspsaga show_line_diagnostics<cr>",                                                             desc = "Show Line Diagnostics" },
+    { "<leader>lc",  "<cmd>Lspsaga code_action<cr>",                                                                       desc = "Code Actions" },
+    { "<leader>ld",  "<cmd>Trouble lsp_definitions<cr>",                                                                   desc = "Go To Definiton" },
+    { "<leader>lp",  "<cmd>Lspsaga peek_definition<cr>",                                                                   desc = "Peek definition" },
+    { "<leader>lj",  "<cmd>ClangdSwitchSourceHeader<cr>",                                                                  desc = "Jump to Header/Source (CPP)" },
+
+    { "<leader>nt",  "<cmd>Neotree<cr>",                                                                                   desc = "Toggle FileExplore" },
+
+    { "<leader>t",   group = "Telescope" },
+    { "<leader>tf",  "<cmd>Telescope find_files hidden=true<cr>",                                                          desc = "Find File" },
+    { "<leader>tgr", "<cmd>Telescope live_grep<cr>",                                                                       desc = "Grep" },
+    { "<leader>th",  "<cmd>Telescope oldfiles<cr>",                                                                        desc = "Recent File" },
+
+    { "<leader>ot",  "<cmd>SymbolsOutline<cr>",                                                                            desc = "Toggle Outline" },
+
+    -- { "<leader>p",   group = "Obsidian",                                                                         hidden = true },
+    -- { "<leader>po",  "<cmd>ObsidianOpen<cr>",                                                                    desc = "Open",                       hidden = true },
+    -- { "<leader>pc",  "<cmd>ObsidianCheck<cr>",                                                                   desc = "Check",                      hidden = true },
+    -- { "<leader>pf",  "<cmd>ObsidianSearch<cr>",                                                                  desc = "Search",                     hidden = true },
+
+    { "<leader>s",   group = "Split Windows" },
+    { "<leader>sh",  "<cmd>sp<cr>",                                                                                        desc = "Split horizontal" },
+    { "<leader>sv",  "<cmd>vsp<cr>",                                                                                       desc = "Split vertical" },
+
+    { "<leader>t",   group = "Trouble" },
+    { "<leader>td",  "<cmd>Trouble workspace_diagnostics<cr>",                                                             desc = "Diagnostics Workspace" },
+    { "<leader>tq",  "<cmd>Trouble quickfix<cr>",                                                                          desc = "Quickfix" },
+    { "<leader>tp",  "<cmd>Lspsaga diagnostic_jump_prev<cr>",                                                              desc = "Jump to Prev Diagnostics" },
+    { "<leader>tn",  "<cmd>Lspsaga diagnostic_jump_next<cr>",                                                              desc = "Jump to Next Diagnostics" },
+    { "<leader>tE",  "<cmd>lua require('lspsaga.diagnostic'):goto_prec({ severity = vim.diagnostic.severity.ERROR })<cr>", desc = "Jump to Prev Error" },
+    { "<leader>te",  "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>", desc = "Jump to Next Error" },
   })
 end
 
