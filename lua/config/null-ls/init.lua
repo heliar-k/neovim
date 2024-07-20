@@ -10,14 +10,6 @@ local with_diagnostics_code = function(builtin)
   }
 end
 
-local with_root_file = function(builtin, file)
-  return builtin.with {
-    condition = function(utils)
-      return utils.root_has_file(file)
-    end,
-  }
-end
-
 local sources = {
   -- formatting
   b.formatting.clang_format,
@@ -25,7 +17,7 @@ local sources = {
   b.formatting.shfmt,
   b.formatting.black.with({ extra_args = { "--line-length=88", "--preview" } }),
   b.formatting.isort,
-  with_root_file(b.formatting.stylua, "stylua.toml"),
+  b.formatting.stylua,
 
   -- diagnostics
   -- b.diagnostics.write_good,
