@@ -1,6 +1,6 @@
 local M = {}
-local nls_utils = require "config.null-ls.utils"
-local nls_sources = require "null-ls.sources"
+local nls_utils = require("config.null-ls.utils")
+local nls_sources = require("null-ls.sources")
 local method = require("null-ls").methods.FORMATTING
 M.autoformat = false
 function M.toggle()
@@ -29,12 +29,12 @@ function M.setup(client, bufnr)
   client.server_capabilities.document_formatting = enable
   client.server_capabilities.document_range_formatting = enable
   if client.supports_method("textDocument/formatting") then
-    vim.cmd [[
+    vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>
         autocmd BufWritePre <buffer> lua require("config.null-ls.formatters").format(bufnr)
       augroup END
-    ]]
+    ]])
   end
 end
 

@@ -6,7 +6,7 @@ function M.setup()
     cmake_build_directory = "",
     cmake_build_directory_prefix = "build/",
     cmake_build_options = {},
-    cmake_console_size = 10,       -- cmake output window height
+    cmake_console_size = 10, -- cmake output window height
     cmake_show_console = "always", -- "always", "only_on_error"
     cmake_dap_configuration = {
       name = "cppdbg",

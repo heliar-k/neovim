@@ -26,7 +26,7 @@ vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 -- utf8
 vim.g.encoding = "UTF-8"
-vim.o.fileencoding = 'utf-8'
+vim.o.fileencoding = "utf-8"
 -- jk移动时光标下上方保留8行
 vim.o.scrolloff = 8
 vim.o.sidescrolloff = 8
@@ -102,7 +102,7 @@ vim.o.list = true
 -- 补全增强
 vim.o.wildmenu = true
 -- Dont' pass messages to |ins-completin menu|
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.pumheight = 10
 -- always show tabline
 vim.o.showtabline = 2

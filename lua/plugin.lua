@@ -12,73 +12,73 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-return require('lazy').setup({
+return require("lazy").setup(
+  {
     {
-      'williamboman/mason.nvim',
+      "williamboman/mason.nvim",
       config = function()
         require("config.mason")
       end,
-      lazy = false
+      lazy = false,
     },
     {
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
       dependencies = {
-        'williamboman/mason.nvim',
-      }
+        "williamboman/mason.nvim",
+      },
     },
     {
       "folke/neodev.nvim",
       config = function()
         require("config.neodev")
-      end
+      end,
     },
     ----------------------------- lsp -----------------------------
     {
-      'neovim/nvim-lspconfig',
+      "neovim/nvim-lspconfig",
       config = function()
-        require('config.lsp').setup()
+        require("config.lsp").setup()
       end,
     },
     {
-      'ray-x/lsp_signature.nvim',
+      "ray-x/lsp_signature.nvim",
       dependencies = {
-        'neovim/nvim-lspconfig',
-      }
+        "neovim/nvim-lspconfig",
+      },
     },
     {
-      'williamboman/mason-lspconfig.nvim',
+      "williamboman/mason-lspconfig.nvim",
       dependencies = {
-        'williamboman/mason.nvim',
-        'neovim/nvim-lspconfig',
-      }
+        "williamboman/mason.nvim",
+        "neovim/nvim-lspconfig",
+      },
     },
     {
-      'j-hui/fidget.nvim',
+      "j-hui/fidget.nvim",
       dependencies = {
-        'neovim/nvim-lspconfig',
+        "neovim/nvim-lspconfig",
       },
       tag = "legacy",
       event = "LspAttach",
       config = function()
         require("fidget").setup()
-      end
+      end,
     },
     {
-      'nvimtools/none-ls.nvim',
-
+      "nvimtools/none-ls.nvim",
     },
     {
       "glepnir/lspsaga.nvim",
       branch = "main",
       dependencies = { "catppuccin/nvim", "lewis6991/gitsigns.nvim" },
       config = function()
-        require('config.lspsaga').setup()
+        require("config.lspsaga").setup()
       end,
     },
     -- Ctags auto generation
     {
       "ludovicchabant/vim-gutentags",
-      branch = "master"
+      branch = "master",
     },
     -- Displaying errors/warnings in a window
     {
@@ -98,18 +98,18 @@ return require('lazy').setup({
       end,
     },
     -- themes
-    { "catppuccin/nvim",             name = "catppuccin" },
+    { "catppuccin/nvim", name = "catppuccin" },
     { "projekt0n/github-nvim-theme", name = "github" },
-    { "navarasu/onedark.nvim",       name = "onedark" },
-    { "EdenEast/nightfox.nvim",      name = "nightfox" },
+    { "navarasu/onedark.nvim", name = "onedark" },
+    { "EdenEast/nightfox.nvim", name = "nightfox" },
     -- auto dark mode
     {
-      'f-person/auto-dark-mode.nvim',
+      "f-person/auto-dark-mode.nvim",
       dependencies = {
         "catppuccin",
         "github",
         "onedark",
-        "nightfox"
+        "nightfox",
       },
       opts = {
         update_interval = 6000,
@@ -145,10 +145,10 @@ return require('lazy').setup({
     -- line in the bottom
     {
       "nvim-tree/nvim-web-devicons",
-      lazy = false
+      lazy = false,
     },
     {
-      'nvim-lualine/lualine.nvim',
+      "nvim-lualine/lualine.nvim",
       dependencies = "nvim-tree/nvim-web-devicons",
       config = function()
         require("config.lualine")
@@ -156,21 +156,21 @@ return require('lazy').setup({
     },
     -- indent-blankline
     {
-      'lukas-reineke/indent-blankline.nvim',
+      "lukas-reineke/indent-blankline.nvim",
       config = function()
-        require('config.indent-blankline')
+        require("config.indent-blankline")
       end,
     },
     -- bufferline
     {
-      'akinsho/bufferline.nvim',
+      "akinsho/bufferline.nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
-        require('config.buffer-line')
+        require("config.buffer-line")
       end,
     },
     {
-      'kazhala/close-buffers.nvim',
+      "kazhala/close-buffers.nvim",
     },
     -- -- nvim-tree
     -- {
@@ -196,11 +196,11 @@ return require('lazy').setup({
     },
     -- welcome dashboard
     {
-      'goolord/alpha-nvim',
+      "goolord/alpha-nvim",
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
-        require('config.alpha')
-      end
+        require("config.alpha")
+      end,
     },
     {
       "VonHeikemen/searchbox.nvim",
@@ -213,7 +213,7 @@ return require('lazy').setup({
     },
     -- code outline
     {
-      'simrat39/symbols-outline.nvim',
+      "simrat39/symbols-outline.nvim",
       config = function()
         require("symbols-outline").setup()
       end,
@@ -221,10 +221,10 @@ return require('lazy').setup({
     ------------------------ language parser -----------------------
     -- treesitter
     {
-      'nvim-treesitter/nvim-treesitter',
+      "nvim-treesitter/nvim-treesitter",
       name = "nvim-treesitter",
       config = function()
-        require('config.nvim-treesitter')
+        require("config.nvim-treesitter")
       end,
       build = ":TSUpdate",
     },
@@ -233,50 +233,49 @@ return require('lazy').setup({
       dependencies = { "nvim-treesitter" },
     },
     {
-      'p00f/nvim-ts-rainbow',
+      "p00f/nvim-ts-rainbow",
       dependencies = { "nvim-treesitter" },
     },
     ------------------------- finder -------------------------------
     -- telescope
     {
-      'nvim-telescope/telescope.nvim',
+      "nvim-telescope/telescope.nvim",
       name = "telescope.nvim",
       dependencies = {
-        'nvim-lua/plenary.nvim',
+        "nvim-lua/plenary.nvim",
       },
-      branch = '0.1.x',
+      branch = "0.1.x",
       config = function()
-        require('config.telescope')
-      end
+        require("config.telescope")
+      end,
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      build =
-      "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       dependencies = { "telescope.nvim" },
     },
     --------------------------- git -------------------------------
     -- gitsigns
     {
-      'lewis6991/gitsigns.nvim',
+      "lewis6991/gitsigns.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
         require("config.gitsigns")
-      end
+      end,
     },
     -- lazygit
     {
-      'kdheepak/lazygit.nvim',
+      "kdheepak/lazygit.nvim",
     },
     -- diffview
     -- TODO need more document for this
     {
-      'sindrets/diffview.nvim',
-      dependencies = 'nvim-lua/plenary.nvim'
+      "sindrets/diffview.nvim",
+      dependencies = "nvim-lua/plenary.nvim",
     },
     ------------------------- auto-complete ------------------------
     {
-      'hrsh7th/nvim-cmp',
+      "hrsh7th/nvim-cmp",
       dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
@@ -292,7 +291,7 @@ return require('lazy').setup({
         "davidmh/cmp-nerdfonts",
       },
       config = function()
-        require('config.nvim-cmp')
+        require("config.nvim-cmp")
       end,
     },
     -- Copilot
@@ -301,7 +300,7 @@ return require('lazy').setup({
       cmd = "Copilot",
       event = "InsertEnter",
       config = function()
-        require('config.copilot')
+        require("config.copilot")
       end,
     },
     {
@@ -309,10 +308,20 @@ return require('lazy').setup({
       dependencies = { "copilot.lua" },
       config = function()
         require("copilot_cmp").setup()
-      end
+      end,
     },
     ------------------------- debugger ----------------------------
     -- language specific tools
+    -- Adds extra functionality over rust analyzer
+    {
+      "simrat39/rust-tools.nvim",
+      config = function()
+        require("config.rust_tools").setup()
+      end,
+      dependencies = {
+        "jay-babu/mason-nvim-dap.nvim",
+      },
+    },
     -- clangd extension
     {
       "p00f/clangd_extensions.nvim",
@@ -342,13 +351,13 @@ return require('lazy').setup({
     {
       "jay-babu/mason-nvim-dap.nvim",
       dependencies = {
-        'williamboman/mason.nvim',
+        "williamboman/mason.nvim",
       },
       config = function()
-        require('mason-nvim-dap').setup {
+        require("mason-nvim-dap").setup({
           automatic_installation = true,
           ensure_installed = { "python", "cpptools", "codelldb" },
-        }
+        })
       end,
     },
     {
@@ -358,10 +367,10 @@ return require('lazy').setup({
         "jay-babu/mason-nvim-dap.nvim",
         "theHamsta/nvim-dap-virtual-text",
         "nvim-telescope/telescope-dap.nvim",
-        "nvim-neotest/nvim-nio"
+        "nvim-neotest/nvim-nio",
       },
       config = function()
-        require('config.debugging').setup()
+        require("config.debugging").setup()
       end,
     },
     ------------------------- helper -------------------------------
@@ -375,10 +384,10 @@ return require('lazy').setup({
     },
     -- commnet
     {
-      'numToStr/Comment.nvim',
+      "numToStr/Comment.nvim",
       config = function()
-        require('Comment').setup()
-      end
+        require("Comment").setup()
+      end,
     },
     -- toggle terminal
     {
@@ -386,11 +395,11 @@ return require('lazy').setup({
       version = "*",
       config = function()
         require("config.toggle_term")
-      end
+      end,
     },
     -- which-key
     {
-      'folke/which-key.nvim',
+      "folke/which-key.nvim",
     },
     -- Makes Directories If They Don't Exist at Save Time
     {
@@ -400,12 +409,12 @@ return require('lazy').setup({
     {
       "windwp/nvim-autopairs",
       config = function()
-        require('nvim-autopairs').setup {}
-      end
+        require("nvim-autopairs").setup({})
+      end,
     },
     -- for speeding up the loading of plugin
     {
-      'lewis6991/impatient.nvim'
+      "lewis6991/impatient.nvim",
     },
     -- obsidian
     {
@@ -425,14 +434,14 @@ return require('lazy').setup({
       config = function()
         require("config.obsidian")
       end,
-    }
+    },
   },
   -- lazy.nvim opt
   {
     checker = {
       -- automatically check for plugin updates
       enabled = true,
-      notify = false,        -- get a notification when new updates are found
+      notify = false, -- get a notification when new updates are found
       frequency = 24 * 3600, -- check for updates every hour
     },
   }

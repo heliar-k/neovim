@@ -1,13 +1,13 @@
 local M = {}
 
-local nls = require "null-ls"
-local nls_utils = require "null-ls.utils"
+local nls = require("null-ls")
+local nls_utils = require("null-ls.utils")
 local b = nls.builtins
 
 local with_diagnostics_code = function(builtin)
-  return builtin.with {
+  return builtin.with({
     diagnostics_format = "#{m} [#{c}]",
-  }
+  })
 end
 
 local sources = {
@@ -37,17 +37,17 @@ local sources = {
 }
 
 function M.setup(opts)
-  nls.setup {
+  nls.setup({
     -- debug = true,
     debounce = 150,
     save_after_format = false,
     sources = sources,
     on_attach = opts.on_attach,
-    root_dir = nls_utils.root_pattern ".git",
+    root_dir = nls_utils.root_pattern(".git"),
     on_init = function(new_client, _)
-      new_client.offset_encoding = 'utf-16'
-    end
-  }
+      new_client.offset_encoding = "utf-16"
+    end,
+  })
 end
 
 return M

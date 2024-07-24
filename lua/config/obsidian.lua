@@ -1,4 +1,4 @@
-require("obsidian").setup {
+require("obsidian").setup({
   -- Where to put new notes created from completion. Valid options are
   --  * "current_dir" - put new notes in same directory as the current buffer.
   --  * "notes_subdir" - put new notes in the default notes subdirectory.
@@ -12,4 +12,4 @@ require("obsidian").setup {
   disable_frontmatter = true,
   use_advanced_uri = true,
   open_app_foreground = true,
-}
+})

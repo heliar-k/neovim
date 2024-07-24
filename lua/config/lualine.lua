@@ -1,28 +1,28 @@
-require('lualine').setup({
+require("lualine").setup({
   sections = {
     lualine_c = {
       ...,
-      'lsp_progress',
+      "lsp_progress",
     },
     lualine_z = {
       {
-        'datetime',
+        "datetime",
         -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-        style = '%Y-%m-%d|%H:%M:%S',
-      }
+        style = "%Y-%m-%d|%H:%M:%S",
+      },
     },
   },
   options = {
-    theme = "auto"
+    theme = "auto",
   },
   disabled_filetypes = {
     statusline = {
       "alpha",
-      "NvimTree"
+      "NvimTree",
     },
     winbar = {
       "alpha",
-      "NvimTree"
+      "NvimTree",
     },
   },
 })

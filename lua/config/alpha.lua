@@ -37,8 +37,11 @@ dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert<CR>"),
   dashboard.button("f", "  > Find file", ":Telescope find_files hidden=true no_ignore=true<CR>"),
   dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
-  dashboard.button("s", "  > Settings",
-    ":Telescope find_files cwd=" .. setting_path .. " search_dirs=Ultisnips,lua,viml,init.vim<CR>"),
+  dashboard.button(
+    "s",
+    "  > Settings",
+    ":Telescope find_files cwd=" .. setting_path .. " search_dirs=Ultisnips,lua,viml,init.vim<CR>"
+  ),
   dashboard.button("u", "󰚰  > Update Plugin", ":Lazy update<CR>"),
   -- dashboard.button("c", "  > Switch ColorScheme", ":Telescope colorscheme<CR>"),
   dashboard.button("q", "󰿅  > Quit NVIM", ":qa<CR>"),

@@ -13,10 +13,10 @@ function debugging.setup()
       numhl = "DapBreakpoint",
     },
     condition = {
-      text = 'ﳁ',
-      texthl = 'DapBreakpoint',
-      linehl = 'DapBreakpoint',
-      numhl = 'DapBreakpoint',
+      text = "ﳁ",
+      texthl = "DapBreakpoint",
+      linehl = "DapBreakpoint",
+      numhl = "DapBreakpoint",
     },
     rejected = {
       text = "",
@@ -25,34 +25,73 @@ function debugging.setup()
       numhl = "DapBreakpoint",
     },
     logpoint = {
-      text = '',
-      texthl = 'DapLogPoint',
-      linehl = 'DapLogPoint',
-      numhl = 'DapLogPoint',
+      text = "",
+      texthl = "DapLogPoint",
+      linehl = "DapLogPoint",
+      numhl = "DapLogPoint",
     },
     stopped = {
-      text = '',
-      texthl = 'DapStopped',
-      linehl = 'DapStopped',
-      numhl = 'DapStopped',
+      text = "",
+      texthl = "DapStopped",
+      linehl = "DapStopped",
+      numhl = "DapStopped",
     },
   }
-  sign('DapBreakpoint', dap_breakpoint.error)
-  sign('DapBreakpointCondition', dap_breakpoint.condition)
-  sign('DapBreakpointRejected', dap_breakpoint.rejected)
-  sign('DapLogPoint', dap_breakpoint.logpoint)
-  sign('DapStopped', dap_breakpoint.stopped)
-
+  sign("DapBreakpoint", dap_breakpoint.error)
+  sign("DapBreakpointCondition", dap_breakpoint.condition)
+  sign("DapBreakpointRejected", dap_breakpoint.rejected)
+  sign("DapLogPoint", dap_breakpoint.logpoint)
+  sign("DapStopped", dap_breakpoint.stopped)
 
   local mason_registry = require("mason-registry")
 
   -- dap for cpp
   local cpp_dap_executable = mason_registry.get_package("cpptools"):get_install_path()
-      .. "/extension/debugAdapters/bin/OpenDebugAD7"
+    .. "/extension/debugAdapters/bin/OpenDebugAD7"
   dap.adapters.cpp = {
     id = "cppdbg",
     type = "executable",
     command = cpp_dap_executable,
+  }
+
+  -- dap for rust
+  local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
+  local codelldb_path = codelldb_root .. "adapter/codelldb"
+  local liblldb_name
+  local system_name = vim.loop.os_uname().sysname
+  if system_name:match("Windows") then
+    liblldb_name = "liblldb.dll"
+  elseif system_name:match("Darwin") then
+    liblldb_name = "liblldb.dylib"
+  else
+    liblldb_name = "liblldb.so"
+  end
+  local liblldb_path = codelldb_root .. "lldb/lib/" .. liblldb_name
+
+  dap.adapters.rust = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+
+  dap.configurations.rust = {
+    {
+      type = "rust",
+      request = "launch",
+      name = "lldbrust",
+      program = function()
+        local metadata_json = vim.fn.system("cargo metadata --format-version 1 --no-deps")
+        local metadata = vim.fn.json_decode(metadata_json)
+        local target_name = metadata.packages[1].targets[1].name
+        local target_dir = metadata.target_directory
+        return target_dir .. "/debug/" .. target_name
+      end,
+      args = function()
+        -- 同样的进行命令行参数指定
+        local inputstr = vim.fn.input("CommandLine Args:", "")
+        local params = {}
+        for param in string.gmatch(inputstr, "[^%s]+") do
+          table.insert(params, param)
+        end
+        return params
+      end,
+    },
   }
 
   -- dap for python
@@ -64,18 +103,17 @@ function debugging.setup()
     command = "debugpy-adapter",
   }
 
-  local venv_path = os.getenv('VIRTUAL_ENV') or os.getenv('CONDA_PREFIX')
+  local venv_path = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX")
   dap.configurations.python = {
     {
       -- The first three options are required by nvim-dap
-      type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
-      request = 'launch',
-      name = 'Python: Launch file',
-      program = '${file}', -- This configuration will launch the current file if used.
-      pythonPath = venv_path and (venv_path .. '/bin/python') or nil,
+      type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
+      request = "launch",
+      name = "Python: Launch file",
+      program = "${file}", -- This configuration will launch the current file if used.
+      pythonPath = venv_path and (venv_path .. "/bin/python") or nil,
     },
   }
-
 
   require("nvim-dap-virtual-text").setup({
     enabled = true,
@@ -90,9 +128,9 @@ function debugging.setup()
       return " " .. variable.name .. " = " .. variable.value .. " "
     end,
     -- experimental features:
-    virt_text_pos = "eol",   -- position of virtual text, see `:h nvim_buf_set_extmark()`
-    all_frames = false,      -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-    virt_lines = false,      -- show virtual lines instead of virtual text (will flicker!)
+    virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
+    all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+    virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
     virt_text_win_col = nil, -- position the virtual text at a fixed window column (starting from the first text column) ,
   })
 
@@ -156,8 +194,8 @@ function debugging.setup()
       },
     },
     floating = {
-      max_height = nil,  -- These can be integers or a float between 0 and 1.
-      max_width = nil,   -- Floats will be treated as percentage of your screen.
+      max_height = nil, -- These can be integers or a float between 0 and 1.
+      max_width = nil, -- Floats will be treated as percentage of your screen.
       border = "single", -- Border style. Can be "single", "double" or "rounded"
       mappings = {
         close = { "q", "<Esc>" },

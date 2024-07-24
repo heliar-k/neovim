@@ -1,13 +1,15 @@
-local lspkind = require('lspkind')
-local cmp = require 'cmp'
+local lspkind = require("lspkind")
+local cmp = require("cmp")
 
 local has_words_before = function()
-  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+    return false
+  end
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
 end
 
-cmp.setup {
+cmp.setup({
   -- 指定 snippet 引擎
   snippet = {
     expand = function(args)
@@ -26,19 +28,19 @@ cmp.setup {
   },
   -- 来源
   sources = cmp.config.sources({
-    { name = 'nvim_lsp',  group_index = 1, max_item_count = 4 },
-    { name = 'copilot',   group_index = 1, max_item_count = 4 },
+    { name = "nvim_lsp", group_index = 1, max_item_count = 4 },
+    { name = "copilot", group_index = 1, max_item_count = 4 },
     -- For vsnip users.
-    { name = 'vsnip',     group_index = 2 },
+    { name = "vsnip", group_index = 2 },
     -- For luasnip users.
     -- { name = 'luasnip' },
     --For ultisnips users.
     -- { name = 'ultisnips' },
     -- -- For snippy users.
     -- { name = 'snippy' },
-    { name = 'buffer',    group_index = 2 },
-    { name = 'path',      group_index = 2 },
-    { name = 'nerdfonts', group_index = 2 },
+    { name = "buffer", group_index = 2 },
+    { name = "path", group_index = 2 },
+    { name = "nerdfonts", group_index = 2 },
   }),
 
   -- 快捷键
@@ -59,23 +61,23 @@ cmp.setup {
         fallback()
       end
     end, { "i", "s" }),
-    ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-j>'] = cmp.mapping.select_next_item(),
-    ['<A-.>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ["<C-k>"] = cmp.mapping.select_prev_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     -- 取消
-    ['<A-,>'] = cmp.mapping({
+    ["<A-,>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
     -- 确认
     -- Accept currently selected item. If none selected, `select` first item  .
     -- Set `select` to `false` to only confirm explicitly selected items.
-    ['<CR>'] = cmp.mapping.confirm({
+    ["<CR>"] = cmp.mapping.confirm({
       select = true,
-      behavior = cmp.ConfirmBehavior.Replace
+      behavior = cmp.ConfirmBehavior.Replace,
     }),
-    ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs( -4), { 'i', 'c' }),
-    ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+    ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
   }),
   -- 使用lspkind-nvim显示类型图标
   formatting = {
@@ -86,26 +88,23 @@ cmp.setup {
         -- Source 显示提示来源
         vim_item.menu = "[" .. string.upper(entry.source.name) .. "]"
         return vim_item
-      end
-    })
+      end,
+    }),
   },
-}
+})
 
 -- Use buffer source for `/`.
-cmp.setup.cmdline('/', {
+cmp.setup.cmdline("/", {
   sources = {
-    { name = 'buffer' }
-  }
+    { name = "buffer" },
+  },
 })
 
 -- Use cmdline & path source for ':'.
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources(
-    {
-      { name = 'path' }
-    },
-    {
-      { name = 'cmdline' }
-    }
-  )
+cmp.setup.cmdline(":", {
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
 })
