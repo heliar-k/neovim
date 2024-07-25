@@ -98,10 +98,10 @@ return require("lazy").setup(
       end,
     },
     -- themes
-    { "catppuccin/nvim", name = "catppuccin" },
+    { "catppuccin/nvim",             name = "catppuccin" },
     { "projekt0n/github-nvim-theme", name = "github" },
-    { "navarasu/onedark.nvim", name = "onedark" },
-    { "EdenEast/nightfox.nvim", name = "nightfox" },
+    { "navarasu/onedark.nvim",       name = "onedark" },
+    { "EdenEast/nightfox.nvim",      name = "nightfox" },
     -- auto dark mode
     {
       "f-person/auto-dark-mode.nvim",
@@ -251,7 +251,8 @@ return require("lazy").setup(
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      build =
+      "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       dependencies = { "telescope.nvim" },
     },
     --------------------------- git -------------------------------
@@ -321,6 +322,14 @@ return require("lazy").setup(
       dependencies = {
         "jay-babu/mason-nvim-dap.nvim",
       },
+    },
+    -- for rust crates.io
+    {
+      'saecki/crates.nvim',
+      tag = 'stable',
+      config = function()
+        require('crates').setup()
+      end,
     },
     -- clangd extension
     {
@@ -441,7 +450,7 @@ return require("lazy").setup(
     checker = {
       -- automatically check for plugin updates
       enabled = true,
-      notify = false, -- get a notification when new updates are found
+      notify = false,        -- get a notification when new updates are found
       frequency = 24 * 3600, -- check for updates every hour
     },
   }
