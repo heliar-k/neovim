@@ -169,30 +169,30 @@ function M.setup()
       desc = "Terminate Debug Session",
     },
 
-    { "<leader>f", group = "Search in File" },
+    { "<leader>f", group = "Telescope" },
     {
       "<leader>ff",
-      "<cmd>lua require('searchbox').incsearch()<cr>",
-      desc = "Incremental",
+      "<cmd>Telescope find_files hidden=true<cr>",
+      desc = "Find File",
     },
     {
-      "<leader>fa",
-      "<cmd>lua require('searchbox').match_all()<cr>",
-      desc = "Match all",
+      "<leader>fg",
+      "<cmd>Telescope live_grep<cr>",
+      desc = "Grep",
     },
     {
       "<leader>fh",
-      "<cmd>lua require('searchbox').replace()<cr>",
-      desc = "Replace",
+      "<cmd>Telescope oldfiles<cr>",
+      desc = "Recent File",
     },
-
+    -- git
     { "<leader>g", group = "Git" },
     {
       "<leader>gg",
       "<cmd>LazyGitCurrentFile<cr>",
       desc = "Open Lazygit",
     },
-
+    -- lsp
     { "<leader>l", group = "LSP" },
     {
       "<leader>lf",
@@ -269,23 +269,8 @@ function M.setup()
       desc = "Debuggables",
     },
 
-    { "<leader>t", group = "Telescope" },
-    {
-      "<leader>tf",
-      "<cmd>Telescope find_files hidden=true<cr>",
-      desc = "Find File",
-    },
-    {
-      "<leader>tgr",
-      "<cmd>Telescope live_grep<cr>",
-      desc = "Grep",
-    },
-    {
-      "<leader>th",
-      "<cmd>Telescope oldfiles<cr>",
-      desc = "Recent File",
-    },
 
+    { "<leader>o", group = "Outline" },
     {
       "<leader>ot",
       "<cmd>SymbolsOutline<cr>",
