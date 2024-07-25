@@ -290,6 +290,16 @@ return require("lazy").setup(
         "onsails/lspkind-nvim",
         -- nerd-font
         "davidmh/cmp-nerdfonts",
+        -- crates
+        {
+          "Saecki/crates.nvim",
+          event = { "BufRead Cargo.toml" },
+          opts = {
+            completion = {
+              cmp = { enabled = true },
+            },
+          },
+        },
       },
       config = function()
         require("config.nvim-cmp")
@@ -325,10 +335,10 @@ return require("lazy").setup(
     },
     -- for rust crates.io
     {
-      'saecki/crates.nvim',
-      tag = 'stable',
+      "saecki/crates.nvim",
+      tag = "stable",
       config = function()
-        require('crates').setup()
+        require("crates").setup()
       end,
     },
     -- clangd extension

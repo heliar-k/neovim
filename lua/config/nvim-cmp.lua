@@ -34,6 +34,8 @@ cmp.setup({
     { name = "vsnip", group_index = 2 },
     -- For luasnip users.
     -- { name = 'luasnip' },
+    -- For crates
+    { name = "crates", group_index = 2 },
     --For ultisnips users.
     -- { name = 'ultisnips' },
     -- -- For snippy users.
