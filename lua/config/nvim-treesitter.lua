@@ -12,6 +12,7 @@ require("nvim-treesitter.configs").setup({
     "yaml",
     "toml",
     "rust",
+    "ron",
     "markdown",
     "markdown_inline",
   },
