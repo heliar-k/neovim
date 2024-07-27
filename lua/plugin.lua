@@ -27,12 +27,6 @@ return require("lazy").setup(
         "williamboman/mason.nvim",
       },
     },
-    {
-      "folke/neodev.nvim",
-      config = function()
-        require("config.neodev")
-      end,
-    },
     ----------------------------- lsp -----------------------------
     {
       "neovim/nvim-lspconfig",
@@ -83,6 +77,7 @@ return require("lazy").setup(
     -- Displaying errors/warnings in a window
     {
       "folke/trouble.nvim",
+      lazy = true,
       dependencies = "nvim-tree/nvim-web-devicons",
       config = function()
         require("trouble").setup({})
@@ -90,25 +85,16 @@ return require("lazy").setup(
     },
 
     ----------------------------- ui -----------------------------
-    -- better UI
-    {
-      "stevearc/dressing.nvim",
-      config = function()
-        require("config.dressing").setup()
-      end,
-    },
     -- themes
-    { "catppuccin/nvim",             name = "catppuccin" },
+    -- { "catppuccin/nvim",             name = "catppuccin" },
     { "projekt0n/github-nvim-theme", name = "github" },
-    { "navarasu/onedark.nvim",       name = "onedark" },
-    { "EdenEast/nightfox.nvim",      name = "nightfox" },
+    -- { "navarasu/onedark.nvim",       name = "onedark" },
+    { "EdenEast/nightfox.nvim", name = "nightfox" },
     -- auto dark mode
     {
       "f-person/auto-dark-mode.nvim",
       dependencies = {
-        "catppuccin",
         "github",
-        "onedark",
         "nightfox",
       },
       opts = {
@@ -127,9 +113,7 @@ return require("lazy").setup(
     -- {
     --   'JManch/sunset.nvim',
     --   dependencies = {
-    --     "catppuccin",
     --     "github",
-    --     "onedark",
     --     "nightfox"
     --   },
     --   config = function()
@@ -172,17 +156,10 @@ return require("lazy").setup(
     {
       "kazhala/close-buffers.nvim",
     },
-    -- -- nvim-tree
-    -- {
-    --   'nvim-tree/nvim-tree.lua',
-    --   dependencies = { "nvim-tree/nvim-web-devicons" },
-    --   config = function()
-    --     require('config.nvim-tree')
-    --   end,
-    -- },
     -- neo-tree
     {
       "nvim-neo-tree/neo-tree.nvim",
+      lazy = true,
       branch = "v3.x",
       dependencies = {
         "nvim-lua/plenary.nvim",
@@ -200,15 +177,6 @@ return require("lazy").setup(
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
         require("config.alpha")
-      end,
-    },
-    {
-      "VonHeikemen/searchbox.nvim",
-      dependencies = {
-        { "MunifTanjim/nui.nvim" },
-      },
-      config = function()
-        require("config.searchbox").setup()
       end,
     },
     -- code outline
@@ -232,10 +200,6 @@ return require("lazy").setup(
       "nvim-treesitter/nvim-treesitter-refactor",
       dependencies = { "nvim-treesitter" },
     },
-    {
-      "p00f/nvim-ts-rainbow",
-      dependencies = { "nvim-treesitter" },
-    },
     ------------------------- finder -------------------------------
     -- telescope
     {
@@ -251,8 +215,7 @@ return require("lazy").setup(
     },
     {
       "nvim-telescope/telescope-fzf-native.nvim",
-      build =
-      "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
       dependencies = { "telescope.nvim" },
     },
     --------------------------- git -------------------------------
@@ -272,6 +235,7 @@ return require("lazy").setup(
     -- TODO need more document for this
     {
       "sindrets/diffview.nvim",
+      lazy = true,
       dependencies = "nvim-lua/plenary.nvim",
     },
     ------------------------- auto-complete ------------------------
@@ -326,6 +290,7 @@ return require("lazy").setup(
       dependencies = {
         "jay-babu/mason-nvim-dap.nvim",
       },
+      lazy = true,
     },
     -- for rust crates.io
     {
@@ -338,6 +303,7 @@ return require("lazy").setup(
     -- clangd extension
     {
       "p00f/clangd_extensions.nvim",
+      lazy = true,
       dependencies = {
         "jay-babu/mason-nvim-dap.nvim",
       },
@@ -345,11 +311,13 @@ return require("lazy").setup(
     -- python extension
     {
       "mfussenegger/nvim-dap-python",
+      lazy = true,
     },
     -- cmake
     {
       -- "cdelledonne/vim-cmake",
       "Civitasv/cmake-tools.nvim",
+      lazy = true,
       dependencies = "nvim-lua/plenary.nvim",
       config = function()
         require("config.cmake").setup()
@@ -366,6 +334,7 @@ return require("lazy").setup(
       dependencies = {
         "williamboman/mason.nvim",
       },
+      lazy = true,
       config = function()
         require("mason-nvim-dap").setup({
           automatic_installation = true,
@@ -375,6 +344,7 @@ return require("lazy").setup(
     },
     {
       "rcarriga/nvim-dap-ui",
+      lazy = true,
       dependencies = {
         "mfussenegger/nvim-dap",
         "jay-babu/mason-nvim-dap.nvim",
@@ -450,7 +420,7 @@ return require("lazy").setup(
     checker = {
       -- automatically check for plugin updates
       enabled = true,
-      notify = false,        -- get a notification when new updates are found
+      notify = false, -- get a notification when new updates are found
       frequency = 24 * 3600, -- check for updates every hour
     },
   }
