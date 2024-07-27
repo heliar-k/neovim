@@ -16,13 +16,9 @@ require("lualine").setup({
     theme = "auto",
   },
   disabled_filetypes = {
-    statusline = {
-      "alpha",
-      "NvimTree",
-    },
-    winbar = {
-      "alpha",
-      "NvimTree",
-    },
+    "alpha",
+    "dashboard",
+    "NvimTree",
+    "Outline",
   },
 })
