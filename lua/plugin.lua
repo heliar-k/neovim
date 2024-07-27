@@ -396,24 +396,23 @@ return require("lazy").setup(
       end,
     },
     -- obsidian
-    {
-      "epwalsh/obsidian.nvim",
-      version = "*", -- recommended, use latest release instead of latest commit
-      lazy = true,
-      ft = "markdown",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      opts = {
-        workspaces = {
-          name = "one_for_all",
-          path = "/Users/guankai/Library/CloudStorage/OneDrive-个人/obsidian_library",
-        },
-      },
-      config = function()
-        require("config.obsidian")
-      end,
-    },
+    -- {
+    --   "epwalsh/obsidian.nvim",
+    --   lazy = true,
+    --   ft = "markdown",
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim",
+    --   },
+    --   opts = {
+    --     workspaces = {
+    --       name = "one_for_all",
+    --       path = "/Users/guankai/Library/CloudStorage/OneDrive-个人/obsidian_library",
+    --     },
+    --   },
+    --   config = function()
+    --     require("config.obsidian")
+    --   end,
+    -- },
   },
   -- lazy.nvim opt
   {
