@@ -13,9 +13,6 @@ cmp.setup({
   -- 指定 snippet 引擎
   snippet = {
     expand = function(args)
-      -- For `vsnip` users.
-      vim.fn["vsnip#anonymous"](args.body)
-
       -- For `luasnip` users.
       -- require('luasnip').lsp_expand(args.body)
 
@@ -30,8 +27,6 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "nvim_lsp", group_index = 1, max_item_count = 4 },
     { name = "copilot", group_index = 1, max_item_count = 4 },
-    -- For vsnip users.
-    { name = "vsnip", group_index = 2 },
     -- For luasnip users.
     -- { name = 'luasnip' },
     -- For crates

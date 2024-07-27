@@ -282,14 +282,8 @@ return require("lazy").setup(
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline", -- { name = 'cmdline' }
-        -- vsnip
-        "hrsh7th/cmp-vsnip",
-        "hrsh7th/vim-vsnip",
-        "rafamadriz/friendly-snippets",
         -- lspkind
         "onsails/lspkind-nvim",
-        -- nerd-font
-        "davidmh/cmp-nerdfonts",
         -- crates
         {
           "Saecki/crates.nvim",
