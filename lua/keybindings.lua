@@ -273,7 +273,7 @@ function M.setup()
     { "<leader>o", group = "Outline" },
     {
       "<leader>ot",
-      "<cmd>SymbolsOutline<cr>",
+      "<cmd>Outline<cr>",
       desc = "Toggle Outline",
     },
 
