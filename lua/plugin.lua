@@ -148,14 +148,25 @@ return require("lazy").setup(
         require("config.indent-blankline")
       end,
     },
-    -- bufferline
+    -- barbar
     {
-      "akinsho/bufferline.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-        require("config.buffer-line")
-      end,
+      "romgrk/barbar.nvim",
+      dependencies = {
+        "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+        "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+      },
+      config = function ()
+        require("config.barbar").setup()
+      end
     },
+    -- bufferline
+    -- {
+    --   "akinsho/bufferline.nvim",
+    --   dependencies = { "nvim-tree/nvim-web-devicons" },
+    --   config = function()
+    --     require("config.buffer-line")
+    --   end,
+    -- },
     {
       "kazhala/close-buffers.nvim",
     },
