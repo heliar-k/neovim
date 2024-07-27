@@ -239,7 +239,7 @@ return require("lazy").setup(
       "lewis6991/gitsigns.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
-        require("config.gitsigns")
+        require("config.gitsigns").setup()
       end,
     },
     -- lazygit
