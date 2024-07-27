@@ -287,14 +287,10 @@ return require("lazy").setup(
     -- language specific tools
     -- Adds extra functionality over rust analyzer
     {
-      "simrat39/rust-tools.nvim",
-      config = function()
-        require("config.rust_tools").setup()
-      end,
-      dependencies = {
-        "jay-babu/mason-nvim-dap.nvim",
-      },
-      lazy = true,
+      "mrcjkb/rustaceanvim",
+      version = "^5", -- Recommended
+      lazy = false, -- This plugin is already lazy
+      ft = { "rust" },
     },
     -- for rust crates.io
     {
