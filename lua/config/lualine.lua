@@ -14,11 +14,16 @@ require("lualine").setup({
   },
   options = {
     theme = "auto",
-  },
-  disabled_filetypes = {
-    "alpha",
-    "dashboard",
-    "NvimTree",
-    "Outline",
+    disabled_filetypes = {
+      statusline = {
+        "alpha",
+        "dashboard",
+        "aerial",
+        "dapui_.",
+        "neo-tree",
+        "NvimTree",
+        "Outline"
+      },
+    },
   },
 })
