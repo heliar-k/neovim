@@ -10,34 +10,14 @@ local has_words_before = function()
 end
 
 cmp.setup({
-  -- 指定 snippet 引擎
-  snippet = {
-    expand = function(args)
-      -- For `luasnip` users.
-      -- require('luasnip').lsp_expand(args.body)
-
-      -- For `ultisnips` users.
-      -- vim.fn["UltiSnips#Anon"](args.body)
-
-      -- For `snippy` users.
-      -- require'snippy'.expand_snippet(args.body)
-    end,
-  },
   -- 来源
   sources = cmp.config.sources({
     { name = "nvim_lsp", group_index = 1, max_item_count = 4 },
     { name = "copilot", group_index = 1, max_item_count = 4 },
-    -- For luasnip users.
-    -- { name = 'luasnip' },
-    -- For crates
-    { name = "crates", group_index = 2 },
-    --For ultisnips users.
-    -- { name = 'ultisnips' },
-    -- -- For snippy users.
-    -- { name = 'snippy' },
     { name = "buffer", group_index = 2 },
     { name = "path", group_index = 2 },
-    { name = "nerdfonts", group_index = 2 },
+    -- For crates
+    { name = "crates", group_index = 2 },
   }),
 
   -- 快捷键
@@ -70,7 +50,7 @@ cmp.setup({
     -- Accept currently selected item. If none selected, `select` first item  .
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({
-      select = true,
+      select = false,
       behavior = cmp.ConfirmBehavior.Replace,
     }),
     ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
