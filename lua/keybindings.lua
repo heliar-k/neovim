@@ -36,22 +36,9 @@ function M.setup()
     { "<C-\\>", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
     -- debugging keybindings
     { "<F5>", "<cmd>lua require'dap'.step_into()<cr>", desc = "Step into" },
-    {
-      "<F6>",
-      "<cmd>lua require'dap'.step_over()<cr>",
-      desc = "Step over",
-    },
-    {
-      "<F7>",
-      "<cmd>lua require'dap'.step_out()<cr>",
-      desc = "Step out",
-    },
-    {
-      "<F8>",
-      "<cmd>lua require'dap'.continue()<cr>",
-      desc = "Continue",
-    },
-    -- buffer tab switch
+    { "<F6>", "<cmd>lua require'dap'.step_over()<cr>", desc = "Step over" },
+    { "<F7>", "<cmd>lua require'dap'.step_out()<cr>", desc = "Step out" },
+    { "<F8>", "<cmd>lua require'dap'.continue()<cr>", desc = "Continue" },
 
     { "z", group = "Folds" },
     { "zo", "<cmd>foldopen<cr>", desc = "Open fold" },
