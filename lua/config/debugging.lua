@@ -54,45 +54,30 @@ function debugging.setup()
     command = cpp_dap_executable,
   }
 
-  -- dap for rust
-  local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
-  local codelldb_path = codelldb_root .. "adapter/codelldb"
-  local liblldb_name
-  local system_name = vim.loop.os_uname().sysname
-  if system_name:match("Windows") then
-    liblldb_name = "liblldb.dll"
-  elseif system_name:match("Darwin") then
-    liblldb_name = "liblldb.dylib"
-  else
-    liblldb_name = "liblldb.so"
-  end
-  local liblldb_path = codelldb_root .. "lldb/lib/" .. liblldb_name
 
-  dap.adapters.rust = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
-
-  dap.configurations.rust = {
-    {
-      type = "rust",
-      request = "launch",
-      name = "lldbrust",
-      program = function()
-        local metadata_json = vim.fn.system("cargo metadata --format-version 1 --no-deps")
-        local metadata = vim.fn.json_decode(metadata_json)
-        local target_name = metadata.packages[1].targets[1].name
-        local target_dir = metadata.target_directory
-        return target_dir .. "/debug/" .. target_name
-      end,
-      args = function()
-        -- 同样的进行命令行参数指定
-        local inputstr = vim.fn.input("CommandLine Args:", "")
-        local params = {}
-        for param in string.gmatch(inputstr, "[^%s]+") do
-          table.insert(params, param)
-        end
-        return params
-      end,
-    },
-  }
+  -- dap.configurations.rust = {
+  --   {
+  --     type = "rust",
+  --     request = "launch",
+  --     name = "lldbrust",
+  --     program = function()
+  --       local metadata_json = vim.fn.system("cargo metadata --format-version 1 --no-deps")
+  --       local metadata = vim.fn.json_decode(metadata_json)
+  --       local target_name = metadata.packages[1].targets[1].name
+  --       local target_dir = metadata.target_directory
+  --       return target_dir .. "/debug/" .. target_name
+  --     end,
+  --     args = function()
+  --       -- 同样的进行命令行参数指定
+  --       local inputstr = vim.fn.input("CommandLine Args:", "")
+  --       local params = {}
+  --       for param in string.gmatch(inputstr, "[^%s]+") do
+  --         table.insert(params, param)
+  --       end
+  --       return params
+  --     end,
+  --   },
+  -- }
 
   -- dap for python
   -- require("dap-python").setup( --[[ debugpy_root.. "/venv/bin/python" --]])
