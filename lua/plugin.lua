@@ -431,10 +431,6 @@ return require("lazy").setup(
         require("nvim-autopairs").setup({})
       end,
     },
-    -- for speeding up the loading of plugin
-    {
-      "lewis6991/impatient.nvim",
-    },
     -- obsidian
     {
       "epwalsh/obsidian.nvim",
