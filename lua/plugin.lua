@@ -62,7 +62,12 @@ return require("lazy").setup(
       end,
     },
     {
-      "nvimtools/none-ls.nvim",
+      "stevearc/conform.nvim",
+      event = { "BufWritePre" },
+      cmd = { "ConformInfo", "Format", "FormatEnable", "FormatDisable" },
+      config = function()
+        require("config.conform").setup()
+      end,
     },
     {
       "glepnir/lspsaga.nvim",
@@ -155,9 +160,9 @@ return require("lazy").setup(
         "lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
         "nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
       },
-      config = function ()
+      config = function()
         require("config.barbar").setup()
-      end
+      end,
     },
     -- bufferline
     -- {
@@ -174,7 +179,7 @@ return require("lazy").setup(
     {
       "nvim-neo-tree/neo-tree.nvim",
       branch = "v3.x",
-      lazy=true,
+      lazy = true,
       cmd = { "Neotree" },
       dependencies = {
         "nvim-lua/plenary.nvim",
