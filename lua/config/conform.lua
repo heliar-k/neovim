@@ -8,11 +8,8 @@ function M.setup()
       python = { "isort", "black" },
       rust = { "rustfmt" },
       toml = { "taplo" },
-      json = { "prettier" },
-      javascript = { "prettier" },
-      default_format_opts = {
-        lsp_format = "fallback",
-      },
+      json = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
       ["_"] = { "trim_whitespace" },
@@ -44,24 +41,20 @@ function M.setup()
     end
     require("conform").format({ async = true, lsp_format = "fallback", range = range })
   end, { range = true })
-  -- create Format Switch Command
-  -- vim.api.nvim_create_user_command("FormatDisable", function(args)
-  --   if args.bang then
-  --     -- FormatDisable! will disable formatting just for this buffer
-  --     vim.b.disable_autoformat = true
-  --   else
-  --     vim.g.disable_autoformat = true
-  --   end
-  -- end, {
-  --   desc = "Disable autoformat-on-save",
-  --   bang = true,
-  -- })
-  -- vim.api.nvim_create_user_command("FormatEnable", function()
-  --   vim.b.disable_autoformat = false
-  --   vim.g.disable_autoformat = false
-  -- end, {
-  --   desc = "Re-enable autoformat-on-save",
-  -- })
+  -- create Format Toggle Command
+  vim.api.nvim_create_user_command("FormatToggle", function()
+    if vim.b.disable_autoformat or vim.g.disable_autoformat then
+      vim.b.disable_autoformat = false
+      vim.g.disable_autoformat = false
+      print("Autoformat on save enabled")
+    else
+      vim.b.disable_autoformat = true
+      vim.g.disable_autoformat = true
+      print("Autoformat on save disabled")
+    end
+  end, {
+    desc = "Toggle autoformat-on-save",
+  })
 end
 
 return M
