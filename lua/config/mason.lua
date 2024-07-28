@@ -32,6 +32,7 @@ require("mason-tool-installer").setup({
     "cmakelang", -- formatter for cmake
     "isort", -- import optimizer for python
     "prettier", -- formatter for javascript/typescript
+    "prettierd", -- formatter for javascript/typescript
     "shfmt", -- formatter for shell scripts
     "stylua", -- formatter for lua
   },
