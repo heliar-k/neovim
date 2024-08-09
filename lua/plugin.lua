@@ -146,11 +146,20 @@ return require("lazy").setup(
         require("config.lualine")
       end,
     },
-    -- indent-blankline
     {
-      "lukas-reineke/indent-blankline.nvim",
+      "shellRaining/hlchunk.nvim",
+      event = { "BufReadPre", "BufNewFile" },
       config = function()
-        require("config.indent-blankline")
+        require("hlchunk").setup({
+          chunk = {
+            enable = true,
+            duration = 100,
+            delay = 300,
+          },
+          indent = {
+            enable = true,
+          },
+        })
       end,
     },
     -- barbar
@@ -164,14 +173,6 @@ return require("lazy").setup(
         require("config.barbar").setup()
       end,
     },
-    -- bufferline
-    -- {
-    --   "akinsho/bufferline.nvim",
-    --   dependencies = { "nvim-tree/nvim-web-devicons" },
-    --   config = function()
-    --     require("config.buffer-line")
-    --   end,
-    -- },
     {
       "kazhala/close-buffers.nvim",
     },
