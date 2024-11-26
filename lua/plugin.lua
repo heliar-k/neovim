@@ -94,9 +94,7 @@ return require("lazy").setup(
 
     ----------------------------- ui -----------------------------
     -- themes
-    -- { "catppuccin/nvim",             name = "catppuccin" },
     { "projekt0n/github-nvim-theme", name = "github" },
-    -- { "navarasu/onedark.nvim",       name = "onedark" },
     { "EdenEast/nightfox.nvim", name = "nightfox" },
     -- auto dark mode
     {
@@ -117,23 +115,6 @@ return require("lazy").setup(
         end,
       },
     },
-    -- automatic themes switcher
-    -- {
-    --   'JManch/sunset.nvim',
-    --   dependencies = {
-    --     "github",
-    --     "nightfox"
-    --   },
-    --   config = function()
-    --     require('config.sunset').setup()
-    --   end,
-    --   lazy = false,
-    --   priority = 1000,
-    --   opts = {
-    --     latitude = 30.16,
-    --     longitude = 120.12,
-    --   },
-    -- },
     -- line in the bottom
     {
       "nvim-tree/nvim-web-devicons",
