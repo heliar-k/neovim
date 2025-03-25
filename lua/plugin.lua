@@ -96,22 +96,26 @@ return require("lazy").setup(
     -- themes
     { "projekt0n/github-nvim-theme", name = "github" },
     { "EdenEast/nightfox.nvim", name = "nightfox" },
+    { "Shatur/neovim-ayu", name = "ayu" },
     -- auto dark mode
     {
       "f-person/auto-dark-mode.nvim",
       dependencies = {
         "github",
         "nightfox",
+        "ayu",
       },
       opts = {
         update_interval = 6000,
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
-          vim.cmd("colorscheme nightfox")
+          -- vim.cmd("colorscheme nightfox")
+          vim.cmd("colorscheme ayu-mirage")
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
-          vim.cmd("colorscheme github_light_default")
+          -- vim.cmd("colorscheme github_light_default")
+          vim.cmd("colorscheme ayu-light")
         end,
       },
     },
