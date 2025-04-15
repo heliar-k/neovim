@@ -98,7 +98,6 @@ return require("lazy").setup(
     { "EdenEast/nightfox.nvim", name = "nightfox" },
     { "Shatur/neovim-ayu", name = "ayu" },
     { "askfiy/visual_studio_code", name = "vs_code" },
-    -- { "Mofiqul/vscode.nvim", name = "vscode" },
     -- auto dark mode
     {
       "f-person/auto-dark-mode.nvim",
