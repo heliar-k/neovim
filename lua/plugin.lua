@@ -99,7 +99,6 @@ return require("lazy").setup(
     { "EdenEast/nightfox.nvim", name = "nightfox" },
     { "Shatur/neovim-ayu", name = "ayu" },
     { "askfiy/visual_studio_code", name = "vs_code" },
-    -- { "Mofiqul/vscode.nvim", name = "vscode" },
     -- auto dark mode
     {
       "f-person/auto-dark-mode.nvim",
@@ -118,9 +117,9 @@ return require("lazy").setup(
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
-          -- vim.cmd("colorscheme github_light_default")
-          require("visual_studio_code").setup({ mode = "light" })
-          vim.cmd("colorscheme visual_studio_code")
+          vim.cmd("colorscheme github_light_default")
+          -- require("visual_studio_code").setup({ mode = "light" })
+          -- vim.cmd("colorscheme visual_studio_code")
         end,
       },
     },
