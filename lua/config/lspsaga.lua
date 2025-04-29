@@ -13,6 +13,9 @@ function M.setup()
       show_file = true,
       folder_level = 2,
     },
+    outline = {
+      layout = "float",
+    },
   })
 end
 

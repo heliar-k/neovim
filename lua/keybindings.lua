@@ -94,10 +94,10 @@ function M.setup()
     { "<leader>lf", "<cmd>Format<cr>",                           desc = "Format" },
     { "<leader>lt", "<cmd>FormatToggle<cr>",                     desc = "FormatToggle" },
     { "<leader>lr", "<cmd>Lspsaga rename<cr>",                   desc = "Rename" },
-    { "<leader>lu", "<cmd>Trouble lsp_references<cr>",           desc = "Show References" },
+    { "<leader>lu", "<cmd>Lspsaga finder<cr>",                   desc = "Show References" },
     { "<leader>lx", "<cmd>Lspsaga show_line_diagnostics<cr>",    desc = "Show Line Diagnostics" },
     { "<leader>lc", "<cmd>Lspsaga code_action<cr>",              desc = "Code Actions" },
-    { "<leader>ld", "<cmd>Trouble lsp_definitions<cr>",          desc = "Go To Definiton" },
+    { "<leader>ld", "<cmd>Lspsaga goto_definitions<cr>",         desc = "Go To Definiton" },
     { "<leader>lp", "<cmd>Lspsaga peek_definition<cr>",          desc = "Peek definition" },
     { "<leader>lj", "<cmd>ClangdSwitchSourceHeader<cr>",         desc = "Jump to Header/Source (CPP)" },
 
@@ -110,7 +110,7 @@ function M.setup()
     { "<leader>rr", "<cmd>RustLsp runnables<cr>",                desc = "Runnables" },
 
     { "<leader>o",  group = "Outline" },
-    { "<leader>ot", "<cmd>Outline<cr>",                          desc = "Toggle Outline" },
+    { "<leader>ot", "<cmd>Lspsaga outline<cr>",                  desc = "Toggle Outline" },
 
     -- { "<leader>p", group = "Obsidian", hidden = true },
     -- { "<leader>po", "<cmd>ObsidianOpen<cr>", desc = "Open", hidden = true },
