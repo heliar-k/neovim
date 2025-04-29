@@ -68,6 +68,7 @@ return require("lazy").setup(
       config = function()
         require("config.conform").setup()
       end,
+      lazy = false,
     },
     {
       "glepnir/lspsaga.nvim",
