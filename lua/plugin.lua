@@ -321,6 +321,21 @@ return require("lazy").setup(
       "mfussenegger/nvim-dap-python",
       lazy = true,
     },
+    {
+      "linux-cultist/venv-selector.nvim",
+      dependencies = {
+        "neovim/nvim-lspconfig",
+        "nvim-telescope/telescope.nvim",
+        "mfussenegger/nvim-dap",
+        "mfussenegger/nvim-dap-python",
+      },
+      branch = "regexp",
+      config = function()
+        require("venv-selector").setup({
+          auto_refresh = true,
+        })
+      end,
+    },
     -- cmake
     {
       -- "cdelledonne/vim-cmake",
