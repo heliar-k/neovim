@@ -79,10 +79,10 @@ return require("lazy").setup(
       end,
     },
     -- Ctags auto generation
-    -- {
-    --   "ludovicchabant/vim-gutentags",
-    --   branch = "master",
-    -- },
+    {
+      "ludovicchabant/vim-gutentags",
+      branch = "master",
+    },
     -- Displaying errors/warnings in a window
     {
       "folke/trouble.nvim",
