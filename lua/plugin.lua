@@ -78,6 +78,18 @@ return require("lazy").setup(
         require("config.lspsaga").setup()
       end,
     },
+    -- none-ls
+    {
+      "nvimtools/none-ls.nvim",
+      dependencies = {
+        "neovim/nvim-lspconfig",
+        "williamboman/mason.nvim",
+        "jay-babu/mason-null-ls.nvim",
+      },
+      config = function()
+        -- require("config.none-ls").setup()
+      end,
+    },
     -- Ctags auto generation
     {
       "ludovicchabant/vim-gutentags",
@@ -294,6 +306,15 @@ return require("lazy").setup(
       config = function()
         require("copilot_cmp").setup()
       end,
+    },
+    {
+      "CopilotC-Nvim/CopilotChat.nvim",
+      dependencies = {
+        "zbirenbaum/copilot.lua",
+        { "nvim-lua/plenary.nvim", branch = "master" },
+      },
+      build = "make tiktoken",
+      opts = {},
     },
     ------------------------- debugger ----------------------------
     -- language specific tools
