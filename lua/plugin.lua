@@ -367,6 +367,16 @@ return require("lazy").setup(
         })
       end,
     },
+    -- uv
+    {
+      "benomahony/uv.nvim",
+      opts = {
+        picker_integration = true,
+      },
+      config = function()
+        require("config.uv").setup()
+      end,
+    },
     -- cmake
     {
       -- "cdelledonne/vim-cmake",
