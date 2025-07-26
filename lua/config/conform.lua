@@ -9,16 +9,10 @@ function M.setup()
       rust = { "rustfmt" },
       toml = { "taplo" },
       json = { "prettierd", "prettier", stop_after_first = true },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "prettierd", stop_after_first = true },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
       ["_"] = { "trim_whitespace" },
-    },
-    -- formatter args
-    formatters = {
-      black = {
-        args = { "--line-length=88", "--preview" },
-      },
     },
     -- format_on_save setting
     format_on_save = function(bufnr)
