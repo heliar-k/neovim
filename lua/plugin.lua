@@ -252,6 +252,14 @@ return require("lazy").setup(
       enabled = have_make or have_cmake,
       dependencies = { "telescope.nvim" },
     },
+    {
+      "nvim-telescope/telescope-ui-select.nvim",
+      dependencies = { "telescope.nvim" },
+    },
+    {
+      "nvim-telescope/telescope-frecency.nvim",
+      dependencies = { "telescope.nvim" },
+    },
     --------------------------- git -------------------------------
     -- gitsigns
     {
