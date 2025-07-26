@@ -33,7 +33,7 @@ function M.setup()
     },
   })
   wk.add({
-    { "<C-\\>", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+    { "<C-t>", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
     -- debugging keybindings
     { "<F5>", "<cmd>lua require'dap'.step_into()<cr>", desc = "Step into" },
     { "<F6>", "<cmd>lua require'dap'.step_over()<cr>", desc = "Step over" },
@@ -86,6 +86,7 @@ function M.setup()
     { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find File" },
     { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
     { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Recent File" },
+    { "<C-p>", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find File" },
     -- git
     { "<leader>g", group = "Git" },
     { "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", desc = "Open Lazygit" },
@@ -100,6 +101,7 @@ function M.setup()
     { "<leader>ld", "<cmd>Lspsaga goto_definitions<cr>", desc = "Go To Definiton" },
     { "<leader>lp", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek definition" },
     { "<leader>lj", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Jump to Header/Source (CPP)" },
+    { "<C-]>", "<cmd>Lspsaga finder def+ref<cr>", desc = "Show References" },
 
     { "<leader>n", group = "Explore" },
     { "<leader>nt", "<cmd>Neotree<cr>", desc = "Toggle" },
