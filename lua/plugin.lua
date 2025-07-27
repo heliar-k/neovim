@@ -261,14 +261,6 @@ return require("lazy").setup(
       dependencies = { "telescope.nvim" },
     },
     --------------------------- git -------------------------------
-    -- gitsigns
-    {
-      "lewis6991/gitsigns.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      config = function()
-        require("config.gitsigns").setup()
-      end,
-    },
     -- lazygit
     {
       "kdheepak/lazygit.nvim",
@@ -279,6 +271,9 @@ return require("lazy").setup(
       "sindrets/diffview.nvim",
       lazy = true,
       dependencies = "nvim-lua/plenary.nvim",
+    },
+    {
+      "tveskag/nvim-blame-line",
     },
     ------------------------- auto-complete ------------------------
     {

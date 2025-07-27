@@ -95,6 +95,7 @@ function M.setup()
     -- git
     { "<leader>g", group = "Git" },
     { "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", desc = "Open Lazygit" },
+    { "<leader>gb", "<cmd>ToggleBlameLine<cr>", desc = "Toggle Blame Line" },
     -- lsp
     { "<leader>l", group = "LSP" },
     { "<leader>lf", "<cmd>Format<cr>", desc = "Format" },
