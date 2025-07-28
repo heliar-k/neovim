@@ -108,6 +108,15 @@ return require("lazy").setup(
         require("trouble").setup({})
       end,
     },
+    -- session manager
+    {
+      "rmagatti/auto-session",
+      lazy = false,
+
+      opts = {
+        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      },
+    },
 
     ----------------------------- ui -----------------------------
     -- themes
