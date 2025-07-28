@@ -130,8 +130,8 @@ return require("lazy").setup(
         update_interval = 6000,
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
-          -- vim.cmd("colorscheme nightfox")
-          vim.cmd("colorscheme ayu-mirage")
+          vim.cmd("colorscheme nightfox")
+          -- vim.cmd("colorscheme ayu-mirage")
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
