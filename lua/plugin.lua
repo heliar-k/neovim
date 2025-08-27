@@ -325,15 +325,6 @@ return require("lazy").setup(
         require("copilot_cmp").setup()
       end,
     },
-    {
-      "CopilotC-Nvim/CopilotChat.nvim",
-      dependencies = {
-        "zbirenbaum/copilot.lua",
-        { "nvim-lua/plenary.nvim", branch = "master" },
-      },
-      build = "make tiktoken",
-      opts = {},
-    },
     ------------------------- debugger ----------------------------
     -- language specific tools
     -- Adds extra functionality over rust analyzer

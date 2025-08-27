@@ -46,10 +46,10 @@ function M.setup()
     { "zO", "<cmd>lua require('ufo').openAllFolds<cr>", desc = "Open all folds" },
     { "zC", "<cmd>lua require('ufo').closeAllFolds<cr>", desc = "Close all folds" },
 
-    { "<leader>a", group = "Copilot Chat" },
-    { "<leader>at", "<cmd>CopilotChatToggle<cr>", desc = "Toggle Chat Windows" },
-    { "<leader>as", "<cmd>CopilotChatStop<cr>", desc = "Stop current output" },
-    { "<leader>ac", "<cmd>CopilotChatReset<cr>", desc = "Reset Chat Windows" },
+    -- { "<leader>a", group = "Copilot Chat" },
+    -- { "<leader>at", "<cmd>CopilotChatToggle<cr>", desc = "Toggle Chat Windows" },
+    -- { "<leader>as", "<cmd>CopilotChatStop<cr>", desc = "Stop current output" },
+    -- { "<leader>ac", "<cmd>CopilotChatReset<cr>", desc = "Reset Chat Windows" },
 
     { "<leader>b", group = "Buffer" },
     { "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close Current Buffer" },
