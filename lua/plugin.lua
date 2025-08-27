@@ -309,7 +309,7 @@ return require("lazy").setup(
         require("config.nvim-cmp")
       end,
     },
-    -- Copilot
+    -- Copilot / Anthropic
     {
       "zbirenbaum/copilot.lua",
       cmd = "Copilot",
@@ -324,6 +324,15 @@ return require("lazy").setup(
       config = function()
         require("copilot_cmp").setup()
       end,
+    },
+    -- ClaudeCode
+    {
+      "coder/claudecode.nvim",
+      dependencies = { "folke/snacks.nvim" },
+      config = true,
+      opts = {
+        terminal_cmd = "ccr code",
+      },
     },
     ------------------------- debugger ----------------------------
     -- language specific tools
