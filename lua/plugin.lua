@@ -372,7 +372,7 @@ return require("lazy").setup(
         "mfussenegger/nvim-dap",
         "mfussenegger/nvim-dap-python",
       },
-      branch = "regexp",
+      branch = "main",
       config = function()
         require("venv-selector").setup({
           auto_refresh = true,
