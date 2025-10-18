@@ -8,10 +8,10 @@ function M.setup()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities.offsetEncoding = "utf-8"
 
-  lspconfig.pyright.setup({})
-  lspconfig.lua_ls.setup({})
-  lspconfig.marksman.setup({})
-  lspconfig.clangd.setup({ capabilities = capabilities })
+  vim.lsp.enable("pyright")
+  vim.lsp.enable("lua_ls")
+  vim.lsp.enable("marksman")
+  vim.lsp.config("clangd", { capabilities = capabilities })
 end
 
 return M
