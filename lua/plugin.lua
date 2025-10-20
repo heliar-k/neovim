@@ -21,6 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup(
   {
+    rocks = { hererocks = true },
     {
       "williamboman/mason.nvim",
       config = function()
