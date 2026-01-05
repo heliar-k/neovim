@@ -116,21 +116,80 @@ function M.setup()
     { "<leader>lj", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Jump to Header/Source (CPP)" },
     { "<C-]>", "<cmd>Lspsaga finder def+ref<cr>", desc = "Show References" },
 
-    { "<leader>n", group = "Explore" },
+    { "<leader>n", group = "Explore/Outline" },
     { "<leader>nt", "<cmd>Neotree<cr>", desc = "Toggle" },
+    { "<leader>no", "<cmd>Lspsaga outline<cr>", desc = "Toggle Outline" },
 
-    { "<leader>r", group = "Rust" },
-    { "<leader>ra", "<cmd>RustLsp codeAction<cr>", desc = "Code Action" },
-    { "<leader>rd", "<cmd>RustLsp debuggables<cr>", desc = "Debuggables" },
-    { "<leader>rr", "<cmd>RustLsp runnables<cr>", desc = "Runnables" },
-
-    { "<leader>o", group = "Outline" },
-    { "<leader>ot", "<cmd>Lspsaga outline<cr>", desc = "Toggle Outline" },
+    -- opencode.nvim
+    { "<leader>o", group = "Opencode" },
+    {
+      "<leader>oa",
+      function()
+        require("opencode").ask("@this: ", { submit = true })
+      end,
+      desc = "Ask opencode",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>ot",
+      function()
+        require("opencode").toggle()
+      end,
+      desc = "Toggle opencode",
+      mode = { "n", "t" },
+    },
+    {
+      "<leader>ox",
+      function()
+        require("opencode").select()
+      end,
+      desc = "Execute opencode action…",
+      mode = { "n", "x" },
+    },
+    {
+      "<leader>og",
+      function()
+        return require("opencode").operator("@this ")
+      end,
+      desc = "Add range to opencode",
+      mode = { "n", "x" },
+      expr = true,
+    },
+    {
+      "<leader>ogo",
+      function()
+        return require("opencode").operator("@this ") .. "_"
+      end,
+      desc = "Add line to opencode",
+      mode = "n",
+      expr = true,
+    },
+    {
+      "<S-C-u>",
+      function()
+        require("opencode").command("session.half.page.up")
+      end,
+      desc = "opencode half page up",
+      mode = "n",
+    },
+    {
+      "<S-C-d>",
+      function()
+        require("opencode").command("session.half.page.down")
+      end,
+      desc = "opencode half page down",
+      mode = "n",
+    },
 
     -- { "<leader>p", group = "Obsidian", hidden = true },
     -- { "<leader>po", "<cmd>ObsidianOpen<cr>", desc = "Open", hidden = true },
     -- { "<leader>pc", "<cmd>ObsidianCheck<cr>", desc = "Check", hidden = true },
     -- { "<leader>pf", "<cmd>ObsidianSearch<cr>", desc = "Search", hidden = true },
+
+    -- { "<leader>r", group = "Rust" },
+    -- { "<leader>ra", "<cmd>RustLsp codeAction<cr>", desc = "Code Action" },
+    -- { "<leader>rd", "<cmd>RustLsp debuggables<cr>", desc = "Debuggables" },
+    -- { "<leader>rr", "<cmd>RustLsp runnables<cr>", desc = "Runnables" },
 
     { "<leader>s", group = "Split Windows" },
     { "<leader>sh", "<cmd>sp<cr>", desc = "Split horizontal" },

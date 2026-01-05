@@ -9,6 +9,7 @@ require("lualine").setup({
         "datetime",
         -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
         style = "%Y-%m-%d|%H:%M:%S",
+        require("opencode").statusline,
       },
     },
   },
@@ -22,7 +23,7 @@ require("lualine").setup({
         "dapui_.",
         "neo-tree",
         "NvimTree",
-        "Outline"
+        "Outline",
       },
     },
   },
