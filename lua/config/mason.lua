@@ -19,7 +19,7 @@ require("mason-tool-installer").setup({
     "marksman", -- lsp for markdown
     "lua-language-server", -- lsp for lua
     "pyright", -- lsp for python
-    "rust-analyzer", -- lsp for rust
+    "json-lsp", -- lsp for json/jsonc
     "yaml-language-server", -- lsp for yaml
     "taplo", -- lsp for toml
     "protols", -- lsp for protobuf
@@ -35,7 +35,8 @@ require("mason-tool-installer").setup({
     "clang-format", -- formatter for c/c++
     "cmakelang", -- formatter for cmake
     "isort", -- import optimizer for python
-    "prettierd", -- formatter for javascript/typescript
+    "prettier", -- formatter for javascript/typescript
+    "jq", -- formatter for json
     "shfmt", -- formatter for shell scripts
     "stylua", -- formatter for lua
   },
