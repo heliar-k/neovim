@@ -8,8 +8,9 @@ function M.setup()
       python = { "isort", "black" },
       rust = { "rustfmt" },
       toml = { "taplo" },
-      json = { "prettierd", "prettier", stop_after_first = true },
-      javascript = { "prettierd", stop_after_first = true },
+      json = { "prettier", stop_after_first = true },
+      jsonc = { "prettier", stop_after_first = true },
+      javascript = { "prettier", stop_after_first = true },
       -- Use the "_" filetype to run formatters on filetypes that don't
       -- have other formatters configured.
       ["_"] = { "trim_whitespace" },
