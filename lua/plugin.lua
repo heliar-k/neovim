@@ -116,6 +116,7 @@ return require("lazy").setup(
 
       opts = {
         suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+        close_filetypes_on_save = { "checkhealth", "opencode_terminal" },
       },
     },
 
@@ -410,11 +411,6 @@ return require("lazy").setup(
         require("config.cmake").setup()
       end,
     },
-    -- scala
-    -- {
-    --   'scalameta/nvim-metals',
-    --   dependencies = "nvim-lua/plenary.nvim",
-    -- },
     -- dap settings
     {
       "jay-babu/mason-nvim-dap.nvim",
@@ -482,24 +478,7 @@ return require("lazy").setup(
         require("nvim-autopairs").setup({})
       end,
     },
-    -- obsidian
-    -- {
-    --   "epwalsh/obsidian.nvim",
-    --   lazy = true,
-    --   ft = "markdown",
-    --   dependencies = {
-    --     "nvim-lua/plenary.nvim",
-    --   },
-    --   opts = {
-    --     workspaces = {
-    --       name = "one_for_all",
-    --       path = "/Users/guankai/Library/CloudStorage/OneDrive-个人/obsidian_library",
-    --     },
-    --   },
-    --   config = function()
-    --     require("config.obsidian")
-    --   end,
-    -- },
+    { "wakatime/vim-wakatime", lazy = false },
   },
   -- lazy.nvim opt
   {
