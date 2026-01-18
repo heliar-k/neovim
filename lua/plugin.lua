@@ -121,33 +121,27 @@ return require("lazy").setup(
 
     ----------------------------- ui -----------------------------
     -- themes
-    { "projekt0n/github-nvim-theme", priority = 1000, name = "github" },
-    { "EdenEast/nightfox.nvim", priority = 1000, name = "nightfox" },
-    { "Shatur/neovim-ayu", priority = 1000, name = "ayu" },
-    { "askfiy/visual_studio_code", priority = 1000, name = "vs_code" },
-    { "navarasu/onedark.nvim", priority = 1000, name = "onedark" },
+    { "projekt0n/github-nvim-theme", lazy = false, priority = 1000, name = "github" },
+    { "EdenEast/nightfox.nvim", lazy = false, priority = 1000, name = "nightfox" },
+    { "navarasu/onedark.nvim", lazy = false, priority = 1000, name = "onedark" },
+    { "folke/tokyonight.nvim", lazy = false, priority = 1000, name = "tokyonight" },
     -- auto dark mode
     {
       "f-person/auto-dark-mode.nvim",
       dependencies = {
         "github",
         "nightfox",
-        "ayu",
-        "vs_code",
         "onedark",
       },
       opts = {
         update_interval = 6000,
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
-          vim.cmd("colorscheme nightfox")
+          vim.cmd("colorscheme tokyonight")
           -- vim.cmd("colorscheme ayu-mirage")
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
-          -- vim.cmd("colorscheme github_light_default")
-          -- require("visual_studio_code").setup({ mode = "light" })
-          -- vim.cmd("colorscheme visual_studio_code")
           require("onedark").setup({ style = "light" })
           require("onedark").load()
         end,
