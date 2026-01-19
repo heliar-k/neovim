@@ -346,23 +346,22 @@ return require("lazy").setup(
       end,
     },
 
-    ------------------------- debugger ----------------------------
-    -- language specific tools
+    -- ----------------- language specific tools -------------------------
     -- Adds extra functionality over rust analyzer
-    {
-      "mrcjkb/rustaceanvim",
-      version = "^5", -- Recommended
-      lazy = false, -- This plugin is already lazy
-      ft = { "rust" },
-    },
+    -- {
+    --   "mrcjkb/rustaceanvim",
+    --   version = "^5", -- Recommended
+    --   lazy = false, -- This plugin is already lazy
+    --   ft = { "rust" },
+    -- },
     -- for rust crates.io
-    {
-      "saecki/crates.nvim",
-      tag = "stable",
-      config = function()
-        require("crates").setup()
-      end,
-    },
+    -- {
+    --   "saecki/crates.nvim",
+    --   tag = "stable",
+    --   config = function()
+    --     require("crates").setup()
+    --   end,
+    -- },
     -- clangd extension
     {
       "p00f/clangd_extensions.nvim",
