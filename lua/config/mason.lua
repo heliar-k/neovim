@@ -18,7 +18,7 @@ require("mason-tool-installer").setup({
     "cmake-language-server", -- lsp for cmake
     "marksman", -- lsp for markdown
     "lua-language-server", -- lsp for lua
-    "pyright", -- lsp for python
+    "ty", -- lsp for python
     "json-lsp", -- lsp for json/jsonc
     "yaml-language-server", -- lsp for yaml
     "taplo", -- lsp for toml
