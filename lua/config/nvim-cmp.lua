@@ -17,7 +17,7 @@ cmp.setup({
     { name = "buffer", group_index = 2 },
     { name = "path", group_index = 2 },
     -- For crates
-    { name = "crates", group_index = 2 },
+    -- { name = "crates", group_index = 2 },
   }),
 
   -- 快捷键

@@ -291,15 +291,15 @@ return require("lazy").setup(
         -- lspkind
         "onsails/lspkind-nvim",
         -- crates
-        {
-          "Saecki/crates.nvim",
-          event = { "BufRead Cargo.toml" },
-          opts = {
-            completion = {
-              cmp = { enabled = true },
-            },
-          },
-        },
+        -- {
+        --   "Saecki/crates.nvim",
+        --   event = { "BufRead Cargo.toml" },
+        --   opts = {
+        --     completion = {
+        --       cmp = { enabled = true },
+        --     },
+        --   },
+        -- },
       },
       config = function()
         require("config.nvim-cmp")
