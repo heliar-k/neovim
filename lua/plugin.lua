@@ -270,12 +270,10 @@ return require("lazy").setup(
     {
       "kdheepak/lazygit.nvim",
     },
-    -- diffview
-    -- TODO need more document for this
     {
-      "sindrets/diffview.nvim",
-      lazy = true,
-      dependencies = "nvim-lua/plenary.nvim",
+      "esmuellert/codediff.nvim",
+      dependencies = { "MunifTanjim/nui.nvim" },
+      cmd = "CodeDiff",
     },
     {
       "tveskag/nvim-blame-line",
