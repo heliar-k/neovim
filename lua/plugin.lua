@@ -139,12 +139,12 @@ return require("lazy").setup(
         set_dark_mode = function()
           vim.api.nvim_set_option("background", "dark")
           vim.cmd("colorscheme tokyonight")
-          -- vim.cmd("colorscheme ayu-mirage")
         end,
         set_light_mode = function()
           vim.api.nvim_set_option("background", "light")
-          require("onedark").setup({ style = "light" })
-          require("onedark").load()
+          vim.cmd("colorscheme github_light")
+          -- require("onedark").setup({ style = "light" })
+          -- require("onedark").load()
         end,
       },
     },
