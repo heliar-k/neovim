@@ -103,6 +103,7 @@ function M.setup()
     { "<leader>g", group = "Git" },
     { "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", desc = "Open Lazygit" },
     { "<leader>gb", "<cmd>ToggleBlameLine<cr>", desc = "Toggle Blame Line" },
+    { "<leader>gd", "<cmd>CodeDiff HEAD<cr>", desc = "CodeDiff with Head" },
     -- lsp
     { "<leader>l", group = "LSP" },
     { "<leader>lf", "<cmd>Format<cr>", desc = "Format" },
