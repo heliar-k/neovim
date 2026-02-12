@@ -90,6 +90,7 @@ return require("lazy").setup(
         "neovim/nvim-lspconfig",
         "williamboman/mason.nvim",
         "jay-babu/mason-null-ls.nvim",
+        "nvimtools/none-ls-extras.nvim",
       },
       config = function()
         -- require("config.none-ls").setup()

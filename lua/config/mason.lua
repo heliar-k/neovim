@@ -31,10 +31,9 @@ require("mason-tool-installer").setup({
     "cmakelang", -- linter for cmake
     "protolint", -- linter for protobuf
     -- formatter
-    "black", -- formatter for python
+    "ruff", -- formatter for python
     "clang-format", -- formatter for c/c++
     "cmakelang", -- formatter for cmake
-    "isort", -- import optimizer for python
     "prettier", -- formatter for javascript/typescript
     "jq", -- formatter for json
     "shfmt", -- formatter for shell scripts
