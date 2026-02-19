@@ -1,0 +1,1 @@
+/Users/guankai/.config/nvim/AGENTS.md
