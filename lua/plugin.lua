@@ -325,7 +325,7 @@ return require("lazy").setup(
       dependencies = { "folke/snacks.nvim" },
       config = true,
       opts = {
-        terminal_cmd = "ccr code",
+        terminal_cmd = "claude",
       },
     },
     -- OpenCode
