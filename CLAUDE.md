@@ -1,1 +1,1 @@
-/Users/guankai/.config/nvim/AGENTS.md
+./AGENTS.md
