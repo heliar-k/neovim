@@ -225,18 +225,16 @@ return require("lazy").setup(
       },
     },
     ------------------------ language parser -----------------------
-    -- treesitter
+    -- treesitter (main 分支，新版 API)
     {
       "nvim-treesitter/nvim-treesitter",
       name = "nvim-treesitter",
+      branch = "main",
+      lazy = false,
+      build = ":TSUpdate",
       config = function()
         require("config.nvim-treesitter")
       end,
-      build = ":TSUpdate",
-    },
-    {
-      "nvim-treesitter/nvim-treesitter-refactor",
-      dependencies = { "nvim-treesitter" },
     },
     ------------------------- finder -------------------------------
     -- telescope
