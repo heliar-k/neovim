@@ -201,7 +201,7 @@ return require("lazy").setup(
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
-        "3rd/image.nvim",
+        "folke/snacks.nvim",
       },
       config = function()
         require("config.neo-tree")
