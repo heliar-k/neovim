@@ -244,7 +244,7 @@ return require("lazy").setup(
       dependencies = {
         "nvim-lua/plenary.nvim",
       },
-      branch = "0.1.x",
+      -- 移除 0.1.x 分支限制，master 分支已修复与 nvim-treesitter main 分支的兼容性 (PR #3566)
       config = function()
         require("config.telescope")
       end,
