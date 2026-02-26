@@ -1,3 +1,30 @@
+-- 确保 tree-sitter CLI 已安装（main 分支编译 parser 需要）
+if vim.fn.executable("tree-sitter") ~= 1 then
+  local installed = false
+  if vim.fn.executable("brew") == 1 then
+    vim.notify("tree-sitter CLI 未找到，正在通过 brew 安装...", vim.log.levels.INFO)
+    local r = vim.fn.system("brew install tree-sitter tree-sitter-cli")
+    installed = vim.v.shell_error == 0
+    if not installed then
+      vim.notify("brew 安装 tree-sitter-cli 失败: " .. r, vim.log.levels.WARN)
+    end
+  end
+  if not installed and vim.fn.executable("cargo") == 1 then
+    vim.notify("tree-sitter CLI 未找到，正在通过 cargo 安装...", vim.log.levels.INFO)
+    local r = vim.fn.system("cargo install tree-sitter-cli")
+    installed = vim.v.shell_error == 0
+    if not installed then
+      vim.notify("cargo 安装 tree-sitter-cli 失败: " .. r, vim.log.levels.WARN)
+    end
+  end
+  if not installed then
+    vim.notify(
+      "tree-sitter CLI 未安装，请手动执行: brew install tree-sitter-cli 或 cargo install tree-sitter-cli",
+      vim.log.levels.ERROR
+    )
+  end
+end
+
 -- 需要安装的 parser 列表
 local parsers = {
   "cpp",
