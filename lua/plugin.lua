@@ -474,7 +474,6 @@ return require("lazy").setup(
         require("nvim-autopairs").setup({})
       end,
     },
-    { "wakatime/vim-wakatime", lazy = false },
   },
   -- lazy.nvim opt
   {
