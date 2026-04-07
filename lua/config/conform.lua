@@ -5,7 +5,7 @@ function M.setup()
   conform.setup({
     formatters_by_ft = {
       lua = { "stylua" },
-      python = { "isort", "black" },
+      python = { "ruff" },
       rust = { "rustfmt" },
       toml = { "taplo" },
       json = { "prettier", stop_after_first = true },
