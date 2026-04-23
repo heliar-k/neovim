@@ -209,6 +209,24 @@ function M.setup()
       "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>",
       desc = "Jump to Next Error",
     },
+    -- theme switch
+    {
+      "<leader>td",
+      function()
+        vim.opt.background = "dark"
+        vim.cmd("colorscheme tokyonight-storm")
+      end,
+      desc = "Switch Dark mode"
+    },
+    {
+      "<leader>tl",
+      function()
+        vim.opt.background = "light"
+        vim.cmd("colorscheme github_light")
+      end,
+      desc = "Switch Light mode"
+    },
+
     -- python virtualenv selector
     { "<leader>v", group = "Python Venv Selector" },
     { "<leader>vs", "<cmd>VenvSelect<cr>", desc = "open VenvSelector to pick a venv" },
