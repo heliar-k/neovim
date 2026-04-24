@@ -23,6 +23,18 @@ return require("lazy").setup(
   {
     rocks = { hererocks = true },
     {
+      "folke/snacks.nvim",
+      priority = 1000,
+      lazy = false,
+      opts = {
+        input = { enabled = true },
+        notifier = { enabled = true },
+        picker = { enabled = true },
+        image = { enabled = false },
+        explorer = { enabled = false },
+      },
+    },
+    {
       "williamboman/mason.nvim",
       config = function()
         require("config.mason")
@@ -322,6 +334,7 @@ return require("lazy").setup(
     {
       "coder/claudecode.nvim",
       dependencies = { "folke/snacks.nvim" },
+      lazy = true,
       config = true,
       opts = {
         terminal_cmd = "claude",
@@ -330,6 +343,7 @@ return require("lazy").setup(
     -- OpenCode
     {
       "NickvanDyke/opencode.nvim",
+      lazy = true,
       dependencies = {
         -- Recommended for `ask()` and `select()`.
         -- Required for `snacks` provider.

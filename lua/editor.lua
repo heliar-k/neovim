@@ -104,6 +104,8 @@ vim.o.wildmenu = true
 -- Dont' pass messages to |ins-completin menu|
 vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.pumheight = 10
+-- session restore: include localoptions for filetype/highlighting
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,terminal,localoptions"
 -- always show tabline
 vim.o.showtabline = 2
 -- for neovim 0.9, to speedup lua plugin load
