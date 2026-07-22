@@ -145,9 +145,11 @@ return require("lazy").setup(
       opts = {
         on_dark = function()
           vim.cmd("colorscheme tokyonight")
+          require("lualine").setup({ options = { theme = "auto" } })
         end,
         on_light = function()
           vim.cmd("colorscheme github_light_default")
+          require("lualine").setup({ options = { theme = "auto" } })
         end,
       },
       config = function(_, opts)
@@ -208,6 +210,7 @@ return require("lazy").setup(
             else
               vim.cmd("colorscheme tokyonight")
             end
+            require("lualine").setup({ options = { theme = "auto" } })
           end,
         })
       end,
