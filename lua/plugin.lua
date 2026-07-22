@@ -144,25 +144,70 @@ return require("lazy").setup(
       "afonsofrancof/OSC11.nvim",
       opts = {
         on_dark = function()
-          vim.opt.background = "dark"
           vim.cmd("colorscheme tokyonight")
         end,
         on_light = function()
-          vim.opt.background = "light"
-          vim.cmd("colorscheme github_light")
+          vim.cmd("colorscheme github_light_default")
         end,
       },
       config = function(_, opts)
         require("osc11").setup(opts)
-        -- fallback: OSC11 only listens for TermResponse, never queries itself.
-        -- If the terminal doesn't respond (no OSC 11 support, race on startup),
-        -- neither callback fires and no colorscheme is set.
+
+        -- Pure-Lua OSC 11 background probe: sends query to terminal,
+        -- listens for TermResponse, no external script needed.
+        local function osc11_detect(timeout)
+          timeout = timeout or 300
+          local done = false
+          local theme = "dark"
+          local timer = vim.uv.new_timer()
+          local augroup = vim.api.nvim_create_augroup("_Osc11Detect", { clear = true })
+
+          vim.api.nvim_create_autocmd("TermResponse", {
+            group = augroup,
+            once = true,
+            callback = function()
+              if done then return end
+              local r, g, b = (vim.v.termresponse or ""):match("rgb:(%x+)/(%x+)/(%x+)")
+              if r then
+                r, g, b = tonumber(r, 16) or 255, tonumber(g, 16) or 255, tonumber(b, 16) or 255
+                if r > 255 then r = math.floor(r / 256) end
+                if g > 255 then g = math.floor(g / 256) end
+                if b > 255 then b = math.floor(b / 256) end
+                theme = ((299 * r + 587 * g + 114 * b) / 1000) < 128 and "dark" or "light"
+              end
+              done = true
+              timer:stop()
+              timer:close()
+              pcall(vim.api.nvim_del_augroup_by_id, augroup)
+            end,
+          })
+
+          timer:start(timeout, 0, function()
+            if not done then
+              done = true
+              pcall(vim.api.nvim_del_augroup_by_id, augroup)
+            end
+            timer:close()
+          end)
+
+          io.stdout:write("\27]11;?\27\\")
+          io.stdout:flush()
+          vim.wait(timeout + 50, function() return done end)
+          return theme
+        end
+
+        -- Active probe: OSC11.nvim is passive (listens for TermResponse only).
+        -- If Neovim's auto-query races with plugin load (common on SSH/tmux),
+        -- the passive listener never fires. Send our own query as fallback.
         vim.api.nvim_create_autocmd("VimEnter", {
           once = true,
           callback = function()
             if vim.g.colors_name then return end
-            vim.opt.background = "dark"
-            vim.cmd("colorscheme tokyonight")
+            if osc11_detect(300) == "light" then
+              vim.cmd("colorscheme github_light_default")
+            else
+              vim.cmd("colorscheme tokyonight")
+            end
           end,
         })
       end,
