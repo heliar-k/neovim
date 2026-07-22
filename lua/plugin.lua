@@ -139,27 +139,33 @@ return require("lazy").setup(
     { "EdenEast/nightfox.nvim", lazy = false, priority = 1000, name = "nightfox" },
     { "navarasu/onedark.nvim", lazy = false, priority = 1000, name = "onedark" },
     { "folke/tokyonight.nvim", lazy = false, priority = 1000, name = "tokyonight" },
-    -- auto dark mode
+    -- auto dark mode (via terminal OSC 11)
     {
-      "f-person/auto-dark-mode.nvim",
-      dependencies = {
-        "github",
-        "nightfox",
-        "onedark",
-      },
+      "afonsofrancof/OSC11.nvim",
       opts = {
-        update_interval = 6000,
-        set_dark_mode = function()
-          vim.api.nvim_set_option("background", "dark")
+        on_dark = function()
+          vim.opt.background = "dark"
           vim.cmd("colorscheme tokyonight")
         end,
-        set_light_mode = function()
-          vim.api.nvim_set_option("background", "light")
+        on_light = function()
+          vim.opt.background = "light"
           vim.cmd("colorscheme github_light")
-          -- require("onedark").setup({ style = "light" })
-          -- require("onedark").load()
         end,
       },
+      config = function(_, opts)
+        require("osc11").setup(opts)
+        -- fallback: OSC11 only listens for TermResponse, never queries itself.
+        -- If the terminal doesn't respond (no OSC 11 support, race on startup),
+        -- neither callback fires and no colorscheme is set.
+        vim.api.nvim_create_autocmd("VimEnter", {
+          once = true,
+          callback = function()
+            if vim.g.colors_name then return end
+            vim.opt.background = "dark"
+            vim.cmd("colorscheme tokyonight")
+          end,
+        })
+      end,
     },
     -- line in the bottom
     {
