@@ -8,7 +8,7 @@ require("lualine").setup({
       {
         "datetime",
         -- options: default, us, uk, iso, or your own format string ("%H:%M", etc..)
-        style = "%Y-%m-%d|%H:%M:%S",
+        style = "%Y-%m-%d|%H:%M",
         require("opencode").statusline,
       },
     },
