@@ -222,7 +222,7 @@ function M.setup()
       "<leader>tl",
       function()
         vim.opt.background = "light"
-        vim.cmd("colorscheme github_light")
+        vim.cmd("colorscheme noctis_hibernus")
       end,
       desc = "Switch Light mode"
     },

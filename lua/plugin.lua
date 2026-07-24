@@ -135,6 +135,7 @@ return require("lazy").setup(
 
     ----------------------------- ui -----------------------------
     -- themes
+    { "talha-akram/noctis.nvim", lazy = false, priority = 1000, name = "noctis" },
     { "projekt0n/github-nvim-theme", lazy = false, priority = 1000, name = "github" },
     { "EdenEast/nightfox.nvim", lazy = false, priority = 1000, name = "nightfox" },
     { "navarasu/onedark.nvim", lazy = false, priority = 1000, name = "onedark" },
@@ -148,7 +149,7 @@ return require("lazy").setup(
           require("lualine").setup({ options = { theme = "auto" } })
         end,
         on_light = function()
-          vim.cmd("colorscheme github_light_default")
+          vim.cmd("colorscheme noctis_hibernus")
           require("lualine").setup({ options = { theme = "auto" } })
         end,
       },
@@ -206,7 +207,7 @@ return require("lazy").setup(
           callback = function()
             if vim.g.colors_name then return end
             if osc11_detect(300) == "light" then
-              vim.cmd("colorscheme github_light_default")
+              vim.cmd("colorscheme noctis_hibernus")
             else
               vim.cmd("colorscheme tokyonight")
             end
