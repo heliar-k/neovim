@@ -149,7 +149,7 @@ return require("lazy").setup(
           require("lualine").setup({ options = { theme = "auto" } })
         end,
         on_light = function()
-          vim.cmd("colorscheme noctis_hibernus")
+          vim.cmd("colorscheme noctis_lux")
           require("lualine").setup({ options = { theme = "auto" } })
         end,
       },
@@ -169,13 +169,21 @@ return require("lazy").setup(
             group = augroup,
             once = true,
             callback = function()
-              if done then return end
+              if done then
+                return
+              end
               local r, g, b = (vim.v.termresponse or ""):match("rgb:(%x+)/(%x+)/(%x+)")
               if r then
                 r, g, b = tonumber(r, 16) or 255, tonumber(g, 16) or 255, tonumber(b, 16) or 255
-                if r > 255 then r = math.floor(r / 256) end
-                if g > 255 then g = math.floor(g / 256) end
-                if b > 255 then b = math.floor(b / 256) end
+                if r > 255 then
+                  r = math.floor(r / 256)
+                end
+                if g > 255 then
+                  g = math.floor(g / 256)
+                end
+                if b > 255 then
+                  b = math.floor(b / 256)
+                end
                 theme = ((299 * r + 587 * g + 114 * b) / 1000) < 128 and "dark" or "light"
               end
               done = true
@@ -195,7 +203,9 @@ return require("lazy").setup(
 
           io.stdout:write("\27]11;?\27\\")
           io.stdout:flush()
-          vim.wait(timeout + 50, function() return done end)
+          vim.wait(timeout + 50, function()
+            return done
+          end)
           return theme
         end
 
@@ -205,9 +215,11 @@ return require("lazy").setup(
         vim.api.nvim_create_autocmd("VimEnter", {
           once = true,
           callback = function()
-            if vim.g.colors_name then return end
+            if vim.g.colors_name then
+              return
+            end
             if osc11_detect(300) == "light" then
-              vim.cmd("colorscheme noctis_hibernus")
+              vim.cmd("colorscheme noctis_lux")
             else
               vim.cmd("colorscheme tokyonight")
             end

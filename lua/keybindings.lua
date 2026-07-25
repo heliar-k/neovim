@@ -216,15 +216,15 @@ function M.setup()
         vim.opt.background = "dark"
         vim.cmd("colorscheme tokyonight-storm")
       end,
-      desc = "Switch Dark mode"
+      desc = "Switch Dark mode",
     },
     {
       "<leader>tl",
       function()
         vim.opt.background = "light"
-        vim.cmd("colorscheme noctis_hibernus")
+        vim.cmd("colorscheme noctis_lux")
       end,
-      desc = "Switch Light mode"
+      desc = "Switch Light mode",
     },
 
     -- python virtualenv selector
