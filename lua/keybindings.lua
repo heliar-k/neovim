@@ -213,16 +213,14 @@ function M.setup()
     {
       "<leader>td",
       function()
-        vim.opt.background = "dark"
-        vim.cmd("colorscheme tokyonight-storm")
+        require("config.theme").set_dark()
       end,
       desc = "Switch Dark mode",
     },
     {
       "<leader>tl",
       function()
-        vim.opt.background = "light"
-        vim.cmd("colorscheme noctis_lux")
+        require("config.theme").set_light()
       end,
       desc = "Switch Light mode",
     },

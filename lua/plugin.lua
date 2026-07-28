@@ -135,22 +135,17 @@ return require("lazy").setup(
 
     ----------------------------- ui -----------------------------
     -- themes
-    { "talha-akram/noctis.nvim", lazy = false, priority = 1000, name = "noctis" },
     { "projekt0n/github-nvim-theme", lazy = false, priority = 1000, name = "github" },
-    { "EdenEast/nightfox.nvim", lazy = false, priority = 1000, name = "nightfox" },
-    { "navarasu/onedark.nvim", lazy = false, priority = 1000, name = "onedark" },
     { "folke/tokyonight.nvim", lazy = false, priority = 1000, name = "tokyonight" },
     -- auto dark mode (via terminal OSC 11)
     {
       "afonsofrancof/OSC11.nvim",
       opts = {
         on_dark = function()
-          vim.cmd("colorscheme tokyonight")
-          require("lualine").setup({ options = { theme = "auto" } })
+          require("config.theme").set_dark()
         end,
         on_light = function()
-          vim.cmd("colorscheme noctis_lux")
-          require("lualine").setup({ options = { theme = "auto" } })
+          require("config.theme").set_light()
         end,
       },
       config = function(_, opts)
@@ -218,12 +213,12 @@ return require("lazy").setup(
             if vim.g.colors_name then
               return
             end
+            local theme = require("config.theme")
             if osc11_detect(300) == "light" then
-              vim.cmd("colorscheme noctis_lux")
+              theme.set_light()
             else
-              vim.cmd("colorscheme tokyonight")
+              theme.set_dark()
             end
-            require("lualine").setup({ options = { theme = "auto" } })
           end,
         })
       end,
