@@ -37,6 +37,7 @@ dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert<CR>"),
   dashboard.button("f", "  > Find file", ":lua require('snacks').picker.files({ hidden = true })<CR>"),
   dashboard.button("r", "  > Recent", ":lua require('snacks').picker.recent()<CR>"),
+  dashboard.button("l", "󰑭  > Recent Sessions", ":lua require('persistence').select()<CR>"),
   dashboard.button(
     "s",
     "  > Settings",

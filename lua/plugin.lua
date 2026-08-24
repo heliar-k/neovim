@@ -112,15 +112,11 @@ return require("lazy").setup(
         require("trouble").setup({})
       end,
     },
-    -- session manager
+    -- session manager（persistence：退出自动保存，不按 cwd 自动恢复）
     {
-      "rmagatti/auto-session",
-      lazy = false,
-
-      opts = {
-        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-        close_filetypes_on_save = { "checkhealth", "opencode_terminal" },
-      },
+      "folke/persistence.nvim",
+      event = "BufReadPre",
+      opts = {},
     },
 
     ----------------------------- ui -----------------------------

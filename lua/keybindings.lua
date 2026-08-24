@@ -104,6 +104,22 @@ function M.setup()
     { "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", desc = "Open Lazygit" },
     { "<leader>gb", "<cmd>ToggleBlameLine<cr>", desc = "Toggle Blame Line" },
     { "<leader>gd", "<cmd>CodeDiff HEAD<cr>", desc = "CodeDiff with Head" },
+    -- session
+    { "<leader>q", group = "Session" },
+    {
+      "<leader>ql",
+      function()
+        require("persistence").load({ last = true })
+      end,
+      desc = "Restore Last Session",
+    },
+    {
+      "<leader>qS",
+      function()
+        require("persistence").select()
+      end,
+      desc = "Select Session",
+    },
     -- lsp
     { "<leader>l", group = "LSP" },
     { "<leader>lf", "<cmd>Format<cr>", desc = "Format" },
