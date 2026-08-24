@@ -23,8 +23,7 @@ require("lualine").setup({
     theme = "auto",
     disabled_filetypes = {
       statusline = {
-        "alpha",
-        "dashboard",
+        "snacks_dashboard",
         "aerial",
         "dapui_.",
         "neo-tree",

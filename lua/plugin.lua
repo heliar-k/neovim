@@ -26,16 +26,18 @@ return require("lazy").setup(
       "folke/snacks.nvim",
       priority = 1000,
       lazy = false,
-      opts = {
-        input = { enabled = true },
-        notifier = { enabled = true },
-        picker = { enabled = true },
-        image = { enabled = false },
-        explorer = { enabled = false },
-        terminal = {
-          win = { position = "bottom", height = 15 },
-        },
-      },
+      opts = function()
+        return vim.tbl_deep_extend("force", {
+          input = { enabled = true },
+          notifier = { enabled = true },
+          picker = { enabled = true },
+          image = { enabled = false },
+          explorer = { enabled = false },
+          terminal = {
+            win = { position = "bottom", height = 15 },
+          },
+        }, require("config.dashboard"))
+      end,
     },
     {
       "williamboman/mason.nvim",
@@ -267,14 +269,7 @@ return require("lazy").setup(
         require("config.neo-tree")
       end,
     },
-    -- welcome dashboard
-    {
-      "goolord/alpha-nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-        require("config.alpha")
-      end,
-    },
+    -- welcome dashboard（已换成 snacks.dashboard，见 lua/config/dashboard.lua）
     -- code outline
     {
       "hedyhli/outline.nvim",
