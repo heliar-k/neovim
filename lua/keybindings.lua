@@ -33,7 +33,7 @@ function M.setup()
     },
   })
   wk.add({
-    { "<C-t>", "<cmd>ToggleTerm<cr>", desc = "Toggle Terminal" },
+    { "<C-t>", function() require("snacks").terminal.toggle() end, desc = "Toggle Terminal" },
     -- debugging keybindings
     { "<F5>", "<cmd>lua require'dap'.step_into()<cr>", desc = "Step into" },
     { "<F6>", "<cmd>lua require'dap'.step_over()<cr>", desc = "Step over" },
@@ -94,11 +94,11 @@ function M.setup()
       desc = "Terminate Debug Session",
     },
 
-    { "<leader>f", group = "Telescope" },
-    { "<leader>ff", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find File" },
-    { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
-    { "<leader>fh", "<cmd>Telescope oldfiles<cr>", desc = "Recent File" },
-    { "<C-p>", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find File" },
+    { "<leader>f", group = "Finder" },
+    { "<leader>ff", function() require("snacks").picker.files({ hidden = true }) end, desc = "Find File" },
+    { "<leader>fg", function() require("snacks").picker.grep() end, desc = "Grep" },
+    { "<leader>fh", function() require("snacks").picker.recent() end, desc = "Recent File" },
+    { "<C-p>", function() require("snacks").picker.files({ hidden = true }) end, desc = "Find File" },
     -- git
     { "<leader>g", group = "Git" },
     { "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", desc = "Open Lazygit" },
@@ -108,18 +108,18 @@ function M.setup()
     { "<leader>l", group = "LSP" },
     { "<leader>lf", "<cmd>Format<cr>", desc = "Format" },
     { "<leader>lt", "<cmd>FormatToggle<cr>", desc = "FormatToggle" },
-    { "<leader>lr", "<cmd>Lspsaga rename<cr>", desc = "Rename" },
-    { "<leader>lu", "<cmd>Lspsaga finder def+ref<cr>", desc = "Show References" },
-    { "<leader>lx", "<cmd>Lspsaga show_line_diagnostics<cr>", desc = "Show Line Diagnostics" },
-    { "<leader>lc", "<cmd>Lspsaga code_action<cr>", desc = "Code Actions" },
-    { "<leader>ld", "<cmd>Lspsaga goto_definitions<cr>", desc = "Go To Definiton" },
-    { "<leader>lp", "<cmd>Lspsaga peek_definition<cr>", desc = "Peek definition" },
+    { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+    { "<leader>lu", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show References" },
+    { "<leader>lx", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show Line Diagnostics" },
+    { "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Actions" },
+    { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go To Definition" },
+    { "<leader>lp", function() require("snacks").picker.lsp_definitions() end, desc = "Definitions Picker" },
     { "<leader>lj", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Jump to Header/Source (CPP)" },
-    { "<C-]>", "<cmd>Lspsaga finder def+ref<cr>", desc = "Show References" },
+    { "<C-]>", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show References" },
 
     { "<leader>n", group = "Explore/Outline" },
     { "<leader>nt", "<cmd>Neotree<cr>", desc = "Toggle" },
-    { "<leader>no", "<cmd>Lspsaga outline<cr>", desc = "Toggle Outline" },
+    { "<leader>no", "<cmd>Outline<cr>", desc = "Toggle Outline" },
 
     -- opencode.nvim
     { "<leader>o", group = "Opencode" },
@@ -197,16 +197,16 @@ function M.setup()
     { "<leader>sv", "<cmd>vsp<cr>", desc = "Split vertical" },
 
     { "<leader>t", group = "Trouble" },
-    { "<leader>tp", "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Jump to Prev Diagnostics" },
-    { "<leader>tn", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Jump to Next Diagnostics" },
+    { "<leader>tp", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Jump to Prev Diagnostics" },
+    { "<leader>tn", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Jump to Next Diagnostics" },
     {
       "<leader>tE",
-      "<cmd>lua require('lspsaga.diagnostic'):goto_prec({ severity = vim.diagnostic.severity.ERROR })<cr>",
+      "<cmd>lua vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })<cr>",
       desc = "Jump to Prev Error",
     },
     {
       "<leader>te",
-      "<cmd>lua require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>",
+      "<cmd>lua vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })<cr>",
       desc = "Jump to Next Error",
     },
     -- theme switch

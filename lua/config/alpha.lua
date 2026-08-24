@@ -35,12 +35,12 @@ dashboard.section.header.val = ascii
 -- Set menu
 dashboard.section.buttons.val = {
   dashboard.button("e", "  > New file", ":ene <BAR> startinsert<CR>"),
-  dashboard.button("f", "  > Find file", ":Telescope find_files hidden=true no_ignore=true<CR>"),
-  dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
+  dashboard.button("f", "  > Find file", ":lua require('snacks').picker.files({ hidden = true })<CR>"),
+  dashboard.button("r", "  > Recent", ":lua require('snacks').picker.recent()<CR>"),
   dashboard.button(
     "s",
     "  > Settings",
-    ":Telescope find_files cwd=" .. setting_path .. " search_dirs=Ultisnips,lua,viml,init.vim<CR>"
+    ':lua require("snacks").picker.files({ cwd = vim.fn.expand("' .. setting_path .. '") })<CR>'
   ),
   dashboard.button("u", "󰚰  > Update Plugin", ":Lazy update<CR>"),
   -- dashboard.button("c", "  > Switch ColorScheme", ":Telescope colorscheme<CR>"),

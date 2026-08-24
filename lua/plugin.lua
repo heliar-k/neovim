@@ -32,6 +32,9 @@ return require("lazy").setup(
         picker = { enabled = true },
         image = { enabled = false },
         explorer = { enabled = false },
+        terminal = {
+          win = { position = "bottom", height = 15 },
+        },
       },
     },
     {
@@ -87,14 +90,6 @@ return require("lazy").setup(
       end,
       lazy = false,
     },
-    {
-      "glepnir/lspsaga.nvim",
-      branch = "main",
-      dependencies = { "catppuccin/nvim", "lewis6991/gitsigns.nvim" },
-      config = function()
-        require("config.lspsaga").setup()
-      end,
-    },
     -- none-ls
     {
       "nvimtools/none-ls.nvim",
@@ -107,11 +102,6 @@ return require("lazy").setup(
       config = function()
         -- require("config.none-ls").setup()
       end,
-    },
-    -- Ctags auto generation
-    {
-      "ludovicchabant/vim-gutentags",
-      branch = "master",
     },
     -- Displaying errors/warnings in a window
     {
@@ -311,33 +301,7 @@ return require("lazy").setup(
       end,
     },
     ------------------------- finder -------------------------------
-    -- telescope
-    {
-      "nvim-telescope/telescope.nvim",
-      name = "telescope.nvim",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-      },
-      -- 移除 0.1.x 分支限制，master 分支已修复与 nvim-treesitter main 分支的兼容性 (PR #3566)
-      config = function()
-        require("config.telescope")
-      end,
-    },
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = have_make and "make"
-        or "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      enabled = have_make or have_cmake,
-      dependencies = { "telescope.nvim" },
-    },
-    {
-      "nvim-telescope/telescope-ui-select.nvim",
-      dependencies = { "telescope.nvim" },
-    },
-    {
-      "nvim-telescope/telescope-frecency.nvim",
-      dependencies = { "telescope.nvim" },
-    },
+    -- 模糊查找改用 snacks.picker（folke/snacks.nvim 已安装）
     --------------------------- git -------------------------------
     -- lazygit
     {
@@ -353,27 +317,14 @@ return require("lazy").setup(
     },
     ------------------------- auto-complete ------------------------
     {
-      "hrsh7th/nvim-cmp",
+      "Saghen/blink.cmp",
+      version = "*",
+      event = { "InsertEnter", "CmdlineEnter" },
       dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline", -- { name = 'cmdline' }
-        -- lspkind
-        "onsails/lspkind-nvim",
-        -- crates
-        -- {
-        --   "Saecki/crates.nvim",
-        --   event = { "BufRead Cargo.toml" },
-        --   opts = {
-        --     completion = {
-        --       cmp = { enabled = true },
-        --     },
-        --   },
-        -- },
+        "fang2hou/blink-copilot",
       },
       config = function()
-        require("config.nvim-cmp")
+        require("config.blink")
       end,
     },
     -- Copilot / Anthropic
@@ -385,27 +336,22 @@ return require("lazy").setup(
         require("config.copilot")
       end,
     },
-    {
-      "zbirenbaum/copilot-cmp",
-      dependencies = { "copilot.lua" },
-      config = function()
-        require("copilot_cmp").setup()
-      end,
-    },
-    -- ClaudeCode
+    -- ClaudeCode（暂时禁用，恢复时删除 enabled = false 即可）
     {
       "coder/claudecode.nvim",
       dependencies = { "folke/snacks.nvim" },
       lazy = true,
+      enabled = false,
       config = true,
       opts = {
         terminal_cmd = "claude",
       },
     },
-    -- OpenCode
+    -- OpenCode（暂时禁用，恢复时删除 enabled = false 即可）
     {
       "NickvanDyke/opencode.nvim",
       lazy = true,
+      enabled = false,
       dependencies = {
         -- Recommended for `ask()` and `select()`.
         -- Required for `snacks` provider.
@@ -435,9 +381,9 @@ return require("lazy").setup(
     --     require("crates").setup()
     --   end,
     -- },
-    -- clangd extension
+    -- clangd extension（p00f 仓库已废弃，源码迁移至 sr.ht/~chinmay，GitHub 镜像为 dchinmay2）
     {
-      "p00f/clangd_extensions.nvim",
+      "dchinmay2/clangd_extensions.nvim",
       lazy = true,
       dependencies = {
         "jay-babu/mason-nvim-dap.nvim",
@@ -452,7 +398,6 @@ return require("lazy").setup(
       "linux-cultist/venv-selector.nvim",
       dependencies = {
         "neovim/nvim-lspconfig",
-        "nvim-telescope/telescope.nvim",
         "mfussenegger/nvim-dap",
         "mfussenegger/nvim-dap-python",
       },
@@ -504,7 +449,6 @@ return require("lazy").setup(
         "mfussenegger/nvim-dap",
         "jay-babu/mason-nvim-dap.nvim",
         "theHamsta/nvim-dap-virtual-text",
-        "nvim-telescope/telescope-dap.nvim",
         "nvim-neotest/nvim-nio",
       },
       config = function()
@@ -527,14 +471,7 @@ return require("lazy").setup(
         require("Comment").setup()
       end,
     },
-    -- toggle terminal
-    {
-      "akinsho/toggleterm.nvim",
-      version = "*",
-      config = function()
-        require("config.toggle_term")
-      end,
-    },
+    -- toggle terminal（已换成 snacks.terminal）
     -- which-key
     {
       "folke/which-key.nvim",
