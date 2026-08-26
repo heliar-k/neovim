@@ -231,6 +231,11 @@ function M.setup()
     { "<leader>nt", "<cmd>Neotree<cr>", desc = "Toggle" },
     { "<leader>no", "<cmd>Outline<cr>", desc = "Toggle Outline" },
 
+    -- markdown 渲染（render-markdown.nvim）
+    { "<leader>m", group = "Markdown" },
+    { "<leader>mt", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle Render" },
+    { "<leader>mp", "<cmd>RenderMarkdown preview<cr>", desc = "Preview in Split" },
+
     -- { "<leader>p", group = "Obsidian", hidden = true },
     -- { "<leader>po", "<cmd>ObsidianOpen<cr>", desc = "Open", hidden = true },
     -- { "<leader>pc", "<cmd>ObsidianCheck<cr>", desc = "Check", hidden = true },

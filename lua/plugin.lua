@@ -408,6 +408,14 @@ return require("lazy").setup(
         require("nvim-autopairs").setup({})
       end,
     },
+    -- render markdown（在缓冲区内部渲染，不调浏览器）
+    {
+      "MeanderingProgrammer/render-markdown.nvim",
+      ft = { "markdown" },
+      config = function()
+        require("render-markdown").setup({ preset = "obsidian" })
+      end,
+    },
   },
   -- lazy.nvim opt
   {
