@@ -413,7 +413,13 @@ return require("lazy").setup(
       "MeanderingProgrammer/render-markdown.nvim",
       ft = { "markdown" },
       config = function()
-        require("render-markdown").setup({ preset = "obsidian" })
+        require("render-markdown").setup({
+          preset = "obsidian",
+          -- 渲染时自动换行（来源窗口和预览都生效）
+          win_options = {
+            wrap = { default = false, rendered = true },
+          },
+        })
       end,
     },
   },
