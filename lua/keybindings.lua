@@ -32,8 +32,50 @@ function M.setup()
       },
     },
   })
+  -- pi-coding-agent（终端 TUI + 桥接发送上下文）
+  -- 兜底：pi 未打开时创建 snacks float 终端，然后切回原窗口，
+  -- 保证 Pi* 命令读到的是源文件 buffer 而非终端 buffer
+  local function ensure_pi()
+    local curwin = vim.api.nvim_get_current_win()
+    local buf = nil
+    for _, b in ipairs(vim.api.nvim_list_bufs()) do
+      if
+        vim.api.nvim_buf_is_valid(b)
+        and vim.bo[b].buftype == "terminal"
+        and (vim.api.nvim_buf_get_name(b):lower():match(":pi$") or vim.api.nvim_buf_get_name(b):lower():match(":pi%s"))
+      then
+        buf = b
+        break
+      end
+    end
+    if not buf or vim.fn.bufwinid(buf) == -1 then
+      require("snacks").terminal.toggle("pi")
+      vim.api.nvim_set_current_win(curwin)
+    end
+  end
+
+  -- 包装 pi-nvim 的 prompt：只在真正发送（回车）时才确保 float 终端存在，
+  -- 避免输入框弹出时终端就先出现
+  local pi = require("pi-nvim")
+  if not pi._pi_nvim_prompt_wrapped then
+    local orig_prompt = pi.prompt
+    pi.prompt = function(message, ...)
+      if message and message ~= "" then
+        ensure_pi()
+      end
+      return orig_prompt(message, ...)
+    end
+    pi._pi_nvim_prompt_wrapped = true
+  end
+
   wk.add({
-    { "<C-t>", function() require("snacks").terminal.toggle() end, desc = "Toggle Terminal" },
+    {
+      "<C-t>",
+      function()
+        require("snacks").terminal.toggle()
+      end,
+      desc = "Toggle Terminal",
+    },
     -- debugging keybindings
     { "<F5>", "<cmd>lua require'dap'.step_into()<cr>", desc = "Step into" },
     { "<F6>", "<cmd>lua require'dap'.step_over()<cr>", desc = "Step over" },
@@ -46,17 +88,39 @@ function M.setup()
     { "zO", "<cmd>lua require('ufo').openAllFolds<cr>", desc = "Open all folds" },
     { "zC", "<cmd>lua require('ufo').closeAllFolds<cr>", desc = "Close all folds" },
 
-    { "<leader>a", group = "AI/Claude Code" },
-    { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
-    { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
-    { "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
-    { "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
-    { "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-    { "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
-    { "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
-    -- Diff management
-    { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-    { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+    -- pi-coding-agent（终端 TUI + 桥接发送上下文）
+    { "<leader>a", group = "AI/pi" },
+    {
+      "<leader>ap",
+      function()
+        require("snacks").terminal.toggle("pi")
+      end,
+      desc = "Open pi TUI",
+    },
+    {
+      "<leader>ac",
+      function()
+        vim.cmd("Pi")
+      end,
+      desc = "Send prompt to pi",
+    },
+    {
+      "<leader>as",
+      function()
+        vim.cmd("PiSendSelection")
+      end,
+      mode = "v",
+      desc = "Send selection to pi",
+    },
+    {
+      "<leader>ab",
+      function()
+        vim.cmd("PiSendFile")
+      end,
+      desc = "Send file to pi",
+    },
+    { "<leader>aP", "<cmd>PiPing<cr>", desc = "Ping pi session" },
+    { "<leader>aS", "<cmd>PiSessions<cr>", desc = "List pi sessions" },
 
     { "<leader>b", group = "Buffer" },
     { "<leader>bc", "<cmd>BufferClose<cr>", desc = "Close Current Buffer" },
@@ -95,10 +159,34 @@ function M.setup()
     },
 
     { "<leader>f", group = "Finder" },
-    { "<leader>ff", function() require("snacks").picker.files({ hidden = true }) end, desc = "Find File" },
-    { "<leader>fg", function() require("snacks").picker.grep() end, desc = "Grep" },
-    { "<leader>fh", function() require("snacks").picker.recent() end, desc = "Recent File" },
-    { "<C-p>", function() require("snacks").picker.files({ hidden = true }) end, desc = "Find File" },
+    {
+      "<leader>ff",
+      function()
+        require("snacks").picker.files({ hidden = true })
+      end,
+      desc = "Find File",
+    },
+    {
+      "<leader>fg",
+      function()
+        require("snacks").picker.grep()
+      end,
+      desc = "Grep",
+    },
+    {
+      "<leader>fh",
+      function()
+        require("snacks").picker.recent()
+      end,
+      desc = "Recent File",
+    },
+    {
+      "<C-p>",
+      function()
+        require("snacks").picker.files({ hidden = true })
+      end,
+      desc = "Find File",
+    },
     -- git
     { "<leader>g", group = "Git" },
     { "<leader>gg", "<cmd>LazyGitCurrentFile<cr>", desc = "Open Lazygit" },
@@ -129,74 +217,19 @@ function M.setup()
     { "<leader>lx", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show Line Diagnostics" },
     { "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Actions" },
     { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go To Definition" },
-    { "<leader>lp", function() require("snacks").picker.lsp_definitions() end, desc = "Definitions Picker" },
+    {
+      "<leader>lp",
+      function()
+        require("snacks").picker.lsp_definitions()
+      end,
+      desc = "Definitions Picker",
+    },
     { "<leader>lj", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Jump to Header/Source (CPP)" },
     { "<C-]>", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show References" },
 
     { "<leader>n", group = "Explore/Outline" },
     { "<leader>nt", "<cmd>Neotree<cr>", desc = "Toggle" },
     { "<leader>no", "<cmd>Outline<cr>", desc = "Toggle Outline" },
-
-    -- opencode.nvim
-    { "<leader>o", group = "Opencode" },
-    {
-      "<leader>oa",
-      function()
-        require("opencode").ask("@this: ", { submit = true })
-      end,
-      desc = "Ask opencode",
-      mode = { "n", "x" },
-    },
-    {
-      "<leader>ot",
-      function()
-        require("opencode").toggle()
-      end,
-      desc = "Toggle opencode",
-      mode = { "n", "t" },
-    },
-    {
-      "<leader>ox",
-      function()
-        require("opencode").select()
-      end,
-      desc = "Execute opencode action…",
-      mode = { "n", "x" },
-    },
-    {
-      "<leader>og",
-      function()
-        return require("opencode").operator("@this ")
-      end,
-      desc = "Add range to opencode",
-      mode = { "n", "x" },
-      expr = true,
-    },
-    {
-      "<leader>ogo",
-      function()
-        return require("opencode").operator("@this ") .. "_"
-      end,
-      desc = "Add line to opencode",
-      mode = "n",
-      expr = true,
-    },
-    {
-      "<S-C-u>",
-      function()
-        require("opencode").command("session.half.page.up")
-      end,
-      desc = "opencode half page up",
-      mode = "n",
-    },
-    {
-      "<S-C-d>",
-      function()
-        require("opencode").command("session.half.page.down")
-      end,
-      desc = "opencode half page down",
-      mode = "n",
-    },
 
     -- { "<leader>p", group = "Obsidian", hidden = true },
     -- { "<leader>po", "<cmd>ObsidianOpen<cr>", desc = "Open", hidden = true },

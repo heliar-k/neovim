@@ -34,7 +34,7 @@ return require("lazy").setup(
           image = { enabled = false },
           explorer = { enabled = false },
           terminal = {
-            win = { position = "bottom", height = 15 },
+            win = { position = "float", border = "rounded" },
           },
         }, require("config.dashboard"))
       end,
@@ -278,32 +278,11 @@ return require("lazy").setup(
         require("config.copilot")
       end,
     },
-    -- ClaudeCode（暂时禁用，恢复时删除 enabled = false 即可）
+    -- pi coding agent bridge（pi 端需先安装扩展：pi install npm:pi-nvim）
     {
-      "coder/claudecode.nvim",
-      dependencies = { "folke/snacks.nvim" },
-      lazy = true,
-      enabled = false,
-      config = true,
-      opts = {
-        terminal_cmd = "claude",
-      },
-    },
-    -- OpenCode（暂时禁用，恢复时删除 enabled = false 即可）
-    {
-      "NickvanDyke/opencode.nvim",
-      lazy = true,
-      enabled = false,
-      dependencies = {
-        -- Recommended for `ask()` and `select()`.
-        -- Required for `snacks` provider.
-        ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-        { "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
-      },
+      "carderne/pi-nvim",
       config = function()
-        vim.g.opencode_opts = {}
-        -- Required for `opts.events.reload`.
-        vim.o.autoread = true
+        require("pi-nvim").setup()
       end,
     },
 
