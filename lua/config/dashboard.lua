@@ -70,10 +70,38 @@ local M = {
 }
 
 -- 启动时自动显示（等价 alpha.nvim 行为：无文件参数时）
+-- 注意：必须传入 win 让 dashboard 以普通窗口渲染，而不是浮窗。
+-- 浮窗会盖住后开的 :Neotree 分屏（导致 neotree 无法显示），
+-- 且浮窗下方背景窗口的 lualine 状态栏会从欢迎页底部透出
+-- （即此前看到的 "powerline 状态栏"）。
+local function is_empty_buf(buf)
+  if vim.bo[buf].modified then
+    return false
+  end
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+  return #lines == 0 or (#lines == 1 and lines[1] == "")
+end
+
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     if vim.fn.argc() == 0 then
-      require("snacks").dashboard()
+      local prev_buf = vim.api.nvim_get_current_buf()
+      local dash = require("snacks").dashboard({ win = vim.api.nvim_get_current_win() })
+      -- 删除启动时残留的空 [No Name] buffer（已不在任何窗口显示），
+      -- 否则它一直挂在 barbar 的 tabline 里（[buffer 1]）
+      if prev_buf ~= dash.buf and vim.api.nvim_buf_get_name(prev_buf) == "" and is_empty_buf(prev_buf) then
+        pcall(vim.api.nvim_buf_delete, prev_buf, { force = true })
+      end
+      -- 欢迎页不需要 buffer tab（barbar 的 tabline）：打开时隐藏，退出时恢复
+      local prev_tabline = vim.o.showtabline
+      vim.o.showtabline = 0
+      vim.api.nvim_create_autocmd("BufWipeout", {
+        buffer = dash.buf,
+        once = true,
+        callback = function()
+          vim.o.showtabline = prev_tabline
+        end,
+      })
     end
   end,
   once = true,
