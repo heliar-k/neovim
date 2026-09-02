@@ -7,6 +7,26 @@ local opt = {
   noremap = true,
   silent = true,
 }
+
+-- LSP peek 布局：居中小弹窗（列表 + 预览，类似 VSCode peek / lspsaga 浮窗）
+-- 注意：自定义布局必须是 snacks.layout.Config 结构（layout 内再套 layout）
+local PEEK_LAYOUT = {
+  layout = {
+    layout = {
+      box = "vertical",
+      width = 0.5,
+      min_width = 60,
+      height = 0.6,
+      min_height = 10,
+      border = "rounded",
+      title = "{title} {live} {flags}",
+      title_pos = "center",
+      { win = "input", height = 1, border = "bottom" },
+      { win = "list", border = "none" },
+      { win = "preview", title = "{preview}", height = 0.5, border = "top" },
+    },
+  },
+}
 -- ctrl u / ctrl + d  只移动9行，默认移动半屏
 map("n", "<C-u>", "9k", opt)
 map("n", "<C-d>", "9j", opt)
@@ -216,16 +236,32 @@ function M.setup()
     { "<leader>lu", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show References" },
     { "<leader>lx", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show Line Diagnostics" },
     { "<leader>lc", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Actions" },
+    -- VSCode 风格：gd(F12) 直接跳转定义，gD(Alt+F12) peek 预览定义
+    { "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go To Definition" },
+    {
+      "gD",
+      function()
+        require("snacks").picker.lsp_definitions(PEEK_LAYOUT)
+      end,
+      desc = "Peek Definition",
+    },
     { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go To Definition" },
     {
       "<leader>lp",
       function()
-        require("snacks").picker.lsp_definitions()
+        require("snacks").picker.lsp_definitions(PEEK_LAYOUT)
       end,
-      desc = "Definitions Picker",
+      desc = "Peek Definition",
     },
     { "<leader>lj", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Jump to Header/Source (CPP)" },
-    { "<C-]>", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Show References" },
+    { "<C-]>", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go To Definition" },
+    {
+      "gR",
+      function()
+        require("snacks").picker.lsp_references(PEEK_LAYOUT)
+      end,
+      desc = "Peek References",
+    },
 
     { "<leader>n", group = "Explore/Outline" },
     { "<leader>nt", "<cmd>Neotree<cr>", desc = "Toggle" },
